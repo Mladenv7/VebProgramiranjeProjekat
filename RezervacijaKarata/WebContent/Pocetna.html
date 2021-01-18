@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="Stilovi/Stil1.css">
+<title>Početna</title>
+</head>
+<body>
+    <h1 id="Karatana">Karatana</h1><br>
+    <form id="LoginForma">
+        <table>
+            <tr><td><input type="submit" value="Prijavite se"></td><td><input type="text" placeholder="Korisničko ime"></td></tr>
+            <tr><td><a href="#">Registrujte se</a></td><td><input type="text" placeholder="Lozinka"></td></tr>
+        </table>
+    </form><br>
+
+    <div id="ManifGlavniKontejner">
+        <div class="ManifestacijeDiv"><table>
+        </table></div><br>
+        <form id="PretragaManifForma">
+            <table>
+                <tr>
+                    <td><input type="text" placeholder="Naziv manifestacije"></td>
+                    <td><input type="text" placeholder="Mesto"></td>
+                    <td><input type="number" id="minCena" min="0" placeholder="Cena karte od">RSD</td>
+                    <td><input type="number" id="maxCena" min="0" placeholder="Cena karte do">RSD</td>
+                    <td><input type="date" id="datumOd" placeholder="Datum od"></td>
+                    <td><input type="date" id="datumDo" placeholder="Datum do"></td>
+                </tr>
+                <tr><td><input type="submit" value="Pretraga" id="DugmePretragaManif"></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

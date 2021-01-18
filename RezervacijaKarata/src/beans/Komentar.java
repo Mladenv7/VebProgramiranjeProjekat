@@ -5,6 +5,8 @@ public class Komentar {
 	private Manifestacija manifestacija;
 	private String tekst;
 	private int ocena; //ocena ide od 1 do 5
+	private boolean obrisan;
+	
 	public Korisnik getAutor() {
 		return autor;
 	}
@@ -29,12 +31,25 @@ public class Komentar {
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
 	}
-	public Komentar(Korisnik autor, Manifestacija manifestacija, String tekst, int ocena) {
+	public Manifestacija getManifestacija() {
+		return manifestacija;
+	}
+	public void setManifestacija(Manifestacija manifestacija) {
+		this.manifestacija = manifestacija;
+	}
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+	public Komentar(Korisnik autor, Manifestacija manifestacija, String tekst, int ocena, boolean obrisan) {
 		super();
 		this.autor = autor;
 		this.manifestacija = manifestacija;
 		this.tekst = tekst;
 		this.ocena = ocena;
+		this.obrisan = obrisan;
 	}
 	
 	public Komentar() {
@@ -43,5 +58,6 @@ public class Komentar {
 		this.manifestacija = null;
 		this.tekst = "";
 		this.ocena = 1;
+		this.obrisan = true;
 	}
 }

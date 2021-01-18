@@ -15,4 +15,20 @@ public enum TipKupca {
 		this.procenatPopusta = pp;
 		this.kriterijumZaTip = kzt;
 	}
+
+	@Override
+	public String toString() {
+		switch(this) {
+			case BRONZANI:
+				return "Bronzani";
+			case SREBRNI:
+				return "Srebrni";
+			case ZLATNI:
+				return "Zlatni";
+			default:
+				return "Nepoznat tip kupca";
+		}
+	}
+	
+	
 }

@@ -4,6 +4,8 @@ public class Lokacija {
 	
 	private double geoSirina, geoDuzina;
 	private String adresa;
+	private boolean obrisana;
+	
 	public double getGeoSirina() {
 		return geoSirina;
 	}
@@ -22,11 +24,18 @@ public class Lokacija {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public Lokacija(double geoSirina, double geoDuzina, String adresa) {
+	public boolean isObrisana() {
+		return obrisana;
+	}
+	public void setObrisana(boolean obrisana) {
+		this.obrisana = obrisana;
+	}
+	public Lokacija(double geoSirina, double geoDuzina, String adresa, boolean obrisana) {
 		super();
 		this.geoSirina = geoSirina;
 		this.geoDuzina = geoDuzina;
 		this.adresa = adresa;
+		this.obrisana = obrisana;
 	}
 	
 	public Lokacija() {
@@ -34,6 +43,7 @@ public class Lokacija {
 		this.geoSirina = 0;
 		this.geoDuzina = 0;
 		this.adresa = "";
+		this.obrisana = true;
 	}
 	
 	public Lokacija(Lokacija l) {
@@ -41,5 +51,6 @@ public class Lokacija {
 		this.geoSirina = l.getGeoSirina();
 		this.geoDuzina = l.getGeoDuzina();
 		this.adresa = l.getAdresa();
+		this.obrisana = l.isObrisana();
 	}
 }

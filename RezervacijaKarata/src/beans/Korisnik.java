@@ -8,9 +8,7 @@ import enums.TipKupca;
 import enums.Uloga;
 
 public class Korisnik {
-	private String korisnickoIme, lozinka, ime
-			,prezime;
-	
+	private String korisnickoIme, lozinka, ime,prezime;
 	private Pol pol;
 	private LocalDate datumRodjenja;
 	private Uloga uloga;
@@ -18,6 +16,8 @@ public class Korisnik {
 	private ArrayList<Manifestacija> sveManifest;
 	private int brBodova;
 	private TipKupca tip;
+	private boolean obrisan;
+	
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}
@@ -84,8 +84,15 @@ public class Korisnik {
 	public void setTip(TipKupca tip) {
 		this.tip = tip;
 	}
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, LocalDate datumRodjenja,
-			Uloga uloga, ArrayList<Karta> sveKarte, ArrayList<Manifestacija> sveManifest, int brBodova, TipKupca tip) {
+			Uloga uloga, ArrayList<Karta> sveKarte,
+			ArrayList<Manifestacija> sveManifest, int brBodova, TipKupca tip, boolean obrisan) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -98,6 +105,7 @@ public class Korisnik {
 		this.sveManifest = sveManifest;
 		this.brBodova = brBodova;
 		this.tip = tip;
+		this.obrisan = obrisan;
 	}
 	
 	public Korisnik() {
@@ -113,6 +121,7 @@ public class Korisnik {
 		this.sveManifest = null;
 		this.brBodova = 0;
 		this.tip = null;
+		this.obrisan = false;
 	}
 	
 	public Korisnik(Korisnik k) {
@@ -128,5 +137,6 @@ public class Korisnik {
 		this.sveManifest = k.getSveManifest();
 		this.brBodova = k.getBrBodova();
 		this.tip = k.getTip();
+		this.obrisan = k.isObrisan();
 	}
 }

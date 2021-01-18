@@ -12,6 +12,8 @@ public class Manifestacija {
 	private boolean status; //aktivno - true; neaktivno - false
 	private Lokacija lokacija;
 	private String poster;
+	private boolean obrisana;
+	
 	public String getNaziv() {
 		return naziv;
 	}
@@ -60,6 +62,36 @@ public class Manifestacija {
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
+	public boolean isObrisana() {
+		return obrisana;
+	}
+	public void setObrisana(boolean obrisana) {
+		this.obrisana = obrisana;
+	}
+	public Manifestacija(String naziv, String tipManifestacije, int brojMesta, LocalDateTime vremeOdrzavanja,
+			double cenaRegular, boolean status, Lokacija lokacija, String poster, boolean obrisana) {
+		super();
+		this.naziv = naziv;
+		this.tipManifestacije = tipManifestacije;
+		this.brojMesta = brojMesta;
+		this.vremeOdrzavanja = vremeOdrzavanja;
+		this.cenaRegular = cenaRegular;
+		this.status = status;
+		this.lokacija = lokacija;
+		this.poster = poster;
+		this.obrisana = obrisana;
+	}
 	
-	
+	public Manifestacija() {
+		super();
+		this.naziv = "";
+		this.tipManifestacije = null;
+		this.brojMesta = 0;
+		this.vremeOdrzavanja = null;
+		this.cenaRegular = 0;
+		this.status = false;
+		this.lokacija = null;
+		this.poster = null;
+		this.obrisana = true;
+	}
 }

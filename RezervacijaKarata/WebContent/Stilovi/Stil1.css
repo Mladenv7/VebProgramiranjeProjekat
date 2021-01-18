@@ -1,0 +1,34 @@
+#LoginForma{
+	position:absolute;
+	top:10px;
+    right: 10px;
+}
+
+#Karatana{
+	position : absolute; 
+	top :-10px;
+}
+
+#ManifGlavniKontejner{
+	position:absolute;
+	top:100px;
+	left:100px;
+	right:100px;
+	height:500px;
+}
+
+.ManifestacijeDiv {
+	border: 7px outset powderblue;
+	position : relative;
+	height:75%;
+	overflow-y: scroll;
+  }
+
+#PretragaManifForma{
+	position:relative;
+	
+}
+
+#DugmePretragaManif{
+	width : 100%;
+}
