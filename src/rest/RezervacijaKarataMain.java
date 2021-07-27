@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import beans.Korisnik;
 import beans.dto.KupacRegistracijaDTO;
+import beans.dto.PrijavaDTO;
 import enums.Pol;
 import enums.Uloga;
 import servisi.KorisnikServis;
@@ -33,6 +34,8 @@ public class RezervacijaKarataMain {
 			return g.toJson(manifestacije.getManifestacije());
 		});
 		
+		//----------------------------------------------------------------------------------------
+		
 		post("/rest/korisnici/registracijaKorisnika", (req, res) -> {
 			
 			KupacRegistracijaDTO dto = g.fromJson(req.body(), KupacRegistracijaDTO.class);
@@ -50,6 +53,13 @@ public class RezervacijaKarataMain {
 			return korisnikServis.dodajKorisnika(noviKupac);
 		});
 		
+		post("/rest/korisnici/prijava", (req, res) -> {
+			PrijavaDTO dto = g.fromJson(req.body(), PrijavaDTO.class);
+			Korisnik prijavljeni = korisnikServis.dobaviKorisnika(dto.getKorisnickoIme());
+			if(prijavljeni == null) return "Ovaj korisnik ne postoji";
+			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
+			return g.toJson(prijavljeni);
+		});
 	}
 
 }

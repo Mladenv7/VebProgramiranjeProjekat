@@ -1,0 +1,32 @@
+[
+  {
+    "korisnickoIme": "Admin",
+    "lozinka": "password",
+    "ime": "Admin",
+    "prezime": "Admin",
+    "pol": "MUSKI",
+    "uloga": "ADMINISTRATOR",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Kupac",
+    "lozinka": "password",
+    "ime": "Kupac",
+    "prezime": "Kupac",
+    "pol": "MUSKI",
+    "uloga": "KUPAC",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Prodavac",
+    "lozinka": "password",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
+    "brBodova": 0,
+    "obrisan": false
+  }
+]
