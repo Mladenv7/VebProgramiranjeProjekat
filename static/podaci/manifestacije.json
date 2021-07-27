@@ -1,0 +1,62 @@
+[
+{
+	id : '1',
+	naziv : 'manifestacija 1',
+	tipManifestacije : 'tip manifestacije 1',
+	brojMesta : 5500,
+	vremeOdrzavanja : {
+		"date":{"year":2020,"month":5,"day":25},
+		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
+	},
+	cenaRegular : 550.0,
+	status : false,
+	lokacija : {},
+	poster : './podaci/posteri/poster1.jpg',
+	obrisana : false
+},
+{
+	id : '2',
+	naziv : 'manifestacija 2',
+	tipManifestacije : 'tip manifestacije 1',
+	brojMesta : 5500,
+	vremeOdrzavanja : {
+		"date":{"year":2020,"month":5,"day":25},
+		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
+	},
+	cenaRegular : 550.0,
+	status : false,
+	lokacija : {},
+	poster : './podaci/posteri/poster2.jpg',
+	obrisana : false
+},
+{
+	id : '3',
+	naziv : 'manifestacija 3',
+	tipManifestacije : 'tip manifestacije 1',
+	brojMesta : 5500,
+	vremeOdrzavanja : {
+		"date":{"year":2020,"month":5,"day":25},
+		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
+	},
+	cenaRegular : 550.0,
+	status : false,
+	lokacija : {},
+	poster : './podaci/posteri/poster3.jpg',
+	obrisana : false
+},
+{
+	id : '4',
+	naziv : 'manifestacija 4',
+	tipManifestacije : 'tip manifestacije 1',
+	brojMesta : 5500,
+	vremeOdrzavanja : {
+		"date":{"year":2020,"month":7,"day":29},
+		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
+	},
+	cenaRegular : 550.0,
+	status : false,
+	lokacija : {},
+	poster : '',
+	obrisana : false
+}
+]
