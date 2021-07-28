@@ -1,12 +1,13 @@
 Vue.component("navbar", {
     data: function() {
         return {
-            prijavljeni : {},
+            prijavljeni : {uloga: ""},
         }
     },
     template: `
     <div>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navBezKorisnika" v-if="!this.jeLiPrijavljen()">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navBezKorisnika" 
+        v-if="!this.jeLiPrijavljen() || this.prijavljeni == 'Ovaj korisnik ne postoji' || this.prijavljeni == 'Pogrešna lozinka'">
     <div class="container-fluid">
         <a class="navbar-brand" href="#/">Rezervacija karata</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,6 +122,7 @@ Vue.component("navbar", {
     </div>
     </nav>
 
+
     </div>
     `,
     methods: {
@@ -130,6 +132,7 @@ Vue.component("navbar", {
         },
         odjava(){
             localStorage.removeItem("prijavljeni");
+            this.prijavljeni = {uloga: "" };
             this.$router.go();
         },
     },

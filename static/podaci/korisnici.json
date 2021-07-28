@@ -1,5 +1,25 @@
 [
   {
+    "korisnickoIme": "Prodavac",
+    "lozinka": "password",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Đura",
+    "lozinka": "password",
+    "ime": "Đura",
+    "prezime": "Đura",
+    "pol": "ZENSKI",
+    "uloga": "KUPAC",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
     "korisnickoIme": "Admin",
     "lozinka": "password",
     "ime": "Admin",
@@ -16,16 +36,6 @@
     "prezime": "Kupac",
     "pol": "MUSKI",
     "uloga": "KUPAC",
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "Prodavac",
-    "lozinka": "password",
-    "ime": "Prodavac",
-    "prezime": "Prodavac",
-    "pol": "MUSKI",
-    "uloga": "PRODAVAC",
     "brBodova": 0,
     "obrisan": false
   }
