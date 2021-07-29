@@ -42,5 +42,4 @@ public class ManifestacijaServis {
 	public void setManifestacije(HashMap<String, Manifestacija> manifestacije) {
 		this.manifestacije = manifestacije;
 	}
-	
 }

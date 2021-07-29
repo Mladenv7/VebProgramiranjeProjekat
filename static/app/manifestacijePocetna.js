@@ -2,6 +2,7 @@ Vue.component("manifestacije-pocetna", {
     data: function () {
         return {
             manifestacije : [],
+            izabranaId : "",
         }
     },
     template : `
@@ -16,7 +17,7 @@ Vue.component("manifestacije-pocetna", {
                     <div class="card-body">
                         <h5 class="card-title">{{manifestacija.naziv}}</h5>
                         <p class="card-text">{{manifestacija.tipManifestacije}}</p>
-                        <a href="#" class="btn btn-primary">Detalji</a>
+                        <a class="btn btn-primary" v-on:click="izaberiManifestaciju(manifestacija.id)">Detalji</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +28,11 @@ Vue.component("manifestacije-pocetna", {
     
     `,
     methods : {
-
+        izaberiManifestaciju(id){
+            this.izabranaId = id;
+            console.log(this.izabranaId);
+            this.$router.push({ path: '/manifestacija', query: { id: this.izabranaId }});
+        }
     },
     mounted(){
         axios.get('/rest/manifestacije/sveManifestacije').then(response => {

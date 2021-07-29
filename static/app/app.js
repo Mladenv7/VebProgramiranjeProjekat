@@ -2,6 +2,7 @@ const ManifestacijePocetna = { template: '<manifestacije-pocetna></manifestacije
 const Navbar = { template: '<navbar></navbar>' }
 const RegistracijaKorisnika = { template: '<registracija-korisnik></registracija-korisnik>'}
 const Prijava = { template: '<prijava></prijava>'}
+const Manifestacija = { template: '<pregled-manifestacije></pregled-manifestacije>' }
 
 const router = new VueRouter({
 	  mode: 'hash',
@@ -9,7 +10,8 @@ const router = new VueRouter({
 		{ path: '/', component: ManifestacijePocetna },
 		{ path: '/navbar', component: Navbar },
 		{ path: '/registracija', component: RegistracijaKorisnika },
-		{ path: '/prijava', component: Prijava }
+		{ path: '/prijava', component: Prijava },
+		{ path: '/manifestacija', component: Manifestacija }
 	  ]
 });
 

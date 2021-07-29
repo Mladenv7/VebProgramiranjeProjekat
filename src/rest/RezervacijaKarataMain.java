@@ -11,9 +11,11 @@ import com.google.gson.Gson;
 
 import beans.Korisnik;
 import beans.dto.KupacRegistracijaDTO;
+import beans.dto.ManifestacijaKomentariDTO;
 import beans.dto.PrijavaDTO;
 import enums.Pol;
 import enums.Uloga;
+import servisi.KomentarServis;
 import servisi.KorisnikServis;
 import servisi.ManifestacijaServis;
 
@@ -21,6 +23,7 @@ public class RezervacijaKarataMain {
 
 	private static ManifestacijaServis manifestacije = new ManifestacijaServis();
 	private static KorisnikServis korisnikServis = new KorisnikServis();
+	private static KomentarServis komentarServis = new KomentarServis();
 	private static Gson g = new Gson();
 
 
@@ -33,6 +36,21 @@ public class RezervacijaKarataMain {
 			res.type("application/json");
 			return g.toJson(manifestacije.getManifestacije());
 		});
+		
+		//----------------------------------------------------------------------------------------
+		
+		
+		get("/rest/manifestacije/manifestacijaKomentari/:id", (req, res) -> {
+			String id = req.params("id");
+			
+			ManifestacijaKomentariDTO dto = new ManifestacijaKomentariDTO();
+			dto.setManifestacija(manifestacije.getManifestacije().get(id));
+			dto.setKomentari(komentarServis.komentariNaManifestaciju(id));
+			
+			res.type("application/json");
+			return g.toJson(dto);
+		});
+		
 		
 		//----------------------------------------------------------------------------------------
 		
