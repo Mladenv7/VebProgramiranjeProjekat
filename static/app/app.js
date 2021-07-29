@@ -1,13 +1,15 @@
 const ManifestacijePocetna = { template: '<manifestacije-pocetna></manifestacije-pocetna>' } 
 const Navbar = { template: '<navbar></navbar>' }
 const RegistracijaKorisnika = { template: '<registracija-korisnik></registracija-korisnik>'}
+const Prijava = { template: '<prijava></prijava>'}
 
 const router = new VueRouter({
 	  mode: 'hash',
 	  routes: [
-		{ path: '/', name: 'manifestacijePocetna' , component: ManifestacijePocetna },
-		{ path: '/navbar', name: 'navbar' , component: Navbar },
-		{ path: '/registracija', name: 'registracijaKorisnika', component: RegistracijaKorisnika}
+		{ path: '/', component: ManifestacijePocetna },
+		{ path: '/navbar', component: Navbar },
+		{ path: '/registracija', component: RegistracijaKorisnika },
+		{ path: '/prijava', component: Prijava }
 	  ]
 });
 

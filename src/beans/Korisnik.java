@@ -8,7 +8,7 @@ import enums.TipKupca;
 import enums.Uloga;
 
 public class Korisnik {
-	private String korisnickoIme, lozinka, ime,prezime;
+	private String korisnickoIme, lozinka, ime,prezime, token;
 	private Pol pol;
 	private LocalDate datumRodjenja;
 	private Uloga uloga;
@@ -90,6 +90,12 @@ public class Korisnik {
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, LocalDate datumRodjenja,
 			Uloga uloga, ArrayList<Karta> sveKarte,
 			ArrayList<Manifestacija> sveManifest, int brBodova, TipKupca tip, boolean obrisan) {
@@ -139,4 +145,12 @@ public class Korisnik {
 		this.tip = k.getTip();
 		this.obrisan = k.isObrisan();
 	}
+	@Override
+	public String toString() {
+		return "Korisnik [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime="
+				+ prezime + ", pol=" + pol + ", datumRodjenja=" + datumRodjenja + ", uloga=" + uloga + ", brBodova="
+				+ brBodova + ", tip=" + tip + ", obrisan=" + obrisan + "]";
+	}
+	
+	
 }

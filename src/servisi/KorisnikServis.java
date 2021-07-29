@@ -1,5 +1,6 @@
 package servisi;
 
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -13,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import beans.Korisnik;
 
 public class KorisnikServis {
+
 
 	private HashMap<String, Korisnik> korisnici = new HashMap<String, Korisnik>();
 
@@ -66,5 +68,9 @@ public class KorisnikServis {
 		
 		
 		return 0;
+	}
+	
+	public Korisnik dobaviKorisnika(String korisnickoIme) {
+		return this.korisnici.get(korisnickoIme);
 	}
 }
