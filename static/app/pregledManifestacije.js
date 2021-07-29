@@ -14,6 +14,7 @@ Vue.component("pregled-manifestacije", {
             {{podaci.manifestacija.tipManifestacije}}<br>
             Vreme održavanja: {{formatirajDatum(podaci.manifestacija.vremeOdrzavanja)}}<br>
             Broj mesta: {{podaci.manifestacija.brojMesta}}<br>
+            Status: {{pretvoriStatus(podaci.manifestacija.status)}}<br>
             
         </p>
         <p class="fs-5 col-md-8" v-if="jelProsla() && podaci.komentari.length > 0">Prosečna ocena: {{prosecnaOcena().toFixed(2)}}</p>

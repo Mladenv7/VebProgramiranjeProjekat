@@ -1,19 +1,32 @@
 package beans;
 
-public class Lokacija {
+public class Lokacija implements Comparable<Lokacija>{
 	
-	private String id;
 	private double geoSirina, geoDuzina;
-	private String adresa;
+	private String ulicaBroj, grad, postanskiBroj;
 	private boolean obrisana;
 
-	public String getId() {
-		return id;
+	public String getUlicaBroj() {
+		return ulicaBroj;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUlicaBroj(String ulicaBroj) {
+		this.ulicaBroj = ulicaBroj;
 	}
-
+	public String getGrad() {
+		return grad;
+	}
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+	public String getPostanskiBroj() {
+		return postanskiBroj;
+	}
+	public void setPostanskiBroj(String postanskiBroj) {
+		this.postanskiBroj = postanskiBroj;
+	}
+	public String getAdresa() {
+		return this.ulicaBroj+" "+this.grad+" "+this.postanskiBroj;
+	}
 	public double getGeoSirina() {
 		return geoSirina;
 	}
@@ -26,31 +39,29 @@ public class Lokacija {
 	public void setGeoDuzina(double geoDuzina) {
 		this.geoDuzina = geoDuzina;
 	}
-	public String getAdresa() {
-		return adresa;
-	}
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
 	public boolean isObrisana() {
 		return obrisana;
 	}
 	public void setObrisana(boolean obrisana) {
 		this.obrisana = obrisana;
 	}
-	public Lokacija(double geoSirina, double geoDuzina, String adresa, boolean obrisana) {
+	public Lokacija(double geoSirina, double geoDuzina, String ulicaBroj, String grad, String postanskiBroj,
+			boolean obrisana) {
 		super();
 		this.geoSirina = geoSirina;
 		this.geoDuzina = geoDuzina;
-		this.adresa = adresa;
+		this.ulicaBroj = ulicaBroj;
+		this.grad = grad;
+		this.postanskiBroj = postanskiBroj;
 		this.obrisana = obrisana;
 	}
-	
 	public Lokacija() {
 		super();
 		this.geoSirina = 0;
 		this.geoDuzina = 0;
-		this.adresa = "";
+		this.ulicaBroj = "";
+		this.grad = "";
+		this.postanskiBroj = "";
 		this.obrisana = true;
 	}
 	
@@ -58,7 +69,9 @@ public class Lokacija {
 		super();
 		this.geoSirina = l.getGeoSirina();
 		this.geoDuzina = l.getGeoDuzina();
-		this.adresa = l.getAdresa();
+		this.ulicaBroj = l.getUlicaBroj();
+		this.grad = l.getGrad();
+		this.postanskiBroj = l.getPostanskiBroj();
 		this.obrisana = l.isObrisana();
 	}
 	@Override
@@ -70,7 +83,9 @@ public class Lokacija {
 		if(obj instanceof Lokacija) {
 			Lokacija druga = (Lokacija) obj;
 			
-			if(this.adresa.equals(druga.getAdresa()) 
+			if(this.ulicaBroj.equalsIgnoreCase(druga.getUlicaBroj()) 
+					&& this.grad.equalsIgnoreCase(druga.getGrad())
+					&& this.postanskiBroj.equalsIgnoreCase(druga.getPostanskiBroj())
 					&& this.geoSirina == druga.getGeoSirina() 
 					&& this.geoDuzina == druga.getGeoDuzina()) 
 				return true;
@@ -78,6 +93,12 @@ public class Lokacija {
 	
 		return false;
 		
+	}
+	@Override
+	public int compareTo(Lokacija o) {
+		String adresa = this.ulicaBroj+" "+this.grad+" "+this.postanskiBroj;
+		String adresa2 = o.getUlicaBroj()+" "+o.getGrad()+" "+o.getPostanskiBroj();
+		return adresa.compareToIgnoreCase(adresa2);
 	}
 	
 	
