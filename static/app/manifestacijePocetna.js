@@ -3,7 +3,7 @@ Vue.component("manifestacije-pocetna", {
         return {
             manifestacije : [],
             izabranaId : "",
-            upit : {naziv: "", lokacija: "", cenaOd: 0, cenaDo: 0, datumOd: {}, datumDo: {}},
+            upit : {naziv: "", lokacija: "", sort: "",cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null},
         }
     },
     template : `
@@ -30,7 +30,7 @@ Vue.component("manifestacije-pocetna", {
     <div class="container">
         <hr>
 
-        <div class="row g-4 align-items-center">
+        <div class="row g-3 align-items-center">
             <div class="col-auto">
                 <label for="nazivPretraga" class="col-form-label">Naziv</label>
             </div>
@@ -50,8 +50,21 @@ Vue.component("manifestacije-pocetna", {
             <input type="number" class="form-control" id="cenaDo" v-bind:min="0" v-model="upit.cenaDo">
             </div>
             <div class="col-auto">
-            <input class="w-150 btn btn-md btn-primary" type="submit" v-on:click="posaljiUpit()" value="Pretraga" />
+                <label for="datumOd" class="col-form-label">Sortiranje</label>
             </div>
+            <div class="col-auto">
+                <select id="sort" class="form-control" v-model="upit.sort">
+                        <option value="NAZIV_RAST">NAZIV_RAST</option>
+                        <option value="NAZIV_OPAD">NAZIV_OPAD</option>
+                        <option value="DATUM_RAST">DATUM_RAST</option>
+                        <option value="DATUM_OPAD">DATUM_OPAD</option>
+                        <option value="CENA_RAST">CENA_RAST</option>
+                        <option value="CENA_OPAD">CENA_OPAD</option>
+                        <option value="LOKACIJA_RAST">LOKACIJA_RAST</option>
+                        <option value="LOKACIJA_OPAD">LOKACIJA_OPAD</option>
+                    </select>
+            </div>
+            
         </div><br>
         <div class="row g-2 align-items-center">
             <div class="col-auto">
@@ -72,6 +85,9 @@ Vue.component("manifestacije-pocetna", {
             <div class="col-auto">
             <input type="text" class="form-control" id="lokacijaPretraga" v-model="upit.lokacija">
             </div>
+            <div class="col-auto">
+            <input class="w-150 btn btn-md btn-primary" type="submit" v-on:click="posaljiUpit()" value="Pretraga" />
+            </div>
         </div><br>
     </div>
 
@@ -86,6 +102,7 @@ Vue.component("manifestacije-pocetna", {
         },
         posaljiUpit(){
             console.log(this.upit);
+            this.$router.push({ path: '/manifestacijePretraga', query: this.upit});
         }
     },
     mounted(){

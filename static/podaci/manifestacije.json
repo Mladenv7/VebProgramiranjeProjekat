@@ -1,11 +1,11 @@
 [
 {
 	"id" : "1",
-	"naziv" : "manifestacija 1",
-	"tipManifestacije" : "tip manifestacije 1",
+	"naziv" : "Utakmica 1",
+	"tipManifestacije" : "sport",
 	"brojMesta" : 5500,
 	"vremeOdrzavanja" : {
-		"date":{"year":2020,"month":5,"day":25},
+		"date":{"year":2021,"month":5,"day":25},
 		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
 	},
 	"cenaRegular" : 550.0,
@@ -16,14 +16,14 @@
 },
 {
 	"id" : "2",
-	"naziv" : "manifestacija 2",
-	"tipManifestacije" : "tip manifestacije 1",
+	"naziv" : "Doček Vladimira Putina u Beogradu",
+	"tipManifestacije" : "diplomatija",
 	"brojMesta" : 5500,
 	"vremeOdrzavanja" : {
 		"date":{"year":2020,"month":5,"day":25},
 		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
 	},
-	"cenaRegular" : 550.0,
+	"cenaRegular" : 1050.0,
 	"status" : false,
 	"lokacija" : {},
 	"poster" : "./podaci/posteri/poster2.jpg",
@@ -31,14 +31,14 @@
 },
 {
 	"id" : "3",
-	"naziv" : "manifestacija 3",
-	"tipManifestacije" : "tip manifestacije 1",
+	"naziv" : "Koncert 1",
+	"tipManifestacije" : "koncert",
 	"brojMesta" : 5500,
 	"vremeOdrzavanja" : {
 		"date":{"year":2020,"month":5,"day":25},
 		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
 	},
-	"cenaRegular" : 550.0,
+	"cenaRegular" : 660.0,
 	"status" : false,
 	"lokacija" : {},
 	"poster" : "./podaci/posteri/poster3.jpg",
@@ -46,14 +46,14 @@
 },
 {
 	"id" : "4",
-	"naziv" : "manifestacija 4",
-	"tipManifestacije" : "tip manifestacije 1",
+	"naziv" : "Koncert 2",
+	"tipManifestacije" : "koncert",
 	"brojMesta" : 5500,
 	"vremeOdrzavanja" : {
 		"date":{"year":2020,"month":7,"day":29},
 		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
 	},
-	"cenaRegular" : 550.0,
+	"cenaRegular" : 880.0,
 	"status" : false,
 	"lokacija" : {},
 	"poster" : "",

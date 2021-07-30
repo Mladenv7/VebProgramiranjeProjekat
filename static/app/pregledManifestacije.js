@@ -14,6 +14,7 @@ Vue.component("pregled-manifestacije", {
             {{podaci.manifestacija.tipManifestacije}}<br>
             Vreme održavanja: {{formatirajDatum(podaci.manifestacija.vremeOdrzavanja)}}<br>
             Broj mesta: {{podaci.manifestacija.brojMesta}}<br>
+            Preostalo karata: <br>
             Status: {{pretvoriStatus(podaci.manifestacija.status)}}<br>
             
         </p>

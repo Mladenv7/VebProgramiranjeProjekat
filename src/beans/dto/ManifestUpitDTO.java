@@ -48,6 +48,11 @@ public class ManifestUpitDTO {
 	public void setCenaDo(double cenaDo) {
 		this.cenaDo = cenaDo;
 	}
+	@Override
+	public String toString() {
+		return "ManifestUpitDTO [naziv=" + naziv + ", lokacija=" + lokacija + ", sort=" + sort + ", datumOd=" + datumOd
+				+ ", datumDo=" + datumDo + ", cenaOd=" + cenaOd + ", cenaDo=" + cenaDo + "]";
+	}
 	
 	
 }

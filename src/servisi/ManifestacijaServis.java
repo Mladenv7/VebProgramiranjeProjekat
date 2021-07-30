@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -48,8 +48,8 @@ public class ManifestacijaServis {
 		this.manifestacije = manifestacije;
 	}
 	
-	public ArrayList<Manifestacija> pretragaManifestacija(ManifestUpitDTO dto){
-		if (dto == null) return (ArrayList<Manifestacija>) this.manifestacije.values();
+	public List<Manifestacija> pretragaManifestacija(List<Manifestacija> lista, ManifestUpitDTO dto){
+		if (dto == null) return lista;
         final Map<String, Comparator<Manifestacija>> critMap = new HashMap<String, Comparator<Manifestacija>>();
         critMap.put("NAZIV_RAST", (o1,o2)->{return o1.getNaziv().compareToIgnoreCase(o2.getNaziv()); });
         critMap.put("NAZIV_OPAD", (o2,o1)->{return o1.getNaziv().compareToIgnoreCase(o2.getNaziv()); });
@@ -61,11 +61,27 @@ public class ManifestacijaServis {
         critMap.put("LOKACIJA_OPAD", Comparator.comparing(Manifestacija::getLokacija).reversed());
         Comparator<Manifestacija> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
 
-        return (ArrayList<Manifestacija>) this.manifestacije.values().stream()
+        return lista.stream()
                 .filter(m -> dto.getNaziv().isEmpty() || m.getNaziv().toLowerCase().contains(dto.getNaziv().toLowerCase()))
                 .filter(m -> dto.getLokacija().isEmpty() || m.getLokacija().getAdresa().toLowerCase().contains(dto.getLokacija().toLowerCase()))
-                .filter(m -> m.getCenaRegular() >= dto.getCenaOd() && m.getCenaRegular() <= dto.getCenaDo())
-                .filter(o -> dto.getDatumOd().isBefore(o.getVremeOdrzavanja()) && o.getVremeOdrzavanja().isBefore(dto.getDatumDo()))
+                .filter(m -> {
+                				if(dto.getCenaOd() > 0 && dto.getCenaDo() > 0) {
+                					return dto.getCenaOd() <= m.getCenaRegular() && m.getCenaRegular() <= dto.getCenaDo();
+                				}else if(dto.getCenaOd() > 0) {
+                					return dto.getCenaOd() <= m.getCenaRegular();
+                				}else if(dto.getCenaDo() > 0) {
+                					return m.getCenaRegular() <= dto.getCenaDo();
+                				}else return true;
+                			 })
+                .filter(m -> {
+                				if(dto.getDatumOd() != null && dto.getDatumDo() != null) {
+                					return dto.getDatumOd().isBefore(m.getVremeOdrzavanja()) && m.getVremeOdrzavanja().isBefore(dto.getDatumDo());
+                				}else if(dto.getDatumOd() != null) {
+                					return dto.getDatumOd().isBefore(m.getVremeOdrzavanja());
+                				}else if(dto.getDatumDo() != null){
+                					return m.getVremeOdrzavanja().isBefore(dto.getDatumDo());
+                				}else return true;
+                			 })
                 .sorted(comp).collect(Collectors.toList());
 	}
 }
