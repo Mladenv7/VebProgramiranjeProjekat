@@ -18,9 +18,11 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
+import beans.Komentar;
 import beans.Korisnik;
 import beans.Manifestacija;
 import beans.dto.KupacRegistracijaDTO;
+import beans.dto.ManifestOcenaDTO;
 import beans.dto.ManifestUpitDTO;
 import beans.dto.ManifestacijaKomentariDTO;
 import beans.dto.PrijavaDTO;
@@ -60,11 +62,30 @@ public class RezervacijaKarataMain {
 		
 		post("/rest/manifestacije/pretraga", (req, res) -> {
 			ManifestUpitDTO upit = g.fromJson(req.body(), ManifestUpitDTO.class);
-			System.out.println(upit.getDatumOd());
+			System.out.println(upit);
 			ArrayList<Manifestacija> rezultatPretrage = new ArrayList<>(manifestacije.pretragaManifestacija(new ArrayList<Manifestacija>(manifestacije.getManifestacije().values()), upit));
-			System.out.println(rezultatPretrage.size());
+			ArrayList<ManifestOcenaDTO> saOcenom = new ArrayList<>();
+			for(Manifestacija m : rezultatPretrage) {
+				double prosecna = 0d;
+				ArrayList<Komentar> komentari = komentarServis.komentariNaManifestaciju(m.getId());
+				ManifestOcenaDTO dto = new ManifestOcenaDTO();
+				dto.setManifestacija(m);
+				
+				if(komentari.size() == 0) {
+					dto.setProsecnaOcena(0d);
+					saOcenom.add(dto);
+					continue;
+				}
+				
+				for(Komentar k : komentari) {
+					prosecna += k.getOcena();
+				}
+				prosecna /= komentari.size();
+				dto.setProsecnaOcena(prosecna);
+				saOcenom.add(dto);
+			}
 			res.type("application/json");
-			return g.toJson(rezultatPretrage);
+			return g.toJson(saOcenom);
 		});
 		
 		//----------------------------------------------------------------------------------------
