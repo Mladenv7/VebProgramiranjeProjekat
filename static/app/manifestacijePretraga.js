@@ -4,18 +4,31 @@ Vue.component("manifestacije-pretraga", {
             upit : {naziv: "", lokacija: "", sort: "",cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null},
             rezultat : [],
             izabranaId : "",
+            tipFilter: "",
+            nerasprodate: false,
         }
     },
     template: `
     <div class="container">
     <h3>Pretraga manifestacija</h3>
 
-    <div class="row inline">
+    <div class="row">
+        <div class="col-auto">
         <p>Filter tipa</p>
+        </div>
+        <div class="col-auto">
+        <input type="text" v-model="tipFilter">
+        </div>
+        <div class="col-auto">
+        <label class="form-check-label" for="flexCheckDefault">
+          Samo nerasoprodate manifestacije 
+        </label>
+        <input class="form-check-input" type="checkbox" v-model="nerasprodate" id="flexCheckDefault">
+        </div>
     </div>
 
     <div style="height: 350px;overflow-y: scroll;overflow-x: hidden;">
-        <div class="card" v-for="stavka in rezultat">
+        <div class="card" v-for="stavka in rezultat" v-if="filterTipa(stavka.manifestacija.tipManifestacije)">
             <div class="card-header">
                 {{stavka.manifestacija.naziv}}
             </div>
@@ -126,6 +139,10 @@ Vue.component("manifestacije-pretraga", {
                                            manifestacija.vremeOdrzavanja.time.second, 
                                            manifestacija.vremeOdrzavanja.time.nano/1000);
             return vremeOdrzavanja < new Date();
+        },
+        filterTipa(tip){
+            if(tip.includes(this.tipFilter)) return true;
+            else return false;
         },
         pregledManifestacije(id){
             this.izabranaId = id;
