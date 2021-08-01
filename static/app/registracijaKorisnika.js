@@ -61,8 +61,18 @@ Vue.component("registracija-korisnik", {
             if(this.noviKorisnik.korisnickoIme == '' || this.noviKorisnik.lozinka == ''){
                 return;
             }
+
+            if(this.noviKorisnik.datumRodjenja == ''){
+                this.noviKorisnik.datumRodjenja = "1970-01-01";
+            }
             axios
-			.post('/rest/korisnici/registracijaKorisnika', this.noviKorisnik);
+			.post('/rest/korisnici/registracijaKorisnika', this.noviKorisnik).then(response => {
+                if(response.data == 0){
+                    alert("Registracija je uspešna");
+                }else if(response.data == 1){
+                    alert("Korisnik sa ovim korisničkim imenom već postoji");
+                }
+            });
         },
     },
 });

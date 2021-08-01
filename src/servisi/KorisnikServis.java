@@ -46,15 +46,9 @@ public class KorisnikServis {
 		this.korisnici = korisnici;
 	}
 	
-	//1 - korisnicko ime je zauzeto 0 - sve uredu
-	public int dodajKorisnika(Korisnik korisnik) {
-		if(this.korisnici.get(korisnik.getKorisnickoIme()) != null) return 1;
-		
-		this.korisnici.put(korisnik.getKorisnickoIme(), korisnik);
-		System.out.println(korisnik);
-		
+	public void upisKorisnikaUDatoteku() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	
+		
 		try {
 			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/korisnici.json"));
 			
@@ -65,9 +59,32 @@ public class KorisnikServis {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	//1 - korisnicko ime je zauzeto 0 - sve uredu
+	public int dodajKorisnika(Korisnik korisnik) {
+		if(this.korisnici.get(korisnik.getKorisnickoIme()) != null) return 1;
+		
+		this.korisnici.put(korisnik.getKorisnickoIme(), korisnik);
+		System.out.println(korisnik);
+		
+		this.upisKorisnikaUDatoteku();
 		
 		
 		return 0;
+	}
+	
+	public String azurirajKorisnika(Korisnik korisnik) {
+		if(this.korisnici.get(korisnik.getKorisnickoIme()) != null) {
+			
+			this.korisnici.put(korisnik.getKorisnickoIme(), korisnik);
+			System.out.println(korisnik);
+			
+			this.upisKorisnikaUDatoteku();
+			
+			return "Azuriranje uspešno";
+		}else return "Ovaj korisnik ne postoji";
 	}
 	
 	public Korisnik dobaviKorisnika(String korisnickoIme) {

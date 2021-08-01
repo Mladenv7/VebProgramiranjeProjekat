@@ -10,6 +10,21 @@
     "obrisan": false
   },
   {
+    "korisnickoIme": "NoviKupac",
+    "lozinka": "password",
+    "ime": "Novi",
+    "prezime": "Kupac",
+    "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1984,
+      "month": 8,
+      "day": 17
+    },
+    "uloga": "KUPAC",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
     "korisnickoIme": "Đura",
     "lozinka": "password",
     "ime": "Đura",
@@ -21,10 +36,15 @@
   },
   {
     "korisnickoIme": "Admin",
-    "lozinka": "password",
+    "lozinka": "sifrica",
     "ime": "Admin",
     "prezime": "Admin",
     "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1990,
+      "month": 7,
+      "day": 19
+    },
     "uloga": "ADMINISTRATOR",
     "brBodova": 0,
     "obrisan": false
@@ -35,6 +55,11 @@
     "ime": "Kupac",
     "prezime": "Kupac",
     "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1995,
+      "month": 6,
+      "day": 14
+    },
     "uloga": "KUPAC",
     "brBodova": 0,
     "obrisan": false

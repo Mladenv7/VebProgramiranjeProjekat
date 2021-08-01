@@ -71,7 +71,7 @@ Vue.component("pregled-manifestacije", {
     methods: {
         manifestacijaSaKomentarima(){
             axios
-            .get("/rest/manifestacije/manifestacijaKomentari/"+this.$route.query.id).then(response => {
+            .get("/rest/komentari/manifestacijaKomentari/"+this.$route.query.id).then(response => {
                 this.podaci = response.data;
                 console.log(this.podaci);
             });
