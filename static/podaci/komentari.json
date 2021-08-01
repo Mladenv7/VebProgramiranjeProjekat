@@ -1,0 +1,44 @@
+[
+{
+	"autor" : "Kupac",
+	"idManifestacije" : "1",
+	"tekst" : "Komentar 1",
+	"ocena" : 5, 
+	"obrisan" : false
+},
+{
+	"autor" : "Kupac2",
+	"idManifestacije" : "1",
+	"tekst" : "Komentar 2",
+	"ocena" : 4, 
+	"obrisan" : false
+},
+{
+	"autor" : "Kupac",
+	"idManifestacije" : "2",
+	"tekst" : "Komentar 1",
+	"ocena" : 5, 
+	"obrisan" : false
+},
+{
+	"autor" : "Kupac",
+	"idManifestacije" : "4",
+	"tekst" : "Komentar 1",
+	"ocena" : 5, 
+	"obrisan" : false
+},
+{
+	"autor" : "Kupac3",
+	"idManifestacije" : "1",
+	"tekst" : "Komentar 3",
+	"ocena" : 5, 
+	"obrisan" : false
+},
+{
+	"autor" : "Kupac2",
+	"idManifestacije" : "4",
+	"tekst" : "Komentar 2",
+	"ocena" : 3, 
+	"obrisan" : false
+}
+]

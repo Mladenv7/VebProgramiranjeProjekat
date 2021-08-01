@@ -6,14 +6,29 @@ import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 
+import beans.Komentar;
 import beans.Korisnik;
+import beans.Manifestacija;
 import beans.dto.KupacRegistracijaDTO;
+import beans.dto.ManifestOcenaDTO;
+import beans.dto.ManifestUpitDTO;
+import beans.dto.ManifestacijaKomentariDTO;
 import beans.dto.PrijavaDTO;
 import enums.Pol;
 import enums.Uloga;
+import servisi.KomentarServis;
 import servisi.KorisnikServis;
 import servisi.ManifestacijaServis;
 
@@ -21,7 +36,18 @@ public class RezervacijaKarataMain {
 
 	private static ManifestacijaServis manifestacije = new ManifestacijaServis();
 	private static KorisnikServis korisnikServis = new KorisnikServis();
-	private static Gson g = new Gson();
+	private static KomentarServis komentarServis = new KomentarServis();
+	private static Gson g = new GsonBuilder()
+							.registerTypeAdapter(LocalDateTime.class,  new JsonDeserializer<LocalDateTime>() { 
+								@Override 
+								public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException { 
+
+								return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")); } 
+
+							})
+							.create();
+	
+	
 
 
 	public static void main(String[] args) throws Exception {
@@ -33,6 +59,49 @@ public class RezervacijaKarataMain {
 			res.type("application/json");
 			return g.toJson(manifestacije.getManifestacije());
 		});
+		
+		post("/rest/manifestacije/pretraga", (req, res) -> {
+			ManifestUpitDTO upit = g.fromJson(req.body(), ManifestUpitDTO.class);
+			System.out.println(upit);
+			ArrayList<Manifestacija> rezultatPretrage = new ArrayList<>(manifestacije.pretragaManifestacija(new ArrayList<Manifestacija>(manifestacije.getManifestacije().values()), upit));
+			ArrayList<ManifestOcenaDTO> saOcenom = new ArrayList<>();
+			for(Manifestacija m : rezultatPretrage) {
+				double prosecna = 0d;
+				ArrayList<Komentar> komentari = komentarServis.komentariNaManifestaciju(m.getId());
+				ManifestOcenaDTO dto = new ManifestOcenaDTO();
+				dto.setManifestacija(m);
+				
+				if(komentari.size() == 0) {
+					dto.setProsecnaOcena(0d);
+					saOcenom.add(dto);
+					continue;
+				}
+				
+				for(Komentar k : komentari) {
+					prosecna += k.getOcena();
+				}
+				prosecna /= komentari.size();
+				dto.setProsecnaOcena(prosecna);
+				saOcenom.add(dto);
+			}
+			res.type("application/json");
+			return g.toJson(saOcenom);
+		});
+		
+		//----------------------------------------------------------------------------------------
+		
+		
+		get("/rest/manifestacije/manifestacijaKomentari/:id", (req, res) -> {
+			String id = req.params("id");
+			
+			ManifestacijaKomentariDTO dto = new ManifestacijaKomentariDTO();
+			dto.setManifestacija(manifestacije.getManifestacije().get(id));
+			dto.setKomentari(komentarServis.komentariNaManifestaciju(id));
+			
+			res.type("application/json");
+			return g.toJson(dto);
+		});
+		
 		
 		//----------------------------------------------------------------------------------------
 		
