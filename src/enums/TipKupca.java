@@ -11,7 +11,7 @@ public enum TipKupca {
 		this.kriterijumZaTip = 0;
 	}
 	
-	private TipKupca(int pp, int kzt) {
+	private TipKupca(int kzt, int pp) {
 		this.procenatPopusta = pp;
 		this.kriterijumZaTip = kzt;
 	}

@@ -6,12 +6,17 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import beans.Korisnik;
+import beans.dto.KorisnikUpitDTO;
 
 public class KorisnikServis {
 
@@ -89,5 +94,25 @@ public class KorisnikServis {
 	
 	public Korisnik dobaviKorisnika(String korisnickoIme) {
 		return this.korisnici.get(korisnickoIme);
+	}
+	
+	public List<Korisnik> pretragaKorisnika(List<Korisnik> lista, KorisnikUpitDTO dto){
+		if (dto == null) return lista;
+        final Map<String, Comparator<Korisnik>> critMap = new HashMap<String, Comparator<Korisnik>>();
+        critMap.put("IME_RAST", (o1,o2)->{return o1.getIme().trim().compareToIgnoreCase(o2.getIme().trim()); });
+        critMap.put("IME_OPAD", (o2,o1)->{return o1.getIme().trim().compareToIgnoreCase(o2.getIme().trim()); });
+        critMap.put("PREZIME_RAST", (o1,o2)->{return o1.getPrezime().trim().compareToIgnoreCase(o2.getPrezime().trim()); });
+        critMap.put("PREZIME_OPAD", (o2,o1)->{return o1.getPrezime().trim().compareToIgnoreCase(o2.getPrezime().trim()); });
+        critMap.put("KIME_RAST", (o1,o2)->{return o1.getKorisnickoIme().trim().compareToIgnoreCase(o2.getKorisnickoIme().trim()); });
+        critMap.put("KIME_OPAD", (o2,o1)->{return o1.getKorisnickoIme().trim().compareToIgnoreCase(o2.getKorisnickoIme().trim()); });
+        critMap.put("BODOVI_RAST", Comparator.comparingInt(Korisnik::getBrBodova));
+        critMap.put("BODOVI_OPAD", Comparator.comparingInt(Korisnik::getBrBodova).reversed());
+        Comparator<Korisnik> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
+
+        return lista.stream()
+                .filter(k -> dto.getIme().isEmpty() || k.getIme().toLowerCase().contains(dto.getIme().toLowerCase()))
+                .filter(k -> dto.getPrezime().isEmpty() || k.getPrezime().toLowerCase().contains(dto.getPrezime().toLowerCase()))
+                .filter(k -> dto.getKorisnickoIme().isEmpty() || k.getKorisnickoIme().toLowerCase().contains(dto.getKorisnickoIme().toLowerCase()))
+                .sorted(comp).collect(Collectors.toList());
 	}
 }

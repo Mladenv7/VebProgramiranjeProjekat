@@ -106,7 +106,7 @@ Vue.component("manifestacije-pocetna", {
         }
     },
     mounted(){
-        axios.get('/rest/manifestacije/sveManifestacije').then(response => {
+        axios.get('/rest/manifestacije/najskorije').then(response => {
             this.manifestacije = response.data;
             console.log(this.manifestacije);
         });
