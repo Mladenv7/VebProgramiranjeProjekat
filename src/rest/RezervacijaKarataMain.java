@@ -7,9 +7,12 @@ import static spark.Spark.staticFiles;
 
 import java.io.File;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,6 +24,7 @@ import com.google.gson.JsonParseException;
 import beans.Komentar;
 import beans.Korisnik;
 import beans.Manifestacija;
+import beans.dto.KorisnikUpitDTO;
 import beans.dto.KupacRegistracijaDTO;
 import beans.dto.ManifestOcenaDTO;
 import beans.dto.ManifestUpitDTO;
@@ -44,6 +48,12 @@ public class RezervacijaKarataMain {
 
 								return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")); } 
 
+							}).registerTypeAdapter(LocalDate.class,  new JsonDeserializer<LocalDate>() { 
+								@Override 
+								public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException { 
+
+								return LocalDate.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")); } 
+
 							})
 							.create();
 	
@@ -55,9 +65,20 @@ public class RezervacijaKarataMain {
 		
 		staticFiles.externalLocation(new File("./static").getCanonicalPath()); 
 		
+		
+		//MANIFESTACIJE
+		//----------------------------------------------------------------------------------------
+		
 		get("/rest/manifestacije/sveManifestacije", (req, res) -> {
 			res.type("application/json");
 			return g.toJson(manifestacije.getManifestacije());
+		});
+		
+		get("/rest/manifestacije/najskorije", (req, res) -> {
+			res.type("application/json");
+			ArrayList<Manifestacija> najskorije = new ArrayList<>(manifestacije.getManifestacije().values());
+			Collections.sort(najskorije, Comparator.comparing(Manifestacija::getVremeOdrzavanja).reversed());
+			return g.toJson(najskorije);
 		});
 		
 		post("/rest/manifestacije/pretraga", (req, res) -> {
@@ -88,10 +109,11 @@ public class RezervacijaKarataMain {
 			return g.toJson(saOcenom);
 		});
 		
+		//KOMENTARI
 		//----------------------------------------------------------------------------------------
 		
 		
-		get("/rest/manifestacije/manifestacijaKomentari/:id", (req, res) -> {
+		get("/rest/komentari/manifestacijaKomentari/:id", (req, res) -> {
 			String id = req.params("id");
 			
 			ManifestacijaKomentariDTO dto = new ManifestacijaKomentariDTO();
@@ -102,7 +124,7 @@ public class RezervacijaKarataMain {
 			return g.toJson(dto);
 		});
 		
-		
+		//KORISNICI
 		//----------------------------------------------------------------------------------------
 		
 		post("/rest/korisnici/registracijaKorisnika", (req, res) -> {
@@ -115,6 +137,7 @@ public class RezervacijaKarataMain {
 			noviKupac.setPrezime(dto.getPrezime());
 			noviKupac.setLozinka(dto.getLozinka());
 			noviKupac.setUloga(Uloga.KUPAC);
+			noviKupac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			
 			if(dto.getPol().equals("m")) noviKupac.setPol(Pol.MUSKI);
 			else if(dto.getPol().equals("ž")) noviKupac.setPol(Pol.ZENSKI);
@@ -128,6 +151,28 @@ public class RezervacijaKarataMain {
 			if(prijavljeni == null) return "Ovaj korisnik ne postoji";
 			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
 			return g.toJson(prijavljeni);
+		});
+		
+		get("/rest/korisnici/sviKorisnici", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(new ArrayList<>(korisnikServis.getKorisnici().values()));
+		});
+		
+		get("/rest/korisnici/jedanKorisnik/:korisnickoIme", (req, res) -> {
+			String korisnickoIme = req.params("korisnickoIme");
+			res.type("application/json");
+			return g.toJson(korisnikServis.getKorisnici().get(korisnickoIme));
+		});
+		
+		post("/rest/korisnici/azuriranjeKorisnika", (req, res) -> {
+			Korisnik zaAzurirati = g.fromJson(req.body(), Korisnik.class);
+			return korisnikServis.azurirajKorisnika(zaAzurirati);
+		});
+		
+		post("/rest/korisnici/pretraga", (req, res) -> {
+			KorisnikUpitDTO dto = g.fromJson(req.body(), KorisnikUpitDTO.class);
+			res.type("application/json");
+			return g.toJson(korisnikServis.pretragaKorisnika(new ArrayList<Korisnik>(korisnikServis.getKorisnici().values()), dto));
 		});
 	}
 

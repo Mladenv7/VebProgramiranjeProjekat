@@ -41,7 +41,7 @@ Vue.component("navbar", {
             <a class="nav-link" href="#/">Početna</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#/">Svi korisnici</a>
+            <a class="nav-link" href="#/sviKorisnici">Svi korisnici</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#/">Sve karte</a>
@@ -57,7 +57,7 @@ Vue.component("navbar", {
             </li>
         </ul>
         
-            <a class="nav-link" href="#/">Moj nalog</a>
+            <a class="nav-link" href="#/" v-on:click="naProfil()">Moj nalog</a>
             <a class="btn btn-outline-primary" v-on:click="odjava()">Odjava</a>
         
         </div>
@@ -89,7 +89,7 @@ Vue.component("navbar", {
             </li>
         </ul>
         
-            <a class="nav-link" href="#/">Moj nalog</a>
+            <a class="nav-link" href="#/" v-on:click="naProfil()">Moj nalog</a>
             <a class="btn btn-outline-primary" v-on:click="odjava()">Odjava</a>
         
         </div>
@@ -115,7 +115,7 @@ Vue.component("navbar", {
             </li>
         </ul>
         
-            <a class="nav-link" href="#/">Moj nalog</a>
+            <a class="nav-link" href="#/" v-on:click="naProfil()">Moj nalog</a>
             <a class="btn btn-outline-primary" v-on:click="odjava()">Odjava</a>
         
         </div>
@@ -133,8 +133,13 @@ Vue.component("navbar", {
         odjava(){
             localStorage.removeItem("prijavljeni");
             this.prijavljeni = {uloga: "" };
+            this.$router.push("/");
             this.$router.go();
         },
+        naProfil(){
+            this.$router.push({path: "/profil", query: this.prijavljeni});
+            this.$router.go();
+        }
     },
     mounted(){
         this.prijavljeni = this.jeLiPrijavljen();
