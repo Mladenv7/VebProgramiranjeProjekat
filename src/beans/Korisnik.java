@@ -13,7 +13,7 @@ public class Korisnik {
 	private LocalDate datumRodjenja;
 	private Uloga uloga;
 	private ArrayList<Karta> sveKarte;
-	private ArrayList<Manifestacija> sveManifest;
+	private ArrayList<String> sveManifest;
 	private int brBodova;
 	private TipKupca tip;
 	private boolean obrisan;
@@ -66,10 +66,10 @@ public class Korisnik {
 	public void setSveKarte(ArrayList<Karta> sveKarte) {
 		this.sveKarte = sveKarte;
 	}
-	public ArrayList<Manifestacija> getSveManifest() {
+	public ArrayList<String> getSveManifest() {
 		return sveManifest;
 	}
-	public void setSveManifest(ArrayList<Manifestacija> sveManifest) {
+	public void setSveManifest(ArrayList<String> sveManifest) {
 		this.sveManifest = sveManifest;
 	}
 	public int getBrBodova() {
@@ -98,7 +98,7 @@ public class Korisnik {
 	}
 	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, LocalDate datumRodjenja,
 			Uloga uloga, ArrayList<Karta> sveKarte,
-			ArrayList<Manifestacija> sveManifest, int brBodova, TipKupca tip, boolean obrisan) {
+			ArrayList<String> sveManifest, int brBodova, TipKupca tip, boolean obrisan) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;

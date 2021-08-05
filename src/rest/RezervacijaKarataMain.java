@@ -28,6 +28,7 @@ import beans.dto.KorisnikUpitDTO;
 import beans.dto.KupacRegistracijaDTO;
 import beans.dto.ManifestOcenaDTO;
 import beans.dto.ManifestUpitDTO;
+import beans.dto.ManifestacijaDTO;
 import beans.dto.ManifestacijaKomentariDTO;
 import beans.dto.PrijavaDTO;
 import enums.Pol;
@@ -125,6 +126,27 @@ public class RezervacijaKarataMain {
 		});
 		
 		//KORISNICI
+		post("/rest/manifestacije/registracijaManifestacije", (req, res) -> {
+					
+					ManifestacijaDTO dto = g.fromJson(req.body(), ManifestacijaDTO.class);
+					
+					Manifestacija novaManifestacija = new Manifestacija();
+					novaManifestacija.setNaziv(dto.getNaziv());
+					novaManifestacija.setTipManifestacije(dto.getTip());
+					novaManifestacija.setBrojMesta(dto.getBrMesta());
+					novaManifestacija.setVremeOdrzavanja(dto.getVremeOdrzavanja());
+					novaManifestacija.setCenaRegular(dto.getCenaRegular());
+					novaManifestacija.setStatus(false);
+					novaManifestacija.setLokacija(null);
+					novaManifestacija.setPoster(dto.getPoster());
+					novaManifestacija.setObrisana(false);
+					
+
+					return manifestacije.dodajManifestaciju(novaManifestacija);
+				});
+		
+		
+
 		//----------------------------------------------------------------------------------------
 		
 		post("/rest/korisnici/registracijaKorisnika", (req, res) -> {
