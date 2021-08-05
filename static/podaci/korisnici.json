@@ -1,15 +1,16 @@
 [
   {
-    "korisnickoIme": "Prodavac",
-    "lozinka": "password",
-    "ime": "Prodavac",
-    "prezime": "Prodavac",
+    "korisnickoIme": "p",
+    "lozinka": "p",
+    "ime": "p",
+    "prezime": "p",
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
     "brBodova": 0,
     "obrisan": false
   },
   {
+
     "korisnickoIme": "NoviKupac",
     "lozinka": "password",
     "ime": "Novi",
@@ -19,18 +20,37 @@
       "year": 1984,
       "month": 8,
       "day": 17
+    }
     },
+  {
+    "korisnickoIme": "k",
+    "lozinka": "k",
+    "ime": "k",
+    "prezime": "k",
+    "pol": "MUSKI",
     "uloga": "KUPAC",
     "brBodova": 0,
     "obrisan": false
   },
   {
-    "korisnickoIme": "Đura",
+
+
+    "korisnickoIme": "a",
+    "lozinka": "a",
+    "ime": "a",
+    "prezime": "a",
+    "pol": "MUSKI",
+    "uloga": "ADMINISTRATOR",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Prodavac",
     "lozinka": "password",
-    "ime": "Đura",
-    "prezime": "Đura",
-    "pol": "ZENSKI",
-    "uloga": "KUPAC",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
     "brBodova": 0,
     "obrisan": false
   },

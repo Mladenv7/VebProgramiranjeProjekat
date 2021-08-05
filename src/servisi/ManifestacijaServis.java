@@ -84,4 +84,25 @@ public class ManifestacijaServis {
                 			 })
                 .sorted(comp).collect(Collectors.toList());
 	}
+	
+	public int dodajManifestaciju(Manifestacija manifestacija) {
+		String lastObject = "1";
+		 for (HashMap.Entry<String,Manifestacija> entry : manifestacije.entrySet()) {
+	            
+	            int tmp=Integer.valueOf(entry.getKey());
+	            int max=Integer.valueOf(lastObject);
+	            if(tmp>max)
+	            {
+	            	lastObject = entry.getKey();
+	            }
+	        }
+		 
+		 int i=(Integer.valueOf(lastObject)+1);
+		 lastObject=String.valueOf(i);
+		 manifestacija.setId(lastObject);
+		this.manifestacije.put(lastObject, manifestacija);
+		System.out.println(manifestacija);		
+		
+		return 0;
+	}
 }
