@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class ManifestacijaDTO {
 
-   private String naziv,tip,poster ;
+   private String naziv,tip,poster,prodavac ;
    private int brojMesta,cenaRegular;
    private LocalDateTime vremeOdrzavanja;
    
@@ -17,6 +17,12 @@ public ManifestacijaDTO(String naziv, String tip, int brMesta, int cenaRegular, 
 	this.cenaRegular = cenaRegular;
 	this.poster = poster;
 	this.vremeOdrzavanja = vremeOdrzavanja;
+}
+public String getProdavac() {
+	return prodavac;
+}
+public void setProdavac(String prodavac) {
+	this.prodavac = prodavac;
 }
 public String getNaziv() {
 	return naziv;

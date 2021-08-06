@@ -123,8 +123,8 @@ public class Korisnik {
 		this.pol = null;
 		this.datumRodjenja = null;
 		this.uloga = null;
-		this.sveKarte = null;
-		this.sveManifest = null;
+		this.sveKarte = new ArrayList<Karta>();
+		this.sveManifest = new ArrayList<String>();
 		this.brBodova = 0;
 		this.tip = null;
 		this.obrisan = false;
@@ -151,6 +151,7 @@ public class Korisnik {
 				+ prezime + ", pol=" + pol + ", datumRodjenja=" + datumRodjenja + ", uloga=" + uloga + ", brBodova="
 				+ brBodova + ", tip=" + tip + ", obrisan=" + obrisan + "]";
 	}
+	
 	
 	
 }
