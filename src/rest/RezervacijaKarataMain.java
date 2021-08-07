@@ -138,6 +138,38 @@ public class RezervacijaKarataMain {
 			return g.toJson(saOcenom);
 		});
 		
+		post("/rest/manifestacije/registracijaManifestacije", (req, res) -> {
+			
+			ManifestacijaDTO dto = g.fromJson(req.body(), ManifestacijaDTO.class);
+			
+			Manifestacija novaManifestacija = new Manifestacija();
+			novaManifestacija.setNaziv(dto.getNaziv());
+			novaManifestacija.setTipManifestacije(dto.getTip());
+			novaManifestacija.setBrojMesta(dto.getBrMesta());
+			novaManifestacija.setVremeOdrzavanja(dto.getVremeOdrzavanja());
+			novaManifestacija.setCenaRegular(dto.getCenaRegular());
+			novaManifestacija.setStatus(false);
+			novaManifestacija.setLokacija(null);
+			novaManifestacija.setPoster(dto.getPoster());
+			novaManifestacija.setObrisana(false);
+			
+			int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
+			korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
+			
+			return retVal;
+		});
+
+		get("/rest/manifestacije/neaktivneManifestacije", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(manifestacije.neaktivneManifestacije());
+		});
+		
+		post("/rest/manifestacije/aktivacija", (req, res) -> {
+			String zaOdobrenje = req.body();
+			manifestacije.odobrenjeManifestacije(zaOdobrenje);
+			return "";
+		});
+		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------
 		
@@ -154,29 +186,6 @@ public class RezervacijaKarataMain {
 		});
 		
 		//KORISNICI
-		post("/rest/manifestacije/registracijaManifestacije", (req, res) -> {
-					
-					ManifestacijaDTO dto = g.fromJson(req.body(), ManifestacijaDTO.class);
-					
-					Manifestacija novaManifestacija = new Manifestacija();
-					novaManifestacija.setNaziv(dto.getNaziv());
-					novaManifestacija.setTipManifestacije(dto.getTip());
-					novaManifestacija.setBrojMesta(dto.getBrMesta());
-					novaManifestacija.setVremeOdrzavanja(dto.getVremeOdrzavanja());
-					novaManifestacija.setCenaRegular(dto.getCenaRegular());
-					novaManifestacija.setStatus(false);
-					novaManifestacija.setLokacija(null);
-					novaManifestacija.setPoster(dto.getPoster());
-					novaManifestacija.setObrisana(false);
-					
-					int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
-					korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
-					
-					return retVal;
-				});
-		
-		
-
 		//----------------------------------------------------------------------------------------
 		
 		post("/rest/korisnici/registracijaKorisnika", (req, res) -> {

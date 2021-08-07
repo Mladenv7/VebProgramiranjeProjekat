@@ -5,42 +5,26 @@
     "ime": "p",
     "prezime": "p",
     "pol": "MUSKI",
-    "uloga": "PRODAVAC",
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-
-    "korisnickoIme": "NoviKupac",
-    "lozinka": "password",
-    "ime": "Novi",
-    "prezime": "Kupac",
-    "pol": "MUSKI",
     "datumRodjenja": {
-      "year": 1984,
-      "month": 8,
-      "day": 17
-    }
+      "year": 1987,
+      "month": 10,
+      "day": 21
     },
-  {
-    "korisnickoIme": "k",
-    "lozinka": "k",
-    "ime": "k",
-    "prezime": "k",
-    "pol": "MUSKI",
-    "uloga": "KUPAC",
+    "uloga": "PRODAVAC",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   },
   {
-
-
     "korisnickoIme": "a",
     "lozinka": "a",
     "ime": "a",
     "prezime": "a",
     "pol": "MUSKI",
     "uloga": "ADMINISTRATOR",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   },
@@ -51,6 +35,41 @@
     "prezime": "Prodavac",
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "NoviKupac",
+    "lozinka": "password",
+    "ime": "Novi",
+    "prezime": "Kupac",
+    "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1984,
+      "month": 8,
+      "day": 17
+    },
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "k",
+    "lozinka": "k",
+    "ime": "k",
+    "prezime": "k",
+    "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1991,
+      "month": 7,
+      "day": 20
+    },
+    "uloga": "KUPAC",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   },
@@ -66,6 +85,8 @@
       "day": 19
     },
     "uloga": "ADMINISTRATOR",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   },
@@ -81,6 +102,8 @@
       "day": 14
     },
     "uloga": "KUPAC",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   }

@@ -5,10 +5,11 @@ import java.time.LocalDateTime;
 public class ManifestacijaDTO {
 
    private String naziv,tip,poster,prodavac ;
-   private int brojMesta,cenaRegular;
+   private int brojMesta;
+   private double cenaRegular;
    private LocalDateTime vremeOdrzavanja;
    
-public ManifestacijaDTO(String naziv, String tip, int brMesta, int cenaRegular, String poster,
+public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegular, String poster,
 		LocalDateTime vremeOdrzavanja) {
 	super();
 	this.naziv = naziv;
@@ -42,10 +43,10 @@ public int getBrMesta() {
 public void setBrMesta(int brMesta) {
 	this.brojMesta = brMesta;
 }
-public int getCenaRegular() {
+public double getCenaRegular() {
 	return cenaRegular;
 }
-public void setCenaRegular(int cenaRegular) {
+public void setCenaRegular(double cenaRegular) {
 	this.cenaRegular = cenaRegular;
 }
 public String getPoster() {

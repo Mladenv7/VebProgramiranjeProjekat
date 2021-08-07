@@ -8,6 +8,7 @@ const SviKorisnici = { template: '<svi-korisnici></svi-korisnici>' }
 const MojProfil = { template: '<moj-profil></moj-profil>' }
 const ManifestacijaDodaj = { template: '<manifestacije-dodaj></manifestacije-dodaj>'}
 const MojeManifestacije = { template: '<manifestacije-licne></manifestacije-licne>' } 
+const OdobravanjeManifestacije = { template: '<odobravanje-manifestacije></odobravanje-manifestacije>' }
 
 
 const router = new VueRouter({
@@ -22,7 +23,8 @@ const router = new VueRouter({
 		{ path: '/sviKorisnici', component: SviKorisnici },
 		{ path: '/profil', component: MojProfil },
 		{ path: '/manifestacijaDodaj', component: ManifestacijaDodaj },
-		{ path: '/mojeManifestacije', component: MojeManifestacije }
+		{ path: '/mojeManifestacije', component: MojeManifestacije },
+		{ path: '/odobravanje', component: OdobravanjeManifestacije }
 	  ]
 });
 

@@ -50,7 +50,7 @@ Vue.component("navbar", {
             <a class="nav-link" href="#/">Svi komentari</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#/">Nove manifestacije</a>
+            <a class="nav-link" href="#/odobravanje">Nove manifestacije</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#/">Novi prodavac</a>

@@ -1,7 +1,8 @@
 Vue.component("pregled-manifestacije", {
     data: function(){ 
         return {
-            podaci : {manifestacija : {naziv: ""}, komentari: [] } //sa komentarima
+            podaci : {manifestacija : {naziv: ""}, komentari: [] }, //sa komentarima,
+            prijavljenKorisnik : {}
         }
     },
     template: `

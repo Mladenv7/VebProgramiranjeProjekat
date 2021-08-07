@@ -2,8 +2,10 @@ package servisi;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import beans.Manifestacija;
 import beans.dto.ManifestUpitDTO;
@@ -35,6 +38,21 @@ public class ManifestacijaServis {
 
 		   
 		    citac.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void upisManifestacijaUDatoteku() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		try {
+			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/manifestacije.json"));
+			
+			stampac.append(gson.toJson(manifestacije.values().toArray(), Manifestacija[].class));
+			
+			
+			stampac.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,6 +121,18 @@ public class ManifestacijaServis {
 		this.manifestacije.put(lastObject, manifestacija);
 		System.out.println(manifestacija);		
 		
+		return 0;
+	}
+	
+	public List<Manifestacija> neaktivneManifestacije(){
+		ArrayList<Manifestacija> lista = new ArrayList<Manifestacija>(this.manifestacije.values());
+		
+		return lista.stream().filter(m -> !m.isStatus()).collect(Collectors.toList());
+	}
+	
+	public int odobrenjeManifestacije(String id) {
+		this.manifestacije.get(id).setStatus(true);
+		this.upisManifestacijaUDatoteku();
 		return 0;
 	}
 }
