@@ -1,7 +1,7 @@
 package enums;
 
 public enum TipKarte {
-	VIP,REGULAR,FAN_PIT;
+	REGULAR,FAN_PIT,VIP;
 
 	@Override
 	public String toString() {

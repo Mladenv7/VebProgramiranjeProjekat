@@ -32,8 +32,10 @@ import beans.dto.ManifestUpitDTO;
 import beans.dto.ManifestacijaDTO;
 import beans.dto.ManifestacijaKomentariDTO;
 import beans.dto.PrijavaDTO;
+import beans.dto.RezervacijaDTO;
 import enums.Pol;
 import enums.Uloga;
+import servisi.KartaServis;
 import servisi.KomentarServis;
 import servisi.KorisnikServis;
 import servisi.ManifestacijaServis;
@@ -43,6 +45,7 @@ public class RezervacijaKarataMain {
 	private static ManifestacijaServis manifestacije = new ManifestacijaServis();
 	private static KorisnikServis korisnikServis = new KorisnikServis();
 	private static KomentarServis komentarServis = new KomentarServis();
+	private static KartaServis kartaServis = new KartaServis();
 	private static Gson g = new GsonBuilder()
 							.registerTypeAdapter(LocalDateTime.class,  new JsonDeserializer<LocalDateTime>() { 
 								@Override 
@@ -169,6 +172,20 @@ public class RezervacijaKarataMain {
 			manifestacije.odobrenjeManifestacije(zaOdobrenje);
 			return "";
 		});
+		
+		//KARTE
+		//----------------------------------------------------------------------------------------
+		
+		post("/rest/karte/rezervacija", (req, res) -> {
+			RezervacijaDTO dto = g.fromJson(req.body(), RezervacijaDTO.class);
+			
+			kartaServis.rezervisiKarte(dto, korisnikServis.getKorisnici().get(dto.getKorisnickoIme()));
+			
+			korisnikServis.upisKorisnikaUDatoteku();
+			
+			return "Rezervacija uspešna";
+		});
+		
 		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------

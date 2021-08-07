@@ -51,9 +51,17 @@
       "month": 8,
       "day": 17
     },
-    "sveKarte": [],
+    "uloga": "KUPAC",
+    "sveKarte": [
+      "5HUWXLBocG",
+      "TjbHbwaQeL",
+      "AL4m1zTHLK",
+      "2Skt9LL5bP",
+      "yUqPit1Qsq"
+    ],
     "sveManifest": [],
-    "brBodova": 0,
+    "brBodova": 511,
+    "tip": "BRONZANI",
     "obrisan": false
   },
   {

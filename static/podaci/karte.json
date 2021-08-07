@@ -1,0 +1,112 @@
+[
+  {
+    "id": "TjbHbwaQeL",
+    "manifestacijaId": "1",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 550.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "5HUWXLBocG",
+    "manifestacijaId": "1",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 550.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "AL4m1zTHLK",
+    "manifestacijaId": "1",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 550.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "yUqPit1Qsq",
+    "manifestacijaId": "1",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1100.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "2Skt9LL5bP",
+    "manifestacijaId": "1",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1100.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "FAN_PIT",
+    "obrisana": false
+  }
+]

@@ -8,7 +8,7 @@ import enums.TipKarte;
 public class Karta {
 	
  	private String id;
-	private Manifestacija manifestacija;
+	private String manifestacijaId;
 	private LocalDateTime vremeOdrzavanja;
 	private double cena;
 	private String imePrezime;
@@ -22,11 +22,11 @@ public class Karta {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Manifestacija getManifestacija() {
-		return manifestacija;
+	public String getManifestacijaId() {
+		return manifestacijaId;
 	}
-	public void setManifestacija(Manifestacija manifestacija) {
-		this.manifestacija = manifestacija;
+	public void setManifestacijaId(String manifestacijaId) {
+		this.manifestacijaId = manifestacijaId;
 	}
 	public LocalDateTime getVremeOdrzavanja() {
 		return vremeOdrzavanja;
@@ -64,11 +64,11 @@ public class Karta {
 	public void setObrisana(boolean obrisana) {
 		this.obrisana = obrisana;
 	}
-	public Karta(String id, Manifestacija manifestacija, LocalDateTime vremeOdrzavanja, double cena, String imePrezime,
+	public Karta(String id, String manifestacijaId, LocalDateTime vremeOdrzavanja, double cena, String imePrezime,
 			StatusKarte status, TipKarte tip, boolean obrisana) {
 		super();
 		this.id = id;
-		this.manifestacija = manifestacija;
+		this.manifestacijaId = manifestacijaId;
 		this.vremeOdrzavanja = vremeOdrzavanja;
 		this.cena = cena;
 		this.imePrezime = imePrezime;
@@ -80,12 +80,20 @@ public class Karta {
 	public Karta() {
 		super();
 		this.id = "";
-		this.manifestacija = null;
+		this.manifestacijaId = "";
 		this.vremeOdrzavanja = null;
 		this.cena = 0;
 		this.imePrezime = "";
 		this.status = null;
 		this.tip = null;
-		this.obrisana = true;
+		this.obrisana = false;
 	}
+	@Override
+	public String toString() {
+		return "Karta [id=" + id + ", manifestacijaId=" + manifestacijaId + ", vremeOdrzavanja=" + vremeOdrzavanja
+				+ ", cena=" + cena + ", imePrezime=" + imePrezime + ", status=" + status + ", tip=" + tip
+				+ ", obrisana=" + obrisana + "]";
+	}
+	
+	
 }
