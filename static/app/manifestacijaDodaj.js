@@ -2,6 +2,7 @@ Vue.component("manifestacije-dodaj", {
     data: function () {
         return {
             novaManifestacija : {
+            	prodavac:"",
                 naziv : "",
                 tip : "",
                 brojMesta : "", 
@@ -60,7 +61,10 @@ Vue.component("manifestacije-dodaj", {
     ` ,
     	methods: {
         posaljiManifestaciju(){
+        	var retrievedUsername = localStorage.getItem('prijavljeni');
+        	const obj = JSON.parse(retrievedUsername);
         	this.novaManifestacija.poster="./podaci/posteri/"+(poster.value).split('\\')[2];
+        	this.novaManifestacija.prodavac=obj.korisnickoIme;
         	console.log(this.novaManifestacija)
             axios
 			.post('/rest/manifestacije/registracijaManifestacije', this.novaManifestacija);

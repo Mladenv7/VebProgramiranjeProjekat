@@ -6,6 +6,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import beans.Korisnik;
+import beans.Manifestacija;
 import beans.dto.KorisnikUpitDTO;
 
 public class KorisnikServis {
@@ -114,5 +116,16 @@ public class KorisnikServis {
                 .filter(k -> dto.getPrezime().isEmpty() || k.getPrezime().toLowerCase().contains(dto.getPrezime().toLowerCase()))
                 .filter(k -> dto.getKorisnickoIme().isEmpty() || k.getKorisnickoIme().toLowerCase().contains(dto.getKorisnickoIme().toLowerCase()))
                 .sorted(comp).collect(Collectors.toList());
+	}
+	
+	public void dodajManifestacijuKorisniku(Manifestacija man,String prodavac) {
+		for (HashMap.Entry<String,Korisnik> entry : korisnici.entrySet()) {
+
+            	if(entry.getValue().getKorisnickoIme().equals(prodavac)) {
+            		ArrayList<String> tmp = entry.getValue().getSveManifest();
+            		tmp.add(man.getId());
+            	}
+           
+        }
 	}
 }

@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -82,6 +83,33 @@ public class RezervacijaKarataMain {
 			return g.toJson(najskorije);
 		});
 		
+		get("/rest/manifestacije/licne/:username", (req, res) ->{
+			String id = req.params("username");
+			HashMap<String,Korisnik> korisnici= korisnikServis.getKorisnici();
+			res.type("application/json");
+			Korisnik k=new Korisnik();
+			ArrayList<Manifestacija> sve = new ArrayList<>(manifestacije.getManifestacije().values());	
+			for (HashMap.Entry<String,Korisnik> entry : korisnici.entrySet())
+			{
+				if(entry.getKey().equals(id)) {
+					k=entry.getValue();
+				}
+			}
+			
+			ArrayList<Manifestacija> licne=new ArrayList<Manifestacija>();
+			
+			for(String man: k.getSveManifest()) {
+				for (Manifestacija m : sve)
+				{
+					if(man.equals(m.getId())) {
+						licne.add(m);
+					}
+				}
+			}
+			System.out.println(licne);
+			return g.toJson(licne);
+		});
+		
 		post("/rest/manifestacije/pretraga", (req, res) -> {
 			ManifestUpitDTO upit = g.fromJson(req.body(), ManifestUpitDTO.class);
 			System.out.println(upit);
@@ -141,8 +169,10 @@ public class RezervacijaKarataMain {
 					novaManifestacija.setPoster(dto.getPoster());
 					novaManifestacija.setObrisana(false);
 					
-
-					return manifestacije.dodajManifestaciju(novaManifestacija);
+					int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
+					korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
+					
+					return retVal;
 				});
 		
 		
