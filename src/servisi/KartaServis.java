@@ -5,14 +5,21 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import beans.Karta;
 import beans.Korisnik;
+import beans.Manifestacija;
+import beans.dto.KarteUpitDTO;
 import beans.dto.RezervacijaDTO;
 import enums.StatusKarte;
 import enums.TipKarte;
@@ -22,6 +29,14 @@ public class KartaServis {
 
 	private HashMap<String, Karta> karte = new HashMap<String, Karta>();
 	
+	public HashMap<String, Karta> getKarte() {
+		return karte;
+	}
+
+	public void setKarte(HashMap<String, Karta> karte) {
+		this.karte = karte;
+	}
+
 	public KartaServis() {
 		
 		Gson gson = new Gson();
@@ -117,5 +132,50 @@ public class KartaServis {
           .toString();
         
         return id;
+	}
+	
+	public List<Karta> karteOdKorisnika(Korisnik k){
+		ArrayList<Karta> karteKorisnika = new ArrayList<>();
+		
+		for(String id : k.getSveKarte()) {
+			karteKorisnika.add(this.karte.get(id));
+		}
+		
+		return karteKorisnika;
+	}
+	
+	public List<Karta> pretragaKarata(List<Karta> karte, KarteUpitDTO dto, HashMap<String, Manifestacija> sveManifestacije){
+		if (dto == null) return karte;
+        final Map<String, Comparator<Karta>> critMap = new HashMap<String, Comparator<Karta>>();
+        critMap.put("MANIFEST_RAST", (o1,o2)->{return sveManifestacije.get(o1.getManifestacijaId()).getNaziv().compareToIgnoreCase(sveManifestacije.get(o2.getManifestacijaId()).getNaziv()); });
+        critMap.put("MANIFEST_OPAD", (o2,o1)->{return sveManifestacije.get(o1.getManifestacijaId()).getNaziv().compareToIgnoreCase(sveManifestacije.get(o2.getManifestacijaId()).getNaziv()); });
+        critMap.put("DATUM_RAST", Comparator.comparing(Karta::getVremeOdrzavanja));
+        critMap.put("DATUM_OPAD", Comparator.comparing(Karta::getVremeOdrzavanja).reversed());
+        critMap.put("CENA_RAST", Comparator.comparingDouble(Karta::getCena));
+        critMap.put("CENA_OPAD", Comparator.comparingDouble(Karta::getCena).reversed());
+        Comparator<Karta> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
+
+        return karte.stream()
+                .filter(k -> dto.getManifestacija().isEmpty() || 
+                			 sveManifestacije.get(k.getManifestacijaId()).getNaziv().toLowerCase().contains(dto.getManifestacija().toLowerCase()))
+                .filter(k -> {
+                				if(dto.getCenaOd() > 0 && dto.getCenaDo() > 0) {
+                					return dto.getCenaOd() <= k.getCena() && k.getCena() <= dto.getCenaDo();
+                				}else if(dto.getCenaOd() > 0) {
+                					return dto.getCenaOd() <= k.getCena();
+                				}else if(dto.getCenaDo() > 0) {
+                					return k.getCena() <= dto.getCenaDo();
+                				}else return true;
+                			 })
+                .filter(k -> {
+                				if(dto.getDatumOd() != null && dto.getDatumDo() != null) {
+                					return dto.getDatumOd().isBefore(k.getVremeOdrzavanja()) && k.getVremeOdrzavanja().isBefore(dto.getDatumDo());
+                				}else if(dto.getDatumOd() != null) {
+                					return dto.getDatumOd().isBefore(k.getVremeOdrzavanja());
+                				}else if(dto.getDatumDo() != null){
+                					return k.getVremeOdrzavanja().isBefore(dto.getDatumDo());
+                				}else return true;
+                			 })
+                .sorted(comp).collect(Collectors.toList());
 	}
 }

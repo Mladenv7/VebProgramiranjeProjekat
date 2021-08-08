@@ -76,9 +76,16 @@
       "day": 20
     },
     "uloga": "KUPAC",
-    "sveKarte": [],
+    "sveKarte": [
+      "J3ZMzVBsOC",
+      "hitLDvzZ0Z",
+      "eFhi1hwoH0",
+      "gnFeZhnN2d",
+      "pgc0kFRdk8"
+    ],
     "sveManifest": [],
-    "brBodova": 0,
+    "brBodova": 1739,
+    "tip": "SREBRNI",
     "obrisan": false
   },
   {

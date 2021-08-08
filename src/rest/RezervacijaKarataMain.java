@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,9 +23,11 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
+import beans.Karta;
 import beans.Komentar;
 import beans.Korisnik;
 import beans.Manifestacija;
+import beans.dto.KarteUpitDTO;
 import beans.dto.KorisnikUpitDTO;
 import beans.dto.KupacRegistracijaDTO;
 import beans.dto.ManifestOcenaDTO;
@@ -58,7 +61,6 @@ public class RezervacijaKarataMain {
 								public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException { 
 
 								return LocalDate.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")); } 
-
 							})
 							.create();
 	
@@ -186,6 +188,24 @@ public class RezervacijaKarataMain {
 			return "Rezervacija uspešna";
 		});
 		
+		get("/rest/karte/rezervacije/:korisnickoIme", (req, res) -> {
+			String korisnickoIme = req.params("korisnickoIme");
+			
+			List<Karta> karte = kartaServis.karteOdKorisnika(korisnikServis.getKorisnici().get(korisnickoIme));
+			res.type("application/json");
+			return g.toJson(karte);
+		});
+		
+		post("/rest/karte/pretraga", (req, res) -> {
+			KarteUpitDTO dto = g.fromJson(req.body(), KarteUpitDTO.class);
+			System.out.println(dto);
+			List<Karta> korisnikoveKarte = kartaServis.karteOdKorisnika(korisnikServis.getKorisnici().get(dto.getKorisnickoIme()));
+			
+			List<Karta> rezultatPretrage = kartaServis.pretragaKarata(korisnikoveKarte, dto, manifestacije.getManifestacije());
+			
+			res.type("application/json");
+			return g.toJson(rezultatPretrage);
+		});
 		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------

@@ -108,7 +108,7 @@ Vue.component("navbar", {
             <a class="nav-link" href="#/">Početna</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#/">Moje karte</a>
+            <a class="nav-link" href="#/mojeRezervacije">Moje karte</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#/">Komentar</a>

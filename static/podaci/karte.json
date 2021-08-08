@@ -88,6 +88,28 @@
     "obrisana": false
   },
   {
+    "id": "gnFeZhnN2d",
+    "manifestacijaId": "4",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 3273.6,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
     "id": "2Skt9LL5bP",
     "manifestacijaId": "1",
     "vremeOdrzavanja": {
@@ -107,6 +129,94 @@
     "imePrezime": "Novi Kupac",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "J3ZMzVBsOC",
+    "manifestacijaId": "4",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1636.8,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "eFhi1hwoH0",
+    "manifestacijaId": "4",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 3273.6,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "hitLDvzZ0Z",
+    "manifestacijaId": "4",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1636.8,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "pgc0kFRdk8",
+    "manifestacijaId": "4",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 3273.6,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "VIP",
     "obrisana": false
   }
 ]
