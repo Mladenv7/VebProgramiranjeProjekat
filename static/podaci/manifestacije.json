@@ -96,7 +96,7 @@
     "naziv": "Koncert 2",
     "tipManifestacije": "koncert",
     "id": "4",
-    "brojMesta": 5500.0,
+    "brojMesta": 5.0,
     "vremeOdrzavanja": {
       "date": {
         "year": 2021,

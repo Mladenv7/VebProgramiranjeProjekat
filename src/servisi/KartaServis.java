@@ -178,4 +178,38 @@ public class KartaServis {
                 			 })
                 .sorted(comp).collect(Collectors.toList());
 	}
+	
+	public int otkazivanjeKarte(String idKarte, Korisnik korisnik) {
+		Karta karta = this.karte.get(idKarte);
+		
+		karta.setStatus(StatusKarte.OTKAZANA);
+		
+		korisnik.setBrBodova(korisnik.getBrBodova()- (int)Math.floor(karta.getCena()/1000 * 133 * 4));
+		
+		if(korisnik.getBrBodova() > TipKupca.BRONZANI.kriterijumZaTip) {
+			korisnik.setTip(TipKupca.BRONZANI);
+		}
+		if(korisnik.getBrBodova() > TipKupca.SREBRNI.kriterijumZaTip) {
+			korisnik.setTip(TipKupca.SREBRNI);
+		}
+		if(korisnik.getBrBodova() > TipKupca.ZLATNI.kriterijumZaTip) {
+			korisnik.setTip(TipKupca.ZLATNI);
+		}
+		
+		this.upisKarataUDatoteku();
+		
+		return 0;
+	}
+	
+	public List<Karta> karteOdManifestacije(String manifestacijaId){
+		ArrayList<Karta> karte = new ArrayList<>();
+		
+		for(Karta k : this.karte.values()) {
+			if(k.getManifestacijaId().equals(manifestacijaId)) {
+				karte.add(k);
+			}
+		}
+		
+		return karte;
+	}
 }

@@ -34,6 +34,7 @@ import beans.dto.ManifestOcenaDTO;
 import beans.dto.ManifestUpitDTO;
 import beans.dto.ManifestacijaDTO;
 import beans.dto.ManifestacijaKomentariDTO;
+import beans.dto.OtkazDTO;
 import beans.dto.PrijavaDTO;
 import beans.dto.RezervacijaDTO;
 import enums.Pol;
@@ -175,6 +176,17 @@ public class RezervacijaKarataMain {
 			return "";
 		});
 		
+		get("rest/manifestacije/preostaleKarteKolicine", (req, res) -> {
+			HashMap<String, Integer> kolicine = new HashMap<>(); 
+			
+			for(Manifestacija m : manifestacije.getManifestacije().values()) {
+				kolicine.put(m.getId(), kartaServis.karteOdManifestacije(m.getId()).size());
+			}
+			
+			res.type("application/json");
+			return g.toJson(kolicine);
+		});
+		
 		//KARTE
 		//----------------------------------------------------------------------------------------
 		
@@ -207,9 +219,24 @@ public class RezervacijaKarataMain {
 			return g.toJson(rezultatPretrage);
 		});
 		
+		post("rest/karte/otkazivanje", (req,res) -> {
+			OtkazDTO dto = g.fromJson(req.body(), OtkazDTO.class);
+			
+			kartaServis.otkazivanjeKarte(dto.getIdKarte(), korisnikServis.getKorisnici().get(dto.getKorisnickoIme()));
+			
+			korisnikServis.upisKorisnikaUDatoteku();
+			
+			return "Otkazivanje uspešno";
+		});
+		
+		get("rest/karte/karteOdManifestacije/:manifestacijaId", (req, res) -> {
+			List<Karta> karte = kartaServis.karteOdManifestacije(req.params("manifestacijaId"));
+			res.type("application/json");
+			return g.toJson(karte);
+		});
+		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------
-		
 		
 		get("/rest/komentari/manifestacijaKomentari/:id", (req, res) -> {
 			String id = req.params("id");

@@ -6,6 +6,7 @@ Vue.component("manifestacije-pretraga", {
             izabranaId : "",
             tipFilter: "",
             nerasprodate: false,
+            kolicine: {},
         }
     },
     template: `
@@ -23,12 +24,13 @@ Vue.component("manifestacije-pretraga", {
         <label class="form-check-label" for="flexCheckDefault">
           Samo nerasoprodate manifestacije 
         </label>
-        <input class="form-check-input" type="checkbox" v-model="nerasprodate" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" v-model="nerasprodate" id="flexCheckDefault" v-on:click="ukljuciNerasprodateFilter()">
         </div>
     </div>
 
     <div style="height: 350px;overflow-y: scroll;overflow-x: hidden;">
-        <div class="card" v-for="stavka in rezultat" v-if="filterTipa(stavka.manifestacija.tipManifestacije)">
+        <div class="card" v-for="stavka in rezultat" v-if="filterTipa(stavka.manifestacija.tipManifestacije) && 
+                (!nerasprodate || (nerasprodate && !filterRasprodata(stavka.manifestacija)))">
             <div class="card-header">
                 {{stavka.manifestacija.naziv}}
             </div>
@@ -39,8 +41,7 @@ Vue.component("manifestacije-pretraga", {
                         <p class="card-text">
                             {{stavka.manifestacija.tipManifestacije}}<br>
                             {{stavka.manifestacija.lokacija.ulicaBroj+" "+stavka.manifestacija.lokacija.grad+" "+stavka.manifestacija.lokacija.postanskiBroj}}<br>
-                            Cena regularne karte: {{stavka.manifestacija.cenaRegular}}
-                            
+                            Cena regularne karte: {{stavka.manifestacija.cenaRegular}}<br>
                         </p>
                         <p class="card-text" v-if="stavka.prosecnaOcena > 0 && jelProsla(stavka.manifestacija)">
                             Prosečna ocena: {{stavka.prosecnaOcena.toFixed(2)}}
@@ -153,7 +154,14 @@ Vue.component("manifestacije-pretraga", {
             console.log(this.upit);
             this.$router.push({ path: '/manifestacijePretraga', query: this.upit});
             this.$router.go();
-        }
+        },
+        filterRasprodata(manifestacija){
+            return this.kolicine[manifestacija.id] == manifestacija.brojMesta;
+        },
+        ukljuciNerasprodateFilter(){
+            if (this.nerasprodate == false) this.nerasprodate = true;
+            else if(this.nerasprodate == true) this.nerasprodate = false;
+        },
     },
     created(){
         this.upit.naziv = this.$route.query.naziv;
@@ -165,6 +173,9 @@ Vue.component("manifestacije-pretraga", {
         this.upit.datumDo = this.$route.query.datumDo;
         axios.post("/rest/manifestacije/pretraga", this.upit).then(response => {
             this.rezultat = response.data;
+        });
+        axios.get("rest/manifestacije/preostaleKarteKolicine").then(response => {
+            this.kolicine = response.data;
         });
     },
 });

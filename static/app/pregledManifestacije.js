@@ -7,6 +7,7 @@ Vue.component("pregled-manifestacije", {
             karta: {imePrezime : "", manifestacijaId : "", cena : 0, vremeOdrzavanja : ""},
             kolicine: {regular : 0, fanPit : 0, vip : 0},
             popust: 1,
+            preostaloKarata: 0,
         }
     },
     template: `
@@ -19,7 +20,7 @@ Vue.component("pregled-manifestacije", {
             {{podaci.manifestacija.tipManifestacije}}<br>
             Vreme održavanja: {{formatirajDatum(podaci.manifestacija.vremeOdrzavanja)}}<br>
             Broj mesta: {{podaci.manifestacija.brojMesta}}<br>
-            Preostalo karata: <br>
+            Preostalo karata: {{preostaloKarata}}<br>
             Status: {{pretvoriStatus(podaci.manifestacija.status)}}<br>
             
         </p>
@@ -57,7 +58,7 @@ Vue.component("pregled-manifestacije", {
         </table>
     </div>
 
-    <div id="rezervacijaDiv" style="width: 80%;" v-if="jelAktivna() && jelKupac()">
+    <div id="rezervacijaDiv" style="width: 80%;" v-if="jelAktivna() && jelKupac() && preostaloKarata > 0">
     <div class="row g-2 align-items-center">
             <div class="col-3">
             <input type="number" class="form-control" id="kolicinaRegular" v-bind:min="0" v-model="kolicine.regular">
@@ -128,6 +129,7 @@ Vue.component("pregled-manifestacije", {
             .get("/rest/komentari/manifestacijaKomentari/"+this.$route.query.id).then(response => {
                 this.podaci = response.data;
                 console.log(this.podaci);
+                this.dobaviPreostaloKarata();
             });
         },
         pretvoriStatus(status){
@@ -175,6 +177,12 @@ Vue.component("pregled-manifestacije", {
         posaljiRezervaciju(){
             if(this.kolicine.regular+this.kolicine.fanPit+this.kolicine.vip == 0){
                 alert("Morate uneti neku količinu karata");
+                return;
+            }else if(this.kolicine.regular+this.kolicine.fanPit+this.kolicine.vip > this.preostaloKarata){
+                alert("Nije preostalo dovoljno karata");
+                this.kolicine.regular = 0;
+                this.kolicine.fanPit = 0;
+                this.kolicine.vip = 0;
                 return;
             }else{
                 this.karta.cena *= this.popust;
@@ -229,6 +237,11 @@ Vue.component("pregled-manifestacije", {
                 return this.prijavljenKorisnik.tip+" (popust od "+Math.round((1-this.popust)*100)+" posto)";
             } 
             else return "Standardni";
+        },
+        dobaviPreostaloKarata(){
+            axios.get("rest/karte/karteOdManifestacije/"+this.podaci.manifestacija.id).then(response => {
+                this.preostaloKarata = this.podaci.manifestacija.brojMesta - response.data.length;
+            });
         }
     },
     mounted(){

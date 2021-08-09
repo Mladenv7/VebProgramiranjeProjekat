@@ -7,6 +7,7 @@ Vue.component("karte-korisnika", {
             upit : {manifestacija: "", cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null, sort: "", korisnickoIme: ""},
             tip: "",
             status: "",
+            izabranaId: "",
         }
     },
     template: `
@@ -39,7 +40,7 @@ Vue.component("karte-korisnika", {
             <div class="card-header">
                 Manifestacija: {{sveManifestacije[karta.manifestacijaId].naziv}}
             </div>
-            <div class="card-body">
+            <div class="card-body" data-bs-toggle="tooltip" data-bs-placement="right" title="Karte je moguće otkazati najkasnije 7 dana pre početka manifestacije">
                 <div class="row">
                     <div class="col-auto">
                         <p class="card-text">
@@ -49,9 +50,9 @@ Vue.component("karte-korisnika", {
                             Tip karte: {{pretvoriTip(karta.tip)}}<br>
                         </p>
 
-                        <button class="w-150 btn btn-md btn-danger" v-if="jelMoguceOtkazivanje(karta.vremeOdrzavanja)"
-                            data-bs-toggle="tooltip" data-bs-placement="right" title="Karte je moguće otkazati najkasnije 7 dana pre početka manifestacije">
-                            Otkaži
+                        <button class="w-150 btn btn-md btn-danger" v-if="jelMoguceOtkazivanje(karta.vremeOdrzavanja)" data-bs-toggle="modal" 
+                        data-bs-target="#otkazivanjeModal" v-on:click="izabranaId = karta.id"
+                            >Otkaži
                         </button>
                     </div>
                 </div>
@@ -118,6 +119,28 @@ Vue.component("karte-korisnika", {
     <br>
 
 
+    <div class="modal fade" id="otkazivanjeModal" tabindex="-1" aria-labelledby="otkazivanjeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="otkazivanjeModalLabel">Pregled rezervacije</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>
+            Da li ste sigurni da želite da otkažete ovu kartu?<br>
+
+            (Napomena: izgubićete bodove u slučaju da otkažete ovu kartu)
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nazad</button>
+            <button type="button" class="btn btn-primary" v-on:click="otkaziKartu()" data-bs-dismiss="modal">Potvrdi</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     </div>
     `,
     methods: {
@@ -160,6 +183,12 @@ Vue.component("karte-korisnika", {
             this.upit.korisnickoIme = this.prijavljenKorisnik.korisnickoIme;
             axios.post("/rest/karte/pretraga", this.upit).then(response => {
                 this.karte = response.data;
+            });
+        },
+        otkaziKartu(){
+            axios.post("rest/karte/otkazivanje", {idKarte: this.izabranaId, korisnickoIme: this.prijavljenKorisnik.korisnickoIme}).then(response => {
+                alert(response.data);
+                this.$router.go();
             });
         }
     },
