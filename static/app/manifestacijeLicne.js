@@ -1,12 +1,20 @@
 Vue.component("manifestacije-licne", {
-    data: function () {
-        return {
-            manifestacije : [],
-            izabranaId : "",
-            upit : {naziv: "", lokacija: "", sort: "",cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null},
-        }
-    },
-    template : `
+  data: function () {
+    return {
+      manifestacije: [],
+      izabranaId: "",
+      upit: {
+        naziv: "",
+        lokacija: "",
+        sort: "",
+        cenaOd: 0,
+        cenaDo: 0,
+        datumOd: null,
+        datumDo: null,
+      },
+    };
+  },
+  template: `
     <div style="overflow-x: hidden;width: 100%;" align="center">
     <h2 align="center">Manifestacije</h2>
     <br>
@@ -19,6 +27,7 @@ Vue.component("manifestacije-licne", {
                         <h5 class="card-title" style="white-space: nowrap; width: 250px; overflow: hidden; text-overflow: ellipsis; ">{{manifestacija.naziv}}</h5>
                         <p class="card-text">{{manifestacija.tipManifestacije}}</p>
                         <a class="btn btn-secondary" v-on:click="izaberiManifestaciju(manifestacija.id)">Detalji</a>
+                        <a class="btn btn-secondary" v-on:click="azurirajManifestaciju(manifestacija.id)">Azuriraj</a>
                     </div>
                 </div>
             </div>
@@ -94,24 +103,33 @@ Vue.component("manifestacije-licne", {
 
     </div>
     `,
-    methods : {
-        izaberiManifestaciju(id){
-            this.izabranaId = id;
-            console.log(this.izabranaId);
-            this.$router.push({ path: '/manifestacija', query: { id: this.izabranaId }});
-        },
-        posaljiUpit(){
-            console.log(this.upit);
-            this.$router.push({ path: '/manifestacijePretraga', query: this.upit});
-        }
+  methods: {
+    izaberiManifestaciju(id) {
+      this.izabranaId = id;
+      this.$router.push({
+        path: "/manifestacija",
+        query: { id: this.izabranaId },
+      });
     },
-    mounted(){
-    	var retrievedUsername = localStorage.getItem('prijavljeni');
-    	const obj = JSON.parse(retrievedUsername); 
-    	console.log(obj);
-        axios.get('/rest/manifestacije/licne/' + obj.korisnickoIme ).then(response => {
-            this.manifestacije = response.data;
-            console.log(this.manifestacije);
-        });
-    }
+    posaljiUpit() {
+      console.log(this.upit);
+      this.$router.push({ path: "/manifestacijePretraga", query: this.upit });
+    },
+    azurirajManifestaciju(id) {
+      this.izabranaId = id;
+      this.$router.push({
+        path: "/manifestacijaAzuriraj",
+        query: { id: this.izabranaId },
+      });
+    },
+  },
+  mounted() {
+    var retrievedUsername = localStorage.getItem("prijavljeni");
+    const obj = JSON.parse(retrievedUsername);
+    axios
+      .get("/rest/manifestacije/licne/" + obj.korisnickoIme)
+      .then((response) => {
+        this.manifestacije = response.data;
+      });
+  },
 });

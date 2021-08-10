@@ -1,62 +1,180 @@
 [
-{
-	"id" : "1",
-	"naziv" : "Utakmica 1",
-	"tipManifestacije" : "sport",
-	"brojMesta" : 5500,
-	"vremeOdrzavanja" : {
-		"date":{"year":2021,"month":5,"day":25},
-		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
-	},
-	"cenaRegular" : 550.0,
-	"status" : false,
-	"lokacija" : {},
-	"poster" : "./podaci/posteri/poster1.jpg",
-	"obrisana" : false
-},
-{
-	"id" : "2",
-	"naziv" : "Doček Vladimira Putina u Beogradu",
-	"tipManifestacije" : "diplomatija",
-	"brojMesta" : 5500,
-	"vremeOdrzavanja" : {
-		"date":{"year":2020,"month":5,"day":25},
-		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
-	},
-	"cenaRegular" : 1050.0,
-	"status" : false,
-	"lokacija" : {},
-	"poster" : "./podaci/posteri/poster2.jpg",
-	"obrisana" : false
-},
-{
-	"id" : "3",
-	"naziv" : "Koncert 1",
-	"tipManifestacije" : "koncert",
-	"brojMesta" : 5500,
-	"vremeOdrzavanja" : {
-		"date":{"year":2020,"month":5,"day":25},
-		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
-	},
-	"cenaRegular" : 660.0,
-	"status" : false,
-	"lokacija" : {},
-	"poster" : "./podaci/posteri/poster3.jpg",
-	"obrisana" : false
-},
-{
-	"id" : "4",
-	"naziv" : "Koncert 2",
-	"tipManifestacije" : "koncert",
-	"brojMesta" : 5500,
-	"vremeOdrzavanja" : {
-		"date":{"year":2020,"month":7,"day":29},
-		"time":{"hour":11,"minute":22,"second":38,"nano":388000000}
-	},
-	"cenaRegular" : 880.0,
-	"status" : false,
-	"lokacija" : {},
-	"poster" : "",
-	"obrisana" : false
-}
+  {
+    "naziv": "Utakmica 1",
+    "tipManifestacije": "sport",
+    "id": "1",
+    "brojMesta": 5500,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 38,
+        "nano": 388000000
+      }
+    },
+    "cenaRegular": 550.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 0.0,
+      "geoDuzina": 0.0,
+      "ulicaBroj": "",
+      "grad": "",
+      "postanskiBroj": "",
+      "obrisana": true
+    },
+    "poster": "./podaci/posteri/poster1.jpg",
+    "obrisana": false
+  },
+  {
+    "naziv": "DoÄ�ek Vladimira Putina u Beogradu",
+    "tipManifestacije": "diplomatija",
+    "id": "2",
+    "brojMesta": 5500,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 38,
+        "nano": 388000000
+      }
+    },
+    "cenaRegular": 1050.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 0.0,
+      "geoDuzina": 0.0,
+      "ulicaBroj": "",
+      "grad": "",
+      "postanskiBroj": "",
+      "obrisana": true
+    },
+    "poster": "./podaci/posteri/poster2.jpg",
+    "obrisana": false
+  },
+  {
+    "naziv": "Koncert 1",
+    "tipManifestacije": "koncert",
+    "id": "3",
+    "brojMesta": 5500,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2020,
+        "month": 5,
+        "day": 25
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 38,
+        "nano": 388000000
+      }
+    },
+    "cenaRegular": 660.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 0.0,
+      "geoDuzina": 0.0,
+      "ulicaBroj": "",
+      "grad": "",
+      "postanskiBroj": "",
+      "obrisana": true
+    },
+    "poster": "./podaci/posteri/poster3.jpg",
+    "obrisana": false
+  },
+  {
+    "naziv": "Koncert 2",
+    "tipManifestacije": "koncert",
+    "id": "4",
+    "brojMesta": 5500,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2020,
+        "month": 7,
+        "day": 29
+      },
+      "time": {
+        "hour": 11,
+        "minute": 22,
+        "second": 38,
+        "nano": 388000000
+      }
+    },
+    "cenaRegular": 880.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 0.0,
+      "geoDuzina": 0.0,
+      "ulicaBroj": "",
+      "grad": "",
+      "postanskiBroj": "",
+      "obrisana": true
+    },
+    "poster": "",
+    "obrisana": false
+  },
+  {
+    "naziv": "obozavanje dusana",
+    "tipManifestacije": "molitva",
+    "id": "5",
+    "brojMesta": 123123,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 12
+      },
+      "time": {
+        "hour": 14,
+        "minute": 58,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 1.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 0.0,
+      "geoDuzina": 0.0,
+      "ulicaBroj": "",
+      "grad": "",
+      "postanskiBroj": "",
+      "obrisana": true
+    },
+    "poster": "./podaci/posteri/poster2.jpg",
+    "obrisana": false
+  },
+  {
+    "naziv": "asdsad",
+    "tipManifestacije": "asdasd",
+    "id": "6",
+    "brojMesta": 123123,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 18
+      },
+      "time": {
+        "hour": 15,
+        "minute": 5,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 2131.0,
+    "status": false,
+    "poster": "./podaci/posteri/poster1.jpg",
+    "obrisana": false
+  }
 ]

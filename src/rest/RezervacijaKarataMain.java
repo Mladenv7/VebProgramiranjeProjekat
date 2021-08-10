@@ -99,14 +99,15 @@ public class RezervacijaKarataMain {
 			ArrayList<Manifestacija> licne=new ArrayList<Manifestacija>();
 			
 			for(String man: k.getSveManifest()) {
+
 				for (Manifestacija m : sve)
 				{
+
 					if(man.equals(m.getId())) {
 						licne.add(m);
 					}
 				}
 			}
-			System.out.println(licne);
 			return g.toJson(licne);
 		});
 		
@@ -136,6 +137,28 @@ public class RezervacijaKarataMain {
 			}
 			res.type("application/json");
 			return g.toJson(saOcenom);
+		});
+		
+		get("/rest/manifestacijaAzuriraj/:id", (req, res) -> {
+			String id = req.params("id");
+			Manifestacija man = new Manifestacija();
+			man=manifestacije.getManifestacije().get(id);
+			
+			ManifestacijaDTO dto= new ManifestacijaDTO();
+			dto.setBrMesta(man.getBrojMesta());
+			dto.setCenaRegular(man.getCenaRegular());
+			dto.setNaziv(man.getNaziv());
+			dto.setPoster(man.getPoster());
+			dto.setVremeOdrzavanja(man.getVremeOdrzavanja());
+			dto.setTip(man.getTipManifestacije());
+			
+			res.type("application/json");
+			return g.toJson(dto);
+		});
+		
+		post("/rest/manifestacije/azuriranjeManifestacije", (req, res) -> {
+			Manifestacija zaAzurirati = g.fromJson(req.body(), Manifestacija.class);
+			return manifestacije.azurirajManifestaciju(zaAzurirati);
 		});
 		
 		//KOMENTARI
@@ -171,7 +194,6 @@ public class RezervacijaKarataMain {
 					
 					int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
 					korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
-					
 					return retVal;
 				});
 		
