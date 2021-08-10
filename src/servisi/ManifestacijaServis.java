@@ -2,6 +2,7 @@ package servisi;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
@@ -11,7 +12,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import beans.Korisnik;
 import beans.Manifestacija;
 import beans.dto.ManifestUpitDTO;
 
@@ -101,8 +104,42 @@ public class ManifestacijaServis {
 		 lastObject=String.valueOf(i);
 		 manifestacija.setId(lastObject);
 		this.manifestacije.put(lastObject, manifestacija);
-		System.out.println(manifestacija);		
+		this.upisManifestacijeUDatoteku();	
 		
 		return 0;
 	}
+	
+	public void upisManifestacijeUDatoteku() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		try {
+			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/manifestacije.json"));
+			
+			stampac.append(gson.toJson(manifestacije.values().toArray(), Manifestacija[].class));
+			
+			
+			stampac.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String azurirajManifestaciju(Manifestacija manifestacija) {
+		if(this.manifestacije.get(manifestacija.getId()) != null) {
+			if(manifestacija.getPoster().equals("")) {
+				 for (HashMap.Entry<String,Manifestacija> entry : manifestacije.entrySet()) {
+					 if(entry.getKey().equals(manifestacija.getId()))
+					 {
+						 manifestacija.setPoster(entry.getValue().getPoster());
+					 }
+				 }
+			}
+			this.manifestacije.put(manifestacija.getId(), manifestacija);
+			
+			this.upisManifestacijeUDatoteku();
+			
+			return "Azuriranje uspešno";
+		}else return "Ova manifestacija ne postoji";
+	}
+
 }

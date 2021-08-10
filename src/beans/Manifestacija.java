@@ -6,7 +6,7 @@ public class Manifestacija {
 	
 	 
 	private String naziv ,tipManifestacije, id;
-	private double brojMesta;
+	private int brojMesta;
 	private LocalDateTime vremeOdrzavanja;
 	private double cenaRegular;
 	private boolean status; //aktivno - true; neaktivno - false
@@ -32,7 +32,7 @@ public class Manifestacija {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public double getBrojMesta() {
+	public int getBrojMesta() {
 		return brojMesta;
 	}
 	public void setBrojMesta(int brojMesta) {

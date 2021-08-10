@@ -1,24 +1,24 @@
 Vue.component("manifestacije-dodaj", {
-    data: function () {
-        return {
-            novaManifestacija : {
-            	prodavac:"",
-                naziv : "",
-                tip : "",
-                brojMesta : "", 
-                vremeOdrzavanja : {
-            		date:{month:6,day:12,year:2020},
-            		time:{hour:8,minute:5}
-            	},
-            	cenaRegular :"" ,
-            	status : false,
-            	lokacija : {},
-            	poster : "",
-            	obrisana : false
-            },
-
-        }},
-    template : `
+  data: function () {
+    return {
+      novaManifestacija: {
+        prodavac: "",
+        naziv: "",
+        tip: "",
+        brojMesta: "",
+        vremeOdrzavanja: {
+          date: { month: 6, day: 12, year: 2020 },
+          time: { hour: 8, minute: 5 },
+        },
+        cenaRegular: "",
+        status: false,
+        lokacija: {},
+        poster: "",
+        obrisana: false,
+      },
+    };
+  },
+  template: `
     
    <div align="center" class="container">
     <h3>Unesite podatke o manifestaciji</h3>
@@ -34,11 +34,13 @@ Vue.component("manifestacije-dodaj", {
         <label for="tip">Tip manifestacije</label>
         </div>
         <div class="form-floating">
+
         <input type="number" v-bind:min="0" class="form-control" id="brojMesta" placeholder="Broj Mesta" v-model="novaManifestacija.brojMesta">
         <label for="brojMesta">Broj Mesta</label>
         </div>
     	<div class="form-floating">
         <input type="number" class="form-control" id="cenaRegular" v-bind:min="0" placeholder="Cena regular" v-model="novaManifestacija.cenaRegular">
+
         <label for="cenaRegular">Cena regular</label>
         </div>
 
@@ -58,17 +60,20 @@ Vue.component("manifestacije-dodaj", {
 
     </div>
    
-    ` ,
-    	methods: {
-        posaljiManifestaciju(){
-        	var retrievedUsername = localStorage.getItem('prijavljeni');
-        	const obj = JSON.parse(retrievedUsername);
-        	this.novaManifestacija.poster="./podaci/posteri/"+(poster.value).split('\\')[2];
-        	this.novaManifestacija.prodavac=obj.korisnickoIme;
-        	console.log(this.novaManifestacija)
-            axios
-			.post('/rest/manifestacije/registracijaManifestacije', this.novaManifestacija);
-        },
-    }
-   
+    `,
+  methods: {
+    posaljiManifestaciju() {
+      var retrievedUsername = localStorage.getItem("prijavljeni");
+      const obj = JSON.parse(retrievedUsername);
+      this.novaManifestacija.poster =
+        "./podaci/posteri/" + poster.value.split("\\")[2];
+      this.novaManifestacija.prodavac = obj.korisnickoIme;
+
+      console.log(this.novaManifestacija);
+      axios.post(
+        "/rest/manifestacije/registracijaManifestacije",
+        this.novaManifestacija
+      );
+    },
+  },
 });

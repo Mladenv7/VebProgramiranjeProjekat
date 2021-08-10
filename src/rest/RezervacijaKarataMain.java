@@ -99,14 +99,15 @@ public class RezervacijaKarataMain {
 			ArrayList<Manifestacija> licne=new ArrayList<Manifestacija>();
 			
 			for(String man: k.getSveManifest()) {
+
 				for (Manifestacija m : sve)
 				{
+
 					if(man.equals(m.getId())) {
 						licne.add(m);
 					}
 				}
 			}
-			System.out.println(licne);
 			return g.toJson(licne);
 		});
 		
@@ -138,6 +139,28 @@ public class RezervacijaKarataMain {
 			return g.toJson(saOcenom);
 		});
 		
+		get("/rest/manifestacijaAzuriraj/:id", (req, res) -> {
+			String id = req.params("id");
+			Manifestacija man = new Manifestacija();
+			man=manifestacije.getManifestacije().get(id);
+			
+			ManifestacijaDTO dto= new ManifestacijaDTO();
+			dto.setBrMesta(man.getBrojMesta());
+			dto.setCenaRegular(man.getCenaRegular());
+			dto.setNaziv(man.getNaziv());
+			dto.setPoster(man.getPoster());
+			dto.setVremeOdrzavanja(man.getVremeOdrzavanja());
+			dto.setTip(man.getTipManifestacije());
+			
+			res.type("application/json");
+			return g.toJson(dto);
+		});
+		
+		post("/rest/manifestacije/azuriranjeManifestacije", (req, res) -> {
+			Manifestacija zaAzurirati = g.fromJson(req.body(), Manifestacija.class);
+			return manifestacije.azurirajManifestaciju(zaAzurirati);
+		});
+		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------
 		
@@ -154,6 +177,7 @@ public class RezervacijaKarataMain {
 		});
 		
 		//KORISNICI
+
 		post("/rest/manifestacije/registracijaManifestacije", (req, res) -> {
 					
 					ManifestacijaDTO dto = g.fromJson(req.body(), ManifestacijaDTO.class);
@@ -171,8 +195,8 @@ public class RezervacijaKarataMain {
 					
 					int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
 					korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
-					
 					return retVal;
+
 				});
 		
 		
@@ -192,7 +216,7 @@ public class RezervacijaKarataMain {
 			noviKupac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			
 			if(dto.getPol().equals("m")) noviKupac.setPol(Pol.MUSKI);
-			else if(dto.getPol().equals("ž")) noviKupac.setPol(Pol.ZENSKI);
+			else if(dto.getPol().equals("ï¿½")) noviKupac.setPol(Pol.ZENSKI);
 			
 			return korisnikServis.dodajKorisnika(noviKupac);
 		});
@@ -201,7 +225,7 @@ public class RezervacijaKarataMain {
 			PrijavaDTO dto = g.fromJson(req.body(), PrijavaDTO.class);
 			Korisnik prijavljeni = korisnikServis.dobaviKorisnika(dto.getKorisnickoIme());
 			if(prijavljeni == null) return "Ovaj korisnik ne postoji";
-			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
+			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogreï¿½na lozinka";
 			return g.toJson(prijavljeni);
 		});
 		

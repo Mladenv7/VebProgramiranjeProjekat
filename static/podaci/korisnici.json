@@ -6,11 +6,37 @@
     "prezime": "p",
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
+    "sveKarte": [],
+    "sveManifest": ["5", "6"],
     "brBodova": 0,
     "obrisan": false
   },
   {
+    "korisnickoIme": "a",
+    "lozinka": "a",
+    "ime": "a",
+    "prezime": "a",
+    "pol": "MUSKI",
+    "uloga": "ADMINISTRATOR",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Prodavac",
+    "lozinka": "password",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
 
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
     "korisnickoIme": "NoviKupac",
     "lozinka": "password",
     "ime": "Novi",
@@ -20,8 +46,12 @@
       "year": 1984,
       "month": 8,
       "day": 17
-    }
     },
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
   {
     "korisnickoIme": "k",
     "lozinka": "k",
@@ -33,14 +63,34 @@
     "obrisan": false
   },
   {
-
-
     "korisnickoIme": "a",
     "lozinka": "a",
     "ime": "a",
     "prezime": "a",
     "pol": "MUSKI",
     "uloga": "ADMINISTRATOR",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Ä�ura",
+    "lozinka": "password",
+    "ime": "Ä�ura",
+    "prezime": "Ä�ura",
+    "pol": "ZENSKI",
+    "uloga": "KUPAC",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Prodavac",
+    "lozinka": "password",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
     "brBodova": 0,
     "obrisan": false
   },
@@ -66,6 +116,8 @@
       "day": 19
     },
     "uloga": "ADMINISTRATOR",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   },
@@ -81,6 +133,8 @@
       "day": 14
     },
     "uloga": "KUPAC",
+    "sveKarte": [],
+    "sveManifest": [],
     "brBodova": 0,
     "obrisan": false
   }
