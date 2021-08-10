@@ -34,6 +34,7 @@ public class KorisnikServis {
 
 			if(lista != null) {
 				for (int i = 0;i < lista.length;++i) {
+					if(lista[i].isObrisan()) continue;
 			        korisnici.put(lista[i].getKorisnickoIme(), lista[i]);
 			    }
 			}

@@ -7,7 +7,10 @@
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
     "sveKarte": [],
-    "sveManifest": ["5", "6"],
+    "sveManifest": [
+      "5",
+      "6"
+    ],
     "brBodova": 0,
     "obrisan": false
   },
@@ -28,11 +31,12 @@
     "lozinka": "password",
     "ime": "Prodavac",
     "prezime": "Prodavac",
-
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
     "sveKarte": [],
-    "sveManifest": [],
+    "sveManifest": [
+      "7"
+    ],
     "brBodova": 0,
     "obrisan": false
   },
@@ -47,6 +51,30 @@
       "month": 8,
       "day": 17
     },
+    "uloga": "KUPAC",
+    "sveKarte": [
+      "zhWwLBUFEf",
+      "3CjdE3ZhIB",
+      "MKS9LH3X81",
+      "7gkr8jF67M",
+      "D7eTbhGSmb",
+      "TCOhCAlGfk",
+      "pY2ccHL1L6",
+      "oinA9siUKd",
+      "v44ZkrT9Gl",
+      "eK0em9H0lo"
+    ],
+    "sveManifest": [],
+    "brBodova": -1,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Đura",
+    "lozinka": "password",
+    "ime": "Đura",
+    "prezime": "Đura",
+    "pol": "ZENSKI",
+    "uloga": "KUPAC",
     "sveKarte": [],
     "sveManifest": [],
     "brBodova": 0,
@@ -59,49 +87,16 @@
     "prezime": "k",
     "pol": "MUSKI",
     "uloga": "KUPAC",
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "a",
-    "lozinka": "a",
-    "ime": "a",
-    "prezime": "a",
-    "pol": "MUSKI",
-    "uloga": "ADMINISTRATOR",
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "Ä�ura",
-    "lozinka": "password",
-    "ime": "Ä�ura",
-    "prezime": "Ä�ura",
-    "pol": "ZENSKI",
-    "uloga": "KUPAC",
-    "sveKarte": [],
+    "sveKarte": [
+      "hix8ftlO8t",
+      "alHzqhZ9Ev",
+      "0DZy2XbMOG",
+      "8ZCtvOvpYg",
+      "7QawFIEkcQ",
+      "7xdCeSf8ei"
+    ],
     "sveManifest": [],
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "Prodavac",
-    "lozinka": "password",
-    "ime": "Prodavac",
-    "prezime": "Prodavac",
-    "pol": "MUSKI",
-    "uloga": "PRODAVAC",
-    "brBodova": 0,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "Prodavac",
-    "lozinka": "password",
-    "ime": "Prodavac",
-    "prezime": "Prodavac",
-    "pol": "MUSKI",
-    "uloga": "PRODAVAC",
-    "brBodova": 0,
+    "brBodova": 464,
     "obrisan": false
   },
   {

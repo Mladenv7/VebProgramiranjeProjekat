@@ -62,7 +62,7 @@ public class Lokacija implements Comparable<Lokacija>{
 		this.ulicaBroj = "";
 		this.grad = "";
 		this.postanskiBroj = "";
-		this.obrisana = true;
+		this.obrisana = false;
 	}
 	
 	public Lokacija(Lokacija l) {
