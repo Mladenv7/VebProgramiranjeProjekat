@@ -20,7 +20,10 @@ public class KomentarServis {
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/komentari.json"));
 			
 			Komentar[] lista = gson.fromJson(citac, Komentar[].class);
-			Collections.addAll(komentari, lista);
+			if(lista != null){
+				Collections.addAll(komentari, lista);
+				komentari.removeIf(k -> k.isObrisan());
+			}
 		   
 		    citac.close();
 		} catch (IOException e) {

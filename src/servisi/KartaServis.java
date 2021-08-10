@@ -47,6 +47,7 @@ public class KartaServis {
 
 			if(list != null) {
 			    for (int i = 0;i < list.length;++i) {
+			    	if(list[i].isObrisana()) continue;
 			        karte.put(list[i].getId(), list[i]);
 			    }
 			}
@@ -182,7 +183,7 @@ public class KartaServis {
 	public int otkazivanjeKarte(String idKarte, Korisnik korisnik) {
 		Karta karta = this.karte.get(idKarte);
 		
-		karta.setStatus(StatusKarte.OTKAZANA);
+		this.karte.get(idKarte).setStatus(StatusKarte.OTKAZANA);
 		
 		korisnik.setBrBodova(korisnik.getBrBodova()- (int)Math.floor(karta.getCena()/1000 * 133 * 4));
 		

@@ -215,8 +215,8 @@
     },
     "cena": 3273.6,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "VIP",
-    "obrisana": true
+    "obrisana": false
   }
 ]

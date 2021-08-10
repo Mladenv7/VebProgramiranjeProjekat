@@ -116,6 +116,7 @@ Vue.component("pregled-manifestacije", {
             </div>
         </div>
     </div>
+    <br>
 
     </div>
     `,

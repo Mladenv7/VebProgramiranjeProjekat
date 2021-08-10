@@ -1,8 +1,7 @@
-Vue.component("karte-korisnika", {
+Vue.component("karte-prodavac", {
     data: function(){
         return {
-            prijavljenKorisnik : {},
-            karte : [],
+            karte : {},
             sveManifestacije : {},
             upit : {manifestacija: "", cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null, sort: "", korisnickoIme: ""},
             tip: "",
@@ -12,7 +11,7 @@ Vue.component("karte-korisnika", {
     },
     template: `
     <div class="container ">
-    <h3>Moje rezervacije</h3>
+    <h3>Sve rezervacije</h3>
     <br>
 
     <div class="row g-2 align-items-center">
@@ -25,22 +24,15 @@ Vue.component("karte-korisnika", {
                     <option value="VIP">VIP</option>
                 </select>
         </div>
-        <div class="col-auto">
-            <select id="status" class="form-control" v-model="status">
-                    <option value="">Status</option>
-                    <option value="REZERVISANA">Rezervisana</option>
-                    <option value="OTKAZANA">Otkazana</option>
-                </select>
-        </div>
     </div>
     <br>
 
     <div style="height: 400px;overflow-y: scroll;overflow-x: hidden;">
-        <div class="card" v-for="karta in karte" v-if="filterTip(karta.tip) && filterStatus(karta.status)">
+        <div class="card" v-for="karta in karte" v-if="filterTip(karta.tip) && karta.status == 'REZERVISANA' && !karta.obrisana">
             <div class="card-header">
                 Manifestacija: {{sveManifestacije[karta.manifestacijaId].naziv}}
             </div>
-            <div class="card-body" data-bs-toggle="tooltip" data-bs-placement="right" title="Karte je moguće otkazati najkasnije 7 dana pre početka manifestacije">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-auto">
                         <p class="card-text">
@@ -48,12 +40,9 @@ Vue.component("karte-korisnika", {
                             Cena: {{karta.cena}}<br>
                             Status: {{pretvoriStatus(karta.status)}}<br>
                             Tip karte: {{pretvoriTip(karta.tip)}}<br>
+                            Kupac: {{karta.imePrezime}}<br>
                         </p>
 
-                        <button class="w-150 btn btn-md btn-danger" v-if="jelMoguceOtkazivanje(karta.vremeOdrzavanja) && karta.status == 'REZERVISANA'" data-bs-toggle="modal" 
-                        data-bs-target="#otkazivanjeModal" v-on:click="izabranaId = karta.id"
-                            >Otkaži
-                        </button>
                     </div>
                 </div>
             </div>
@@ -118,29 +107,6 @@ Vue.component("karte-korisnika", {
     </div>
     <br>
 
-
-    <div class="modal fade" id="otkazivanjeModal" tabindex="-1" aria-labelledby="otkazivanjeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="otkazivanjeModalLabel">Otkazivanje rezervacije</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <p>
-            Da li ste sigurni da želite da otkažete ovu kartu?<br>
-
-            (Napomena: izgubićete bodove u slučaju da otkažete ovu kartu)
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nazad</button>
-            <button type="button" class="btn btn-primary" v-on:click="otkaziKartu()" data-bs-dismiss="modal">Potvrdi</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
     </div>
     `,
     methods: {
@@ -165,40 +131,22 @@ Vue.component("karte-korisnika", {
                     return "Otkazana";
             }
         },
-        jelMoguceOtkazivanje(vreme){
-            let vremeOdrzavanja = new Date(vreme.date.year,vreme.date.month, vreme.date.day, 
-                                           vreme.time.hour,vreme.time.minute,vreme.time.second,vreme.time.nano/1000);
-
-            let danas = new Date();
-
-            return (danas - 7) <= vremeOdrzavanja;
-        },
         filterTip(tip){
             return this.tip == "" || this.tip == tip;
         },
-        filterStatus(status){
-            return this.status == "" || this.status == status;
-        },
         posaljiUpit(){
-            this.upit.korisnickoIme = this.prijavljenKorisnik.korisnickoIme;
+            this.upit.korisnickoIme = "";
             axios.post("/rest/karte/pretraga", this.upit).then(response => {
                 this.karte = response.data;
             });
         },
-        otkaziKartu(){
-            axios.post("rest/karte/otkazivanje", {idKarte: this.izabranaId, korisnickoIme: this.prijavljenKorisnik.korisnickoIme}).then(response => {
-                alert(response.data);
-                this.$router.go();
-            });
-        }
     },
     created() {
-        this.prijavljenKorisnik = JSON.parse(localStorage.getItem("prijavljeni"));
         axios.get("/rest/manifestacije/sveManifestacije").then(response => {
             this.sveManifestacije = response.data;
         });
-        axios.get("/rest/karte/rezervacije/"+this.prijavljenKorisnik.korisnickoIme).then(response => {
+        axios.get("rest/karte/sveKarte").then(response => {
             this.karte = response.data;
         });
-    }
+    },
 });

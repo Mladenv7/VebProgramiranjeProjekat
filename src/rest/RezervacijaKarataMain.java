@@ -211,7 +211,11 @@ public class RezervacijaKarataMain {
 		post("/rest/karte/pretraga", (req, res) -> {
 			KarteUpitDTO dto = g.fromJson(req.body(), KarteUpitDTO.class);
 			System.out.println(dto);
-			List<Karta> korisnikoveKarte = kartaServis.karteOdKorisnika(korisnikServis.getKorisnici().get(dto.getKorisnickoIme()));
+			
+			List<Karta> korisnikoveKarte;
+			
+			if(dto.getKorisnickoIme().equals("")) korisnikoveKarte = new ArrayList<>(kartaServis.getKarte().values());
+			else korisnikoveKarte = kartaServis.karteOdKorisnika(korisnikServis.getKorisnici().get(dto.getKorisnickoIme()));
 			
 			List<Karta> rezultatPretrage = kartaServis.pretragaKarata(korisnikoveKarte, dto, manifestacije.getManifestacije());
 			
@@ -233,6 +237,20 @@ public class RezervacijaKarataMain {
 			List<Karta> karte = kartaServis.karteOdManifestacije(req.params("manifestacijaId"));
 			res.type("application/json");
 			return g.toJson(karte);
+		});
+		
+		get("rest/karte/sveKarte", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(kartaServis.getKarte());
+		});
+		
+		post("rest/karte/brisanje", (req, res) -> {
+			String idZaObrisati = req.body();
+			
+			kartaServis.getKarte().get(idZaObrisati).setObrisana(true);
+			kartaServis.upisKarataUDatoteku();
+			
+			return "Brisanje uspešno";
 		});
 		
 		//KOMENTARI

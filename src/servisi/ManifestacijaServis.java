@@ -32,6 +32,7 @@ public class ManifestacijaServis {
 
 			if(list != null) {
 			    for (int i = 0;i < list.length;++i) {
+			    	if(list[i].isObrisana()) continue;
 			        manifestacije.put(list[i].getId(), list[i]);
 			    }
 			}
