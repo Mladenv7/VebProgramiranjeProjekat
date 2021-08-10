@@ -1,27 +1,24 @@
 Vue.component("manifestacije-dodaj", {
-    data: function () {
-        return {
-            novaManifestacija : {
-<<<<<<< Updated upstream
-            	prodavac:"",
-=======
->>>>>>> Stashed changes
-                naziv : "",
-                tip : "",
-                brojMesta : "", 
-                vremeOdrzavanja : {
-            		date:{month:6,day:12,year:2020},
-            		time:{hour:8,minute:5}
-            	},
-            	cenaRegular :"" ,
-            	status : false,
-            	lokacija : {},
-            	poster : "",
-            	obrisana : false
-            },
-
-        }},
-    template : `
+  data: function () {
+    return {
+      novaManifestacija: {
+        prodavac: "",
+        naziv: "",
+        tip: "",
+        brojMesta: "",
+        vremeOdrzavanja: {
+          date: { month: 6, day: 12, year: 2020 },
+          time: { hour: 8, minute: 5 },
+        },
+        cenaRegular: "",
+        status: false,
+        lokacija: {},
+        poster: "",
+        obrisana: false,
+      },
+    };
+  },
+  template: `
     
    <div align="center" class="container">
     <h3>Unesite podatke o manifestaciji</h3>
@@ -63,18 +60,20 @@ Vue.component("manifestacije-dodaj", {
 
     </div>
    
-    ` ,
-    	methods: {
-        posaljiManifestaciju(){
-        	var retrievedUsername = localStorage.getItem('prijavljeni');
-        	const obj = JSON.parse(retrievedUsername);
-        	this.novaManifestacija.poster="./podaci/posteri/"+(poster.value).split('\\')[2];
-        	this.novaManifestacija.prodavac=obj.korisnickoIme;
+    `,
+  methods: {
+    posaljiManifestaciju() {
+      var retrievedUsername = localStorage.getItem("prijavljeni");
+      const obj = JSON.parse(retrievedUsername);
+      this.novaManifestacija.poster =
+        "./podaci/posteri/" + poster.value.split("\\")[2];
+      this.novaManifestacija.prodavac = obj.korisnickoIme;
 
-        	console.log(this.novaManifestacija)
-            axios
-			.post('/rest/manifestacije/registracijaManifestacije', this.novaManifestacija);
-        },
-    }
-   
+      console.log(this.novaManifestacija);
+      axios.post(
+        "/rest/manifestacije/registracijaManifestacije",
+        this.novaManifestacija
+      );
+    },
+  },
 });
