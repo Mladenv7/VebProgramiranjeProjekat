@@ -141,4 +141,5 @@ public class ManifestacijaServis {
 			return "Azuriranje uspešno";
 		}else return "Ova manifestacija ne postoji";
 	}
+
 }

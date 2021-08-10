@@ -7,10 +7,7 @@
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
     "sveKarte": [],
-    "sveManifest": [
-      "5",
-      "6"
-    ],
+    "sveManifest": ["5", "6"],
     "brBodova": 0,
     "obrisan": false
   },
@@ -31,6 +28,7 @@
     "lozinka": "password",
     "ime": "Prodavac",
     "prezime": "Prodavac",
+
     "pol": "MUSKI",
     "uloga": "PRODAVAC",
     "sveKarte": [],
@@ -61,8 +59,38 @@
     "prezime": "k",
     "pol": "MUSKI",
     "uloga": "KUPAC",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "a",
+    "lozinka": "a",
+    "ime": "a",
+    "prezime": "a",
+    "pol": "MUSKI",
+    "uloga": "ADMINISTRATOR",
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Ä�ura",
+    "lozinka": "password",
+    "ime": "Ä�ura",
+    "prezime": "Ä�ura",
+    "pol": "ZENSKI",
+    "uloga": "KUPAC",
     "sveKarte": [],
     "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "Prodavac",
+    "lozinka": "password",
+    "ime": "Prodavac",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "uloga": "PRODAVAC",
     "brBodova": 0,
     "obrisan": false
   },

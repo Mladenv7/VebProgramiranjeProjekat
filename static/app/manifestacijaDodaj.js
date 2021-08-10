@@ -2,7 +2,10 @@ Vue.component("manifestacije-dodaj", {
     data: function () {
         return {
             novaManifestacija : {
+<<<<<<< Updated upstream
             	prodavac:"",
+=======
+>>>>>>> Stashed changes
                 naziv : "",
                 tip : "",
                 brojMesta : "", 
@@ -34,11 +37,13 @@ Vue.component("manifestacije-dodaj", {
         <label for="tip">Tip manifestacije</label>
         </div>
         <div class="form-floating">
+
         <input type="number" v-bind:min="0" class="form-control" id="brojMesta" placeholder="Broj Mesta" v-model="novaManifestacija.brojMesta">
         <label for="brojMesta">Broj Mesta</label>
         </div>
     	<div class="form-floating">
         <input type="number" class="form-control" id="cenaRegular" v-bind:min="0" placeholder="Cena regular" v-model="novaManifestacija.cenaRegular">
+
         <label for="cenaRegular">Cena regular</label>
         </div>
 
@@ -65,6 +70,7 @@ Vue.component("manifestacije-dodaj", {
         	const obj = JSON.parse(retrievedUsername);
         	this.novaManifestacija.poster="./podaci/posteri/"+(poster.value).split('\\')[2];
         	this.novaManifestacija.prodavac=obj.korisnickoIme;
+
         	console.log(this.novaManifestacija)
             axios
 			.post('/rest/manifestacije/registracijaManifestacije', this.novaManifestacija);

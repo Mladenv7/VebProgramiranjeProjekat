@@ -177,6 +177,7 @@ public class RezervacijaKarataMain {
 		});
 		
 		//KORISNICI
+
 		post("/rest/manifestacije/registracijaManifestacije", (req, res) -> {
 					
 					ManifestacijaDTO dto = g.fromJson(req.body(), ManifestacijaDTO.class);
@@ -195,6 +196,7 @@ public class RezervacijaKarataMain {
 					int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
 					korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
 					return retVal;
+
 				});
 		
 		

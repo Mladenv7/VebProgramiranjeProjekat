@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class ManifestacijaDTO {
 
+
    private String naziv,tip,poster,prodavac ;
    private int brojMesta;
    private double cenaRegular;
    private LocalDateTime vremeOdrzavanja;
    
-public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegular, String poster,
-		LocalDateTime vremeOdrzavanja) {
+public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegular, String poster,LocalDateTime vremeOdrzavanja) {
 	super();
 	this.naziv = naziv;
 	this.tip = tip;
@@ -52,6 +52,7 @@ public double getCenaRegular() {
 	return cenaRegular;
 }
 public void setCenaRegular(double cenaRegular) {
+
 	this.cenaRegular = cenaRegular;
 }
 public String getPoster() {
