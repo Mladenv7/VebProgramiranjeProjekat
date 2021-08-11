@@ -5,6 +5,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.stream.Collectors;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import beans.Korisnik;
 import beans.Manifestacija;
 import beans.dto.ManifestUpitDTO;
 
@@ -23,7 +23,6 @@ public class ManifestacijaServis {
 	private HashMap<String, Manifestacija> manifestacije = new HashMap<String, Manifestacija>();
 	
 	public ManifestacijaServis() {
-		
 		Gson gson = new Gson();
 		try {
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/manifestacije.json"));
@@ -32,6 +31,7 @@ public class ManifestacijaServis {
 
 			if(list != null) {
 			    for (int i = 0;i < list.length;++i) {
+			    	if(list[i].isObrisana()) continue;
 			        manifestacije.put(list[i].getId(), list[i]);
 			    }
 			}
@@ -104,12 +104,12 @@ public class ManifestacijaServis {
 		 lastObject=String.valueOf(i);
 		 manifestacija.setId(lastObject);
 		this.manifestacije.put(lastObject, manifestacija);
-		this.upisManifestacijeUDatoteku();	
+		this.upisManifestacijaUDatoteku();	
 		
 		return 0;
 	}
 	
-	public void upisManifestacijeUDatoteku() {
+	public void upisManifestacijaUDatoteku() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
 		try {
@@ -136,10 +136,22 @@ public class ManifestacijaServis {
 			}
 			this.manifestacije.put(manifestacija.getId(), manifestacija);
 			
-			this.upisManifestacijeUDatoteku();
+			this.upisManifestacijaUDatoteku();
 			
 			return "Azuriranje uspešno";
 		}else return "Ova manifestacija ne postoji";
 	}
 
+	
+	public List<Manifestacija> neaktivneManifestacije(){
+		ArrayList<Manifestacija> lista = new ArrayList<Manifestacija>(this.manifestacije.values());
+		
+		return lista.stream().filter(m -> !m.isStatus()).collect(Collectors.toList());
+	}
+	
+	public int odobrenjeManifestacije(String id) {
+		this.manifestacije.get(id).setStatus(true);
+		this.upisManifestacijaUDatoteku();
+		return 0;
+	}
 }
