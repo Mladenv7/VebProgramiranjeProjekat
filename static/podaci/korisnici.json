@@ -15,6 +15,23 @@
     "obrisan": false
   },
   {
+    "korisnickoIme": "NoviProdavac",
+    "lozinka": "password",
+    "ime": "Novi",
+    "prezime": "Prodavac",
+    "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
+    "uloga": "PRODAVAC",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
     "korisnickoIme": "a",
     "lozinka": "a",
     "ime": "a",

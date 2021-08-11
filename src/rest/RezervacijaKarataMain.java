@@ -313,16 +313,34 @@ public class RezervacijaKarataMain {
 			noviKupac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			
 			if(dto.getPol().equals("m")) noviKupac.setPol(Pol.MUSKI);
-			else if(dto.getPol().equals("ï¿½")) noviKupac.setPol(Pol.ZENSKI);
+			else if(dto.getPol().equals("ž")) noviKupac.setPol(Pol.ZENSKI);
 			
 			return korisnikServis.dodajKorisnika(noviKupac);
+		});
+		
+		post("/rest/korisnici/registracijaProdavca", (req, res) -> {
+			
+			KupacRegistracijaDTO dto = g.fromJson(req.body(), KupacRegistracijaDTO.class);
+			
+			Korisnik noviProdavac = new Korisnik();
+			noviProdavac.setKorisnickoIme(dto.getKorisnickoIme());
+			noviProdavac.setIme(dto.getIme());
+			noviProdavac.setPrezime(dto.getPrezime());
+			noviProdavac.setLozinka(dto.getLozinka());
+			noviProdavac.setUloga(Uloga.PRODAVAC);
+			noviProdavac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			
+			if(dto.getPol().equals("m")) noviProdavac.setPol(Pol.MUSKI);
+			else if(dto.getPol().equals("ž")) noviProdavac.setPol(Pol.ZENSKI);
+			
+			return korisnikServis.dodajKorisnika(noviProdavac);
 		});
 		
 		post("/rest/korisnici/prijava", (req, res) -> {
 			PrijavaDTO dto = g.fromJson(req.body(), PrijavaDTO.class);
 			Korisnik prijavljeni = korisnikServis.dobaviKorisnika(dto.getKorisnickoIme());
 			if(prijavljeni == null) return "Ovaj korisnik ne postoji";
-			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogreï¿½na lozinka";
+			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
 			return g.toJson(prijavljeni);
 		});
 		

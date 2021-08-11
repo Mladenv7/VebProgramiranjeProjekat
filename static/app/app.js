@@ -13,6 +13,7 @@ const OdobravanjeManifestacije = { template: '<odobravanje-manifestacije></odobr
 const KarteKorisnika = { template: '<karte-korisnika></karte-korisnika>' }
 const KarteAdmin = { template: '<karte-admin></karte-admin>'}
 const KarteProdavac = { template: '<karte-prodavac></karte-prodavac>' }
+const RegistracijaProdavca = { template: '<registracija-prodavac></registracija-prodavac>' } 
 
 const router = new VueRouter({
   mode: "hash",
@@ -29,9 +30,10 @@ const router = new VueRouter({
     { path: "/manifestacijaAzuriraj", component: AzurirajManifestacije },
     { path: "/mojeManifestacije", component: MojeManifestacije },
     { path: '/odobravanje', component: OdobravanjeManifestacije },
-	{ path: '/mojeRezervacije', component: KarteKorisnika },
-	{ path: '/sveKarte', component: KarteAdmin },
-	{ path: '/sveRezervisaneKarte', component: KarteProdavac }
+    { path: '/mojeRezervacije', component: KarteKorisnika },
+    { path: '/sveKarte', component: KarteAdmin },
+    { path: '/sveRezervisaneKarte', component: KarteProdavac },
+    { path: '/noviProdavac', component: RegistracijaProdavca }
   ],
 });
 
