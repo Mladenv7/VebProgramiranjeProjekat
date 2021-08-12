@@ -7,17 +7,24 @@ Vue.component("manifestacije-dodaj", {
         tip: "",
         brojMesta: "",
         vremeOdrzavanja: {
-          date: { month: 6, day: 12, year: 2020 },
-          time: { hour: 8, minute: 5 },
+          date: { month: 1, day: 1, year: 2020 },
+          time: { hour: 14, minute: 50 },
         },
         cenaRegular: "",
         status: false,
-        lokacija: {},
+        lokacija: {
+          geoSirina: "",
+          geoDuzina: "",
+          ulicaBroj: "",
+          grad: "",
+          postanskiBroj: "",
+        },
         poster: "",
         obrisana: false,
       },
     };
   },
+
   template: `
     
    <div align="center" class="container">
@@ -55,6 +62,8 @@ Vue.component("manifestacije-dodaj", {
             v-bind:min="(new Date()).toISOString().substring(0, 10)">
         <label for="vremeOdrzavanja">Vreme održavanja</label>
         </div>
+        <mapa id="map" @clicked="getData">
+        </mapa>
         <input class="w-100 btn btn-lg btn-primary" type="submit" v-on:click="posaljiManifestaciju()" value="Kreiraj manifestaciju" />
     </form>
 
@@ -62,6 +71,13 @@ Vue.component("manifestacije-dodaj", {
    
     `,
   methods: {
+    getData(value) {
+      this.novaManifestacija.lokacija.geoSirina = value.geoSirina;
+      this.novaManifestacija.lokacija.geoDuzina = value.geoDuzina;
+      this.novaManifestacija.lokacija.ulicaBroj = value.ulicaBroj;
+      this.novaManifestacija.lokacija.grad = value.grad;
+      this.novaManifestacija.lokacija.postanskiBroj = value.postanskiBroj;
+    },
     posaljiManifestaciju() {
       var retrievedUsername = localStorage.getItem("prijavljeni");
       const obj = JSON.parse(retrievedUsername);
@@ -69,7 +85,6 @@ Vue.component("manifestacije-dodaj", {
         "./podaci/posteri/" + poster.value.split("\\")[2];
       this.novaManifestacija.prodavac = obj.korisnickoIme;
 
-      console.log(this.novaManifestacija);
       axios.post(
         "/rest/manifestacije/registracijaManifestacije",
         this.novaManifestacija

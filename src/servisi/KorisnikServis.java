@@ -121,7 +121,7 @@ public class KorisnikServis {
 	
 	public void dodajManifestacijuKorisniku(Manifestacija man,String prodavac) {
 		for (HashMap.Entry<String,Korisnik> entry : korisnici.entrySet()) {
-				System.out.println(prodavac);
+				
             	if(entry.getValue().getKorisnickoIme().equals(prodavac)) {
             		ArrayList<String> tmp = entry.getValue().getSveManifest();
             		tmp.add(man.getId());
