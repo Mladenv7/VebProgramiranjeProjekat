@@ -13,7 +13,13 @@ Vue.component("manifestacija-azuriraj", {
         },
         cenaRegular: "",
         status: false,
-        lokacija: {},
+        lokacija: {
+          geoSirina: "",
+          geoDuzina: "",
+          ulicaBroj: "",
+          grad: "",
+          postanskiBroj: "",
+        },
         poster: "",
         obrisana: false,
       },
@@ -55,6 +61,8 @@ Vue.component("manifestacija-azuriraj", {
             v-bind:min="(new Date()).toISOString().substring(0, 10)">
         <label for="vremeOdrzavanja">Vreme održavanja</label>
         </div>
+        <mapa id="map" @clicked="getData">
+        </mapa>
         <input class="w-100 btn btn-lg btn-primary" type="submit" v-on:click="posaljiManifestaciju()" value="Azuriraj manifestaciju" />
     </form>
 
@@ -62,6 +70,13 @@ Vue.component("manifestacija-azuriraj", {
    
     `,
   methods: {
+    getData(value) {
+      this.novaManifestacija.lokacija.geoSirina = value.geoSirina;
+      this.novaManifestacija.lokacija.geoDuzina = value.geoDuzina;
+      this.novaManifestacija.lokacija.ulicaBroj = value.ulicaBroj;
+      this.novaManifestacija.lokacija.grad = value.grad;
+      this.novaManifestacija.lokacija.postanskiBroj = value.postanskiBroj;
+    },
     podaci() {
       axios
         .get("/rest/manifestacijaAzuriraj/" + this.$route.query.id)

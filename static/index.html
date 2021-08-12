@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+  </head>
 
-<head>
-	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-	<meta charset="utf-8"/>
-</head> 
+  <body>
+    <div id="registracijaKarata">
+      <navbar></navbar><br /><br /><br />
+      <router-view></router-view>
+    </div>
 
-<body>
-<div id="registracijaKarata">
-	<navbar></navbar><br><br><br>
-	  <router-view></router-view>
-</div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
 
-<script src="js/vue.js"></script>
-<script src="js/vue-router.js"></script>
-<script src="js/axios.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap/bootstrap.bundle.min.js"></script> <!-- nove vue komponente dodaj odmah ispod ove linije, za svaki slucaj da ne pukne program -->
-<script src="app/karteProdavac.js"></script>
-<script src="app/karteAdmin.js"></script>
-<script src="app/karteKorisnika.js"></script>
-<script src="app/odobravanjeManifestacije.js"></script>
-<script src="app/mojProfil.js"></script>
-<script src="app/manifestacijeLicne.js"></script>
-<script src="app/manifestacijaAzuriraj.js"></script>
-<script src="app/sviKorisnici.js"></script>
-<script src="app/manifestacijePretraga.js"></script>
-<script src="app/manifestacijePocetna.js"></script>
-<script src="app/navbar.js"></script>
-<script src="app/registracijaKorisnika.js"></script>
-<script src="app/prijava.js"></script>
-<script src="app/manifestacijaDodaj.js"></script>
-<script src="app/pregledManifestacije.js"></script>
-<script src="app/app.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="//unpkg.com/vue2-leaflet"></script>
+    <script src="https://unpkg.com/esri-leaflet@3.0.2/dist/esri-leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/esri-leaflet-geocoder@3.1.1/dist/esri-leaflet-geocoder.css"
+    />
+    <script src="js/vue-google-maps.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FXb8Ni0XlHh3u61QELZCXv19TpUbqxY"
+    ></script>
 
-</body>
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- nove vue komponente dodaj odmah ispod ove linije, za svaki slucaj da ne pukne program -->
+    <script src="app/karteProdavac.js"></script>
+    <script src="app/mape.js"></script>
+    <script src="app/karteAdmin.js"></script>
+    <script src="app/karteKorisnika.js"></script>
+    <script src="app/odobravanjeManifestacije.js"></script>
+    <script src="app/mojProfil.js"></script>
+    <script src="app/manifestacijeLicne.js"></script>
+    <script src="app/manifestacijaAzuriraj.js"></script>
+    <script src="app/sviKorisnici.js"></script>
+    <script src="app/manifestacijePretraga.js"></script>
+    <script src="app/manifestacijePocetna.js"></script>
+    <script src="app/navbar.js"></script>
+    <script src="app/registracijaKorisnika.js"></script>
+    <script src="app/prijava.js"></script>
+    <script src="app/manifestacijaDodaj.js"></script>
+    <script src="app/pregledManifestacije.js"></script>
+    <script src="app/app.js"></script>
+  </body>
 </html>

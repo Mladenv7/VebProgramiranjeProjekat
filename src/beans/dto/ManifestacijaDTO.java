@@ -2,6 +2,8 @@ package beans.dto;
 
 import java.time.LocalDateTime;
 
+import beans.Lokacija;
+
 public class ManifestacijaDTO {
 
 
@@ -9,8 +11,9 @@ public class ManifestacijaDTO {
    private int brojMesta;
    private double cenaRegular;
    private LocalDateTime vremeOdrzavanja;
+   private Lokacija lokacija;
    
-public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegular, String poster,LocalDateTime vremeOdrzavanja) {
+public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegular, String poster,LocalDateTime vremeOdrzavanja,Lokacija lokacija) {
 	super();
 	this.naziv = naziv;
 	this.tip = tip;
@@ -18,6 +21,15 @@ public ManifestacijaDTO(String naziv, String tip, int brMesta, double cenaRegula
 	this.cenaRegular = cenaRegular;
 	this.poster = poster;
 	this.vremeOdrzavanja = vremeOdrzavanja;
+	this.lokacija=lokacija;
+}
+
+public Lokacija getLokacija() {
+	return lokacija;
+}
+
+public void setLokacija(Lokacija lokacija) {
+	this.lokacija = lokacija;
 }
 
 public ManifestacijaDTO() {

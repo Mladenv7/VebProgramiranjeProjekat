@@ -1,18 +1,35 @@
-const ManifestacijePocetna = { template: "<manifestacije-pocetna></manifestacije-pocetna>", };
+const ManifestacijePocetna = {
+  template: "<manifestacije-pocetna></manifestacije-pocetna>",
+};
 const Navbar = { template: "<navbar></navbar>" };
-const RegistracijaKorisnika = { template: "<registracija-korisnik></registracija-korisnik>", };
+const RegistracijaKorisnika = {
+  template: "<registracija-korisnik></registracija-korisnik>",
+};
 const Prijava = { template: "<prijava></prijava>" };
-const Manifestacija = { template: "<pregled-manifestacije></pregled-manifestacije>", };
-const ManfiestacijePretraga = { template: "<manifestacije-pretraga></manifestacije-pretraga>", };
+const Manifestacija = {
+  template: "<pregled-manifestacije></pregled-manifestacije>",
+};
+const ManfiestacijePretraga = {
+  template: "<manifestacije-pretraga></manifestacije-pretraga>",
+};
 const SviKorisnici = { template: "<svi-korisnici></svi-korisnici>" };
 const MojProfil = { template: "<moj-profil></moj-profil>" };
-const ManifestacijaDodaj = { template: "<manifestacije-dodaj></manifestacije-dodaj>", };
-const MojeManifestacije = { template: "<manifestacije-licne></manifestacije-licne>", };
-const AzurirajManifestacije = { template: "<manifestacija-azuriraj></manifestacija-azuriraj>", };
-const OdobravanjeManifestacije = { template: '<odobravanje-manifestacije></odobravanje-manifestacije>' }
-const KarteKorisnika = { template: '<karte-korisnika></karte-korisnika>' }
-const KarteAdmin = { template: '<karte-admin></karte-admin>'}
-const KarteProdavac = { template: '<karte-prodavac></karte-prodavac>' }
+const ManifestacijaDodaj = {
+  template: "<manifestacije-dodaj></manifestacije-dodaj>",
+};
+const MojeManifestacije = {
+  template: "<manifestacije-licne></manifestacije-licne>",
+};
+const AzurirajManifestacije = {
+  template: "<manifestacija-azuriraj></manifestacija-azuriraj>",
+};
+const OdobravanjeManifestacije = {
+  template: "<odobravanje-manifestacije></odobravanje-manifestacije>",
+};
+const KarteKorisnika = { template: "<karte-korisnika></karte-korisnika>" };
+const KarteAdmin = { template: "<karte-admin></karte-admin>" };
+const KarteProdavac = { template: "<karte-prodavac></karte-prodavac>" };
+const Mapa = { template: "<mapa></mapa>" };
 
 const router = new VueRouter({
   mode: "hash",
@@ -28,10 +45,11 @@ const router = new VueRouter({
     { path: "/manifestacijaDodaj", component: ManifestacijaDodaj },
     { path: "/manifestacijaAzuriraj", component: AzurirajManifestacije },
     { path: "/mojeManifestacije", component: MojeManifestacije },
-    { path: '/odobravanje', component: OdobravanjeManifestacije },
-	{ path: '/mojeRezervacije', component: KarteKorisnika },
-	{ path: '/sveKarte', component: KarteAdmin },
-	{ path: '/sveRezervisaneKarte', component: KarteProdavac }
+    { path: "/odobravanje", component: OdobravanjeManifestacije },
+    { path: "/mojeRezervacije", component: KarteKorisnika },
+    { path: "/sveKarte", component: KarteAdmin },
+    { path: "/sveRezervisaneKarte", component: KarteProdavac },
+    { path: "/mapa", component: Mapa },
   ],
 });
 
