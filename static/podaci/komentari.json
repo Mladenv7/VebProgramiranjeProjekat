@@ -13,14 +13,14 @@
     "tekst": "U OOOOOBLAAKEEE, U ŠIMŠIREEEE",
     "ocena": 5,
     "obrisan": false,
-    "aktivan": false
+    "aktivan": true
   },
   {
     "autor": "NoviKupac",
     "idManifestacije": "5",
     "tekst": "TAKVA TI JE TAKVA MOJA LOOZA",
     "ocena": 5,
-    "obrisan": false,
+    "obrisan": true,
     "aktivan": false
   }
 ]

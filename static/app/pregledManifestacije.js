@@ -108,7 +108,7 @@ Vue.component("pregled-manifestacije", {
     <h4>Komentari</h4>
     <hr>
     <div id="komentariDiv" style="overflow-y: scroll; height: 200px;">   
-        <div class="card p-3 mt-2" v-for="komentar in podaci.komentari">
+        <div class="card p-3 mt-2" v-for="komentar in podaci.komentari" v-if="komentar.aktivan && !komentar.obrisan">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="user d-flex flex-row align-items-center"><span><small class="font-weight-bold text-primary">{{komentar.autor}}</small> <small class="font-weight-bold">{{komentar.tekst}}</small></span> </div> <small>Ocena: {{komentar.ocena}}</small>
             </div>
@@ -182,13 +182,15 @@ Vue.component("pregled-manifestacije", {
         },
         prosecnaOcena(){
             let prosecna = 0.0;
+            let brKomentara = 0;
 
             for(let komentar of this.podaci.komentari){
                 if(komentar.aktivan == false || komentar.obrisan == true) continue;
                 prosecna += komentar.ocena;
+                brKomentara += 1;
             }
 
-            prosecna = prosecna /= this.podaci.komentari.length;
+            prosecna = prosecna /= brKomentara;
 
             return prosecna;
         },

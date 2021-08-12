@@ -47,7 +47,7 @@ Vue.component("navbar", {
             <a class="nav-link" href="#/sveKarte">Sve karte</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#/">Svi komentari</a>
+            <a class="nav-link" href="#/sviKomentari">Svi komentari</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#/odobravanje">Nove manifestacije</a>
@@ -85,7 +85,7 @@ Vue.component("navbar", {
             <a class="nav-link" href="#/sveRezervisaneKarte">Rezervisane karte</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#/">Svi komentari</a>
+            <a class="nav-link" href="#/sviKomentari">Svi komentari</a>
             </li>
         </ul>
         
