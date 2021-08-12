@@ -1,6 +1,7 @@
 Vue.component("karte-prodavac", {
     data: function(){
         return {
+            prijavljenKorisnik: {}, 
             karte : {},
             sveManifestacije : {},
             upit : {manifestacija: "", cenaOd: 0, cenaDo: 0, datumOd: null, datumDo: null, sort: "", korisnickoIme: ""},
@@ -30,7 +31,14 @@ Vue.component("karte-prodavac", {
     <div style="height: 400px;overflow-y: scroll;overflow-x: hidden;">
         <div class="card" v-for="karta in karte" v-if="filterTip(karta.tip) && karta.status == 'REZERVISANA' && !karta.obrisana">
             <div class="card-header">
-                Manifestacija: {{sveManifestacije[karta.manifestacijaId].naziv}}
+            <div class="row">
+                <div class="col-auto">
+                    Manifestacija: {{sveManifestacije[karta.manifestacijaId].naziv}}
+                </div>
+                <div class="col-auto" v-if="prijavljenKorisnik.sveManifest.indexOf(karta.manifestacijaId) != -1">
+                    <button class="btn btn-primary btn-sm" disabled>Moja manifestacija</button>
+                </div>
+            </div>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -142,6 +150,7 @@ Vue.component("karte-prodavac", {
         },
     },
     created() {
+        this.prijavljenKorisnik = JSON.parse(localStorage.getItem("prijavljeni"));
         axios.get("/rest/manifestacije/sveManifestacije").then(response => {
             this.sveManifestacije = response.data;
         });

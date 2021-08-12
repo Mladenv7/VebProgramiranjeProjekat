@@ -137,6 +137,7 @@ public class RezervacijaKarataMain {
 				}
 				
 				for(Komentar k : komentari) {
+					if(!k.isAktivan() || k.isObrisan()) continue;
 					prosecna += k.getOcena();
 				}
 				prosecna /= komentari.size();
@@ -295,6 +296,54 @@ public class RezervacijaKarataMain {
 			
 			res.type("application/json");
 			return g.toJson(dto);
+		});
+		
+		get("/rest/komentari/sviKomentari", (req, res) -> {
+			List<Komentar> sviKomentari = komentarServis.getKomentari();
+			res.type("application/json");
+			return g.toJson(sviKomentari);
+		});
+		
+		post("/rest/komentari/odobravanje", (req, res) -> {
+			
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			for(Komentar k : komentarServis.getKomentari()) {
+				if(k.equals(komentar)) {
+					k.setAktivan(true);
+					break;
+				}
+			}
+			
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Komentar uspešno odobren";
+		});
+		
+		
+		post("/rest/komentari/brisanje", (req, res) -> {
+			
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			for(Komentar k : komentarServis.getKomentari()) {
+				if(k.equals(komentar)) {
+					k.setObrisan(true);
+					break;
+				}
+			}
+			
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Komentar uspešno obrisan";
+		});
+		
+		post("/rest/komentari/novi", (req, res) -> {
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			komentarServis.getKomentari().add(komentar);
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Uspešno ste ostavili komentar";
 		});
 		
 		//KORISNICI
