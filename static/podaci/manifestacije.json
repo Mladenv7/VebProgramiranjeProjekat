@@ -215,5 +215,36 @@
     },
     "poster": "./podaci/posteri/undefined",
     "obrisana": false
+  },
+  {
+    "naziv": "nova",
+    "tipManifestacije": "proba",
+    "id": "8",
+    "brojMesta": 123,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 16
+      },
+      "time": {
+        "hour": 14,
+        "minute": 46,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 1.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 45.245921221854616,
+      "geoDuzina": 19.830812606960535,
+      "ulicaBroj": "Puskinova 2-4",
+      "grad": "Novi Sad City",
+      "postanskiBroj": "21102",
+      "obrisana": false
+    },
+    "poster": "./podaci/posteri/poster2.jpg",
+    "obrisana": false
   }
 ]

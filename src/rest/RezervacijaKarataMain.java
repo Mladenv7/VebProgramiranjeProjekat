@@ -214,7 +214,7 @@ public class RezervacijaKarataMain {
 			novaManifestacija.setVremeOdrzavanja(dto.getVremeOdrzavanja());
 			novaManifestacija.setCenaRegular(dto.getCenaRegular());
 			novaManifestacija.setStatus(false);
-			novaManifestacija.setLokacija(new Lokacija());
+			novaManifestacija.setLokacija(dto.getLokacija());
 			novaManifestacija.setPoster(dto.getPoster());
 			novaManifestacija.setObrisana(false);
 			
