@@ -8,6 +8,8 @@ Vue.component("pregled-manifestacije", {
             kolicine: {regular : 0, fanPit : 0, vip : 0},
             popust: 1,
             preostaloKarata: 0,
+            komentar: {idManifestacije: "", autor: "", tekst: "", ocena: 1, aktivan: false, obrisan: false},
+            karteKorisnika: [],
         }
     },
     template: `
@@ -25,12 +27,16 @@ Vue.component("pregled-manifestacije", {
             
         </p>
         <p class="fs-5 col-md-8" v-if="jelProsla() && podaci.komentari.length > 0">Prosečna ocena: {{prosecnaOcena().toFixed(2)}}</p>
+        <button class="btn btn-sm btn-danger" v-if="prijavljenKorisnik && prijavljenKorisnik.uloga == 'ADMINISTRATOR' && !podaci.manifestacija.obrisana"
+                        data-bs-toggle="modal" data-bs-target="#brisanjeModal">Obriši</button>
         </div>
 
         <img v-bind:src="podaci.manifestacija.poster" style="width: 100%; height: 100%;max-width:300px;max-height:300px;" v-if="podaci.manifestacija.poster">
         
 
     </div>
+
+
 
     <div id="lokacijaDiv" style="width: 60%;">
         <h4>Lokacija</h4>
@@ -106,7 +112,7 @@ Vue.component("pregled-manifestacije", {
     <h4>Komentari</h4>
     <hr>
     <div id="komentariDiv" style="overflow-y: scroll; height: 200px;">   
-        <div class="card p-3 mt-2" v-for="komentar in podaci.komentari">
+        <div class="card p-3 mt-2" v-for="komentar in podaci.komentari" v-if="komentar.aktivan && !komentar.obrisan">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="user d-flex flex-row align-items-center"><span><small class="font-weight-bold text-primary">{{komentar.autor}}</small> <small class="font-weight-bold">{{komentar.tekst}}</small></span> </div> <small>Ocena: {{komentar.ocena}}</small>
             </div>
@@ -117,6 +123,59 @@ Vue.component("pregled-manifestacije", {
         </div>
     </div>
     <br>
+        <button class="btn btn-secondary btn-sm" v-if="jelProsla() && jelDosao()" data-bs-toggle="modal" data-bs-target="#komentarModal">Ostavite komentar</button>
+    <br>
+    <br>
+
+    <div class="modal fade" id="komentarModal" tabindex="-1" aria-labelledby="komentarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="komentarModalLabel">Komentar na {{podaci.manifestacija.naziv}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-auto">
+                    <textarea type="textarea" rows="4" cols="63" v-model="komentar.tekst"></textarea>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-auto">
+                <p>Ocena</p>
+            </div>
+            <div class="col-auto">
+                <input type="number" v-bind:min="1" v-bind:max="5" v-model="komentar.ocena">
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Izlaz</button>
+            <button type="button" class="btn btn-primary" v-on:click="posaljiKomentar()" data-bs-dismiss="modal">Potvrdi</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="modal fade" id="brisanjeModal" tabindex="-1" aria-labelledby="brisanjeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="brisanjeModalLabel">Brisanje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da izbrišete manifestaciju {{podaci.manifestacija.naziv}}?</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Izlaz</button>
+                <button type="button" class="btn btn-primary" v-on:click="obrisiManifestaciju()" data-bs-dismiss="modal">Potvrdi</button>
+            </div>
+            </div>
+        </div>
+        </div>
 
     </div>
     `,
@@ -124,6 +183,13 @@ Vue.component("pregled-manifestacije", {
         postaviKupca(){
             this.prijavljenKorisnik = JSON.parse(localStorage.getItem("prijavljeni"));
             this.tipKupca = this.postaviTip();
+
+            if(this.prijavljenKorisnik){
+                axios.get("/rest/karte/rezervacije/"+this.prijavljenKorisnik.korisnickoIme).then(response => {
+                    this.karteKorisnika = response.data;
+                });
+            }
+            
         },
         manifestacijaSaKomentarima(){
             axios
@@ -143,24 +209,28 @@ Vue.component("pregled-manifestacije", {
         },
         prosecnaOcena(){
             let prosecna = 0.0;
+            let brKomentara = 0;
 
             for(let komentar of this.podaci.komentari){
+                if(komentar.aktivan == false || komentar.obrisan == true) continue;
                 prosecna += komentar.ocena;
+                brKomentara += 1;
             }
 
-            prosecna = prosecna /= this.podaci.komentari.length;
+            prosecna = prosecna /= brKomentara;
 
             return prosecna;
         },
         jelProsla(){
             if(!this.podaci.manifestacija.vremeOdrzavanja) return;
             var vremeOdrzavanja = new Date(this.podaci.manifestacija.vremeOdrzavanja.date.year,
-                                           this.podaci.manifestacija.vremeOdrzavanja.date.month, 
+                                           this.podaci.manifestacija.vremeOdrzavanja.date.month-1, 
                                            this.podaci.manifestacija.vremeOdrzavanja.date.day, 
                                            this.podaci.manifestacija.vremeOdrzavanja.time.hour, 
                                            this.podaci.manifestacija.vremeOdrzavanja.time.minute, 
                                            this.podaci.manifestacija.vremeOdrzavanja.time.second, 
                                            this.podaci.manifestacija.vremeOdrzavanja.time.nano/1000);
+
             return vremeOdrzavanja < new Date();
         },
         pregledKarte(){
@@ -244,6 +314,35 @@ Vue.component("pregled-manifestacije", {
         dobaviPreostaloKarata(){
             axios.get("rest/karte/karteOdManifestacije/"+this.podaci.manifestacija.id).then(response => {
                 this.preostaloKarata = this.podaci.manifestacija.brojMesta - response.data.length;
+            });
+        },
+        posaljiKomentar(){
+            this.komentar.autor = this.prijavljenKorisnik.korisnickoIme;
+            this.komentar.idManifestacije = this.podaci.manifestacija.id;
+
+            axios.post("/rest/komentari/novi", this.komentar).then(response => {
+                alert(response.data);
+                this.podaci.komentari.push(this.komentar);
+            });
+        },
+        jelDosao(){
+            for(karta of this.karteKorisnika){
+                if(karta.manifestacijaId == this.podaci.manifestacija.id) return true;
+            }
+
+            return false;
+        },
+        obrisiManifestaciju(){
+            let zaObrisati = {naziv: "",tipManifestacije: "",id: this.podaci.manifestacija.id,
+                brojMesta: 0, vremeOdrzavanja: null, cenaRegular: 0,
+                status: this.podaci.manifestacija.status,
+                lokacija: null,
+                poster: null,
+                obrisana: false,}
+
+            axios.post("/rest/manifestacije/brisanjeManifestacije", zaObrisati).then(response => {
+                alert(response.data);
+                this.$router.push("/");
             });
         }
     },

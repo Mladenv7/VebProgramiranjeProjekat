@@ -10,6 +10,7 @@ Vue.component("svi-korisnici", {
                   },
             filterUloga: "",
             filterTipKupca: "",
+            izabranKorisnik : {},
         }
     },
     template: 
@@ -26,6 +27,7 @@ Vue.component("svi-korisnici", {
                 <th scope="col">Prezime</th>
                 <th scope="col">Uloga</th>
                 <th scope="col">Bodovi</th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody >
@@ -36,6 +38,10 @@ Vue.component("svi-korisnici", {
                     <td>{{korisnik.prezime}}</td>
                     <td>{{korisnik.uloga}}</td>
                     <td>{{korisnik.brBodova}}</td>
+                    <td>
+                    <button class="btn btn-sm btn-danger" v-on:click="izabranKorisnik = korisnik"
+                        data-bs-toggle="modal" data-bs-target="#brisanjeModal">Obriši</button>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -101,12 +107,38 @@ Vue.component("svi-korisnici", {
                 </select>
             </div>
         </div>
+
+
+        <div class="modal fade" id="brisanjeModal" tabindex="-1" aria-labelledby="brisanjeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="brisanjeModalLabel">Brisanje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da izbrišete korisnika {{izabranKorisnik.korisnickoIme}}?</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Izlaz</button>
+                <button type="button" class="btn btn-primary" v-on:click="obrisiKorisnika()" data-bs-dismiss="modal">Potvrdi</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        
     </div>
     `,
     methods: {
         posaljiUpit(){
             axios.post("/rest/korisnici/pretraga", this.upit).then(response => {
                 this.korisnici = response.data;
+            });
+        },
+        obrisiKorisnika(){
+            axios.post("/rest/korisnici/brisanje", this.izabranKorisnik).then(response => {
+                alert(response.data);
             });
         }
     },

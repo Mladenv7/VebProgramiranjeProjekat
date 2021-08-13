@@ -47,7 +47,7 @@ public class KartaServis {
 
 			if(list != null) {
 			    for (int i = 0;i < list.length;++i) {
-			    	if(list[i].isObrisana()) continue;
+			    	//if(list[i].isObrisana()) continue;
 			        karte.put(list[i].getId(), list[i]);
 			    }
 			}
@@ -139,6 +139,7 @@ public class KartaServis {
 		ArrayList<Karta> karteKorisnika = new ArrayList<>();
 		
 		for(String id : k.getSveKarte()) {
+			if(this.karte.get(id).isObrisana()) continue;
 			karteKorisnika.add(this.karte.get(id));
 		}
 		
@@ -157,6 +158,7 @@ public class KartaServis {
         Comparator<Karta> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
 
         return karte.stream()
+        		.filter(k -> !k.isObrisana())
                 .filter(k -> dto.getManifestacija().isEmpty() || 
                 			 sveManifestacije.get(k.getManifestacijaId()).getNaziv().toLowerCase().contains(dto.getManifestacija().toLowerCase()))
                 .filter(k -> {
@@ -206,7 +208,7 @@ public class KartaServis {
 		ArrayList<Karta> karte = new ArrayList<>();
 		
 		for(Karta k : this.karte.values()) {
-			if(k.getManifestacijaId().equals(manifestacijaId)) {
+			if(k.getManifestacijaId().equals(manifestacijaId) && !k.isObrisana()) {
 				karte.add(k);
 			}
 		}

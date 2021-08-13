@@ -31,7 +31,7 @@ public class ManifestacijaServis {
 
 			if(list != null) {
 			    for (int i = 0;i < list.length;++i) {
-			    	if(list[i].isObrisana()) continue;
+			    	//if(list[i].isObrisana()) continue;
 			        manifestacije.put(list[i].getId(), list[i]);
 			    }
 			}
@@ -65,6 +65,7 @@ public class ManifestacijaServis {
         Comparator<Manifestacija> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
 
         return lista.stream()
+        		.filter(m -> !m.isObrisana())
                 .filter(m -> dto.getNaziv().isEmpty() || m.getNaziv().toLowerCase().contains(dto.getNaziv().toLowerCase()))
                 .filter(m -> dto.getLokacija().isEmpty() || m.getLokacija().getAdresa().toLowerCase().contains(dto.getLokacija().toLowerCase()))
                 .filter(m -> {

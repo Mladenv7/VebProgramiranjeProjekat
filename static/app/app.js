@@ -14,6 +14,17 @@ const ManfiestacijePretraga = {
 };
 const SviKorisnici = { template: "<svi-korisnici></svi-korisnici>" };
 const MojProfil = { template: "<moj-profil></moj-profil>" };
+<<<<<<< HEAD
+const ManifestacijaDodaj = { template: "<manifestacije-dodaj></manifestacije-dodaj>", };
+const MojeManifestacije = { template: "<manifestacije-licne></manifestacije-licne>", };
+const AzurirajManifestacije = { template: "<manifestacija-azuriraj></manifestacija-azuriraj>", };
+const OdobravanjeManifestacije = { template: '<odobravanje-manifestacije></odobravanje-manifestacije>' }
+const KarteKorisnika = { template: '<karte-korisnika></karte-korisnika>' }
+const KarteAdmin = { template: '<karte-admin></karte-admin>'}
+const KarteProdavac = { template: '<karte-prodavac></karte-prodavac>' }
+const RegistracijaProdavca = { template: '<registracija-prodavac></registracija-prodavac>' } 
+const SviKomentari = { template: '<svi-komentari></svi-komentari>'}
+=======
 const ManifestacijaDodaj = {
   template: "<manifestacije-dodaj></manifestacije-dodaj>",
 };
@@ -30,6 +41,7 @@ const KarteKorisnika = { template: "<karte-korisnika></karte-korisnika>" };
 const KarteAdmin = { template: "<karte-admin></karte-admin>" };
 const KarteProdavac = { template: "<karte-prodavac></karte-prodavac>" };
 const Mapa = { template: "<mapa></mapa>" };
+>>>>>>> origin/dev
 
 const router = new VueRouter({
   mode: "hash",
@@ -45,11 +57,20 @@ const router = new VueRouter({
     { path: "/manifestacijaDodaj", component: ManifestacijaDodaj },
     { path: "/manifestacijaAzuriraj", component: AzurirajManifestacije },
     { path: "/mojeManifestacije", component: MojeManifestacije },
+<<<<<<< HEAD
+    { path: '/odobravanje', component: OdobravanjeManifestacije },
+    { path: '/mojeRezervacije', component: KarteKorisnika },
+    { path: '/sveKarte', component: KarteAdmin },
+    { path: '/sveRezervisaneKarte', component: KarteProdavac },
+    { path: '/noviProdavac', component: RegistracijaProdavca },
+    { path: '/sviKomentari', component: SviKomentari }
+=======
     { path: "/odobravanje", component: OdobravanjeManifestacije },
     { path: "/mojeRezervacije", component: KarteKorisnika },
     { path: "/sveKarte", component: KarteAdmin },
     { path: "/sveRezervisaneKarte", component: KarteProdavac },
     { path: "/mapa", component: Mapa },
+>>>>>>> origin/dev
   ],
 });
 

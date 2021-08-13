@@ -84,6 +84,17 @@ public class RezervacijaKarataMain {
 			return g.toJson(manifestacije.getManifestacije());
 		});
 		
+		get("/rest/komentari/manifestacijaKomentari/:id", (req, res) -> {
+			String id = req.params("id");
+			
+			ManifestacijaKomentariDTO dto = new ManifestacijaKomentariDTO();
+			dto.setManifestacija(manifestacije.getManifestacije().get(id));
+			dto.setKomentari(komentarServis.komentariNaManifestaciju(id));
+			
+			res.type("application/json");
+			return g.toJson(dto);
+		});
+		
 		get("/rest/manifestacije/najskorije", (req, res) -> {
 			res.type("application/json");
 			ArrayList<Manifestacija> najskorije = new ArrayList<>(manifestacije.getManifestacije().values());
@@ -137,6 +148,7 @@ public class RezervacijaKarataMain {
 				}
 				
 				for(Komentar k : komentari) {
+					if(!k.isAktivan() || k.isObrisan()) continue;
 					prosecna += k.getOcena();
 				}
 				prosecna /= komentari.size();
@@ -212,6 +224,24 @@ public class RezervacijaKarataMain {
 
 		});
 		
+		
+		post("/rest/manifestacije/brisanjeManifestacije", (req, res) -> {
+			Manifestacija zaObrisati = g.fromJson(req.body(), Manifestacija.class);
+			
+			manifestacije.getManifestacije().get(zaObrisati.getId()).setObrisana(true);
+			
+			for(Karta k : kartaServis.getKarte().values()) {
+				if(k.getManifestacijaId().equals(zaObrisati.getId())) {
+					k.setObrisana(true);
+				}
+			}
+			
+			manifestacije.upisManifestacijaUDatoteku();
+			kartaServis.upisKarataUDatoteku();
+			
+			return "Manifestacija je uspešno obrisana";
+		});
+		
 		//KARTE
 		//----------------------------------------------------------------------------------------
 		
@@ -222,7 +252,7 @@ public class RezervacijaKarataMain {
 			
 			korisnikServis.upisKorisnikaUDatoteku();
 			
-			return "Rezervacija uspe�na";
+			return "Rezervacija uspešna";
 		});
 		
 		get("/rest/karte/rezervacije/:korisnickoIme", (req, res) -> {
@@ -255,7 +285,7 @@ public class RezervacijaKarataMain {
 			
 			korisnikServis.upisKorisnikaUDatoteku();
 			
-			return "Otkazivanje uspe�no";
+			return "Otkazivanje uspešno";
 		});
 		
 		get("rest/karte/karteOdManifestacije/:manifestacijaId", (req, res) -> {
@@ -279,22 +309,58 @@ public class RezervacijaKarataMain {
 				k.getSveKarte().remove(idZaObrisati);
 			}
 			
-			return "Brisanje uspe�no";
+			return "Brisanje uspešno";
 		});
 		
 		//KOMENTARI
 		//----------------------------------------------------------------------------------------
 		
-		
-		get("/rest/komentari/manifestacijaKomentari/:id", (req, res) -> {
-			String id = req.params("id");
-			
-			ManifestacijaKomentariDTO dto = new ManifestacijaKomentariDTO();
-			dto.setManifestacija(manifestacije.getManifestacije().get(id));
-			dto.setKomentari(komentarServis.komentariNaManifestaciju(id));
-			
+		get("/rest/komentari/sviKomentari", (req, res) -> {
+			List<Komentar> sviKomentari = komentarServis.getKomentari();
 			res.type("application/json");
-			return g.toJson(dto);
+			return g.toJson(sviKomentari);
+		});
+		
+		post("/rest/komentari/odobravanje", (req, res) -> {
+			
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			for(Komentar k : komentarServis.getKomentari()) {
+				if(k.equals(komentar)) {
+					k.setAktivan(true);
+					break;
+				}
+			}
+			
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Komentar uspešno odobren";
+		});
+		
+		
+		post("/rest/komentari/brisanje", (req, res) -> {
+			
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			for(Komentar k : komentarServis.getKomentari()) {
+				if(k.equals(komentar)) {
+					k.setObrisan(true);
+					break;
+				}
+			}
+			
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Komentar uspešno obrisan";
+		});
+		
+		post("/rest/komentari/novi", (req, res) -> {
+			Komentar komentar = g.fromJson(req.body(), Komentar.class);
+			
+			komentarServis.getKomentari().add(komentar);
+			komentarServis.upisKomentaraUDatoteku();
+			
+			return "Uspešno ste ostavili komentar";
 		});
 		
 		//KORISNICI
@@ -313,16 +379,34 @@ public class RezervacijaKarataMain {
 			noviKupac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			
 			if(dto.getPol().equals("m")) noviKupac.setPol(Pol.MUSKI);
-			else if(dto.getPol().equals("�")) noviKupac.setPol(Pol.ZENSKI);
+			else if(dto.getPol().equals("ž")) noviKupac.setPol(Pol.ZENSKI);
 			
 			return korisnikServis.dodajKorisnika(noviKupac);
+		});
+		
+		post("/rest/korisnici/registracijaProdavca", (req, res) -> {
+			
+			KupacRegistracijaDTO dto = g.fromJson(req.body(), KupacRegistracijaDTO.class);
+			
+			Korisnik noviProdavac = new Korisnik();
+			noviProdavac.setKorisnickoIme(dto.getKorisnickoIme());
+			noviProdavac.setIme(dto.getIme());
+			noviProdavac.setPrezime(dto.getPrezime());
+			noviProdavac.setLozinka(dto.getLozinka());
+			noviProdavac.setUloga(Uloga.PRODAVAC);
+			noviProdavac.setDatumRodjenja(LocalDate.parse(dto.getDatumRodjenja(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			
+			if(dto.getPol().equals("m")) noviProdavac.setPol(Pol.MUSKI);
+			else if(dto.getPol().equals("ž")) noviProdavac.setPol(Pol.ZENSKI);
+			
+			return korisnikServis.dodajKorisnika(noviProdavac);
 		});
 		
 		post("/rest/korisnici/prijava", (req, res) -> {
 			PrijavaDTO dto = g.fromJson(req.body(), PrijavaDTO.class);
 			Korisnik prijavljeni = korisnikServis.dobaviKorisnika(dto.getKorisnickoIme());
-			if(prijavljeni == null) return "Ovaj korisnik ne postoji";
-			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogre�na lozinka";
+			if(prijavljeni == null || prijavljeni.isObrisan()) return "Ovaj korisnik ne postoji";
+			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
 			return g.toJson(prijavljeni);
 		});
 		
@@ -346,6 +430,43 @@ public class RezervacijaKarataMain {
 			KorisnikUpitDTO dto = g.fromJson(req.body(), KorisnikUpitDTO.class);
 			res.type("application/json");
 			return g.toJson(korisnikServis.pretragaKorisnika(new ArrayList<Korisnik>(korisnikServis.getKorisnici().values()), dto));
+		});
+		
+		post("/rest/korisnici/brisanje", (req , res) -> {
+			Korisnik zaObrisati = g.fromJson(req.body(),Korisnik.class);
+			
+			switch(zaObrisati.getUloga()) {
+			case KUPAC:
+				for(String idKarte : zaObrisati.getSveKarte()) {
+					kartaServis.getKarte().get(idKarte).setObrisana(true);
+				}
+				kartaServis.upisKarataUDatoteku();
+				break;
+			case PRODAVAC:
+				for(String idManifestacije : zaObrisati.getSveManifest()) {
+					Manifestacija manifestZaBrisanje = manifestacije.getManifestacije().get(idManifestacije);
+					
+					manifestZaBrisanje.setObrisana(true);
+					
+					for(Karta k : kartaServis.getKarte().values()) {
+						if(k.getManifestacijaId().equals(manifestZaBrisanje.getId())) {
+							k.setObrisana(true);
+						}
+					}
+					
+					manifestacije.upisManifestacijaUDatoteku();
+					kartaServis.upisKarataUDatoteku();
+				}
+				break;
+			case ADMINISTRATOR:
+				return "Nije moguće izbrisati druge administratore";
+			default:
+				
+			}
+			
+			korisnikServis.upisKorisnikaUDatoteku();
+			
+			return "Korisnik je uspešno obrisan";
 		});
 	}
 

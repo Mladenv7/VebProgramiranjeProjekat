@@ -12,7 +12,7 @@ Vue.component("manifestacije-pocetna", {
     <br>
     <div style="width: 75%;height: 500px;overflow-y: scroll;overflow-x: hidden;" align="center" >
         <div class="row row-cols-1 row-cols-md-3 g-4" align="center">
-            <div class="col" v-for="manifestacija in manifestacije">
+            <div class="col" v-for="manifestacija in manifestacije" v-if="!manifestacija.obrisana">
                 <div class="card" style="width: 300px;">
                     <img v-bind:src="manifestacija.poster" class="card-img-top">
                     <div class="card-body">
