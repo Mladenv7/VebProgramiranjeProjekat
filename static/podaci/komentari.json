@@ -4,23 +4,23 @@
     "idManifestacije": "5",
     "tekst": "OTROOVNAAA JE MOJA LOOOOZAAAAAA",
     "ocena": 5,
-    "obrisan": false,
-    "aktivan": false
+    "obrisan": true,
+    "aktivan": true
   },
   {
     "autor": "NoviKupac",
     "idManifestacije": "5",
     "tekst": "U OOOOOBLAAKEEE, U ŠIMŠIREEEE",
     "ocena": 5,
-    "obrisan": false,
+    "obrisan": true,
     "aktivan": true
   },
   {
     "autor": "NoviKupac",
     "idManifestacije": "5",
-    "tekst": "TAKVA TI JE TAKVA MOJA LOOZA",
-    "ocena": 5,
-    "obrisan": true,
-    "aktivan": false
+    "tekst": "KOMENTAR KOMENTAR KOMENTAR KOMENTAR KOMENTARKOMENTARKOMENTARKOMENTAR",
+    "ocena": 3,
+    "obrisan": false,
+    "aktivan": true
   }
 ]

@@ -11,7 +11,7 @@ Vue.component("svi-komentari", {
     <div class="container">
     <h3>Svi komentari</h3>
 
-    <div class="row">
+    <div class="row" v-if="prijavljenKorisnik.uloga == 'PRODAVAC'">
         <div class="col-auto">
         <label class="form-check-label" for="flexCheckDefault">
           Samo neodobreni komentari 
@@ -29,7 +29,7 @@ Vue.component("svi-komentari", {
                 <div class="row">
                 <p>na manifestaciju "{{sveManifestacije[komentar.idManifestacije].naziv}}"</p>
                 </div>
-                <div class="row g-1" v-if="!komentar.aktivan">
+                <div class="row g-1" v-if="!komentar.aktivan && prijavljenKorisnik.uloga == 'PRODAVAC'" >
                 
                     <div class="col-auto">
                     <button class="btn btn-success" v-on:click="odobriKomentar(komentar)">Odobri</button>
@@ -38,9 +38,15 @@ Vue.component("svi-komentari", {
                     <button class="btn btn-danger" v-on:click="odbijKomentar(komentar)">Odbij</button>
                     </div>
                     
-                    
                 </div>
                 
+                <div class="row g-1" v-if="prijavljenKorisnik.uloga == 'ADMINISTRATOR'">
+                
+                    <div class="col-auto">
+                    <button class="btn btn-danger" v-on:click="obrisiKomentar(komentar)">Obriši</button>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -84,6 +90,12 @@ Vue.component("svi-komentari", {
         odbijKomentar(komentar){
             axios.post("/rest/komentari/brisanje", komentar).then(response => {
                 alert("Komentar uspešno odbijen");
+                komentar.obrisan = true;
+            });
+        },
+        obrisiKomentar(komentar){
+            axios.post("/rest/komentari/brisanje", komentar).then(response => {
+                alert(response.data);
                 komentar.obrisan = true;
             });
         }

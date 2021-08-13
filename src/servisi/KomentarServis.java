@@ -24,7 +24,7 @@ public class KomentarServis {
 			Komentar[] lista = gson.fromJson(citac, Komentar[].class);
 			if(lista != null){
 				Collections.addAll(komentari, lista);
-				komentari.removeIf(k -> k.isObrisan());
+				//komentari.removeIf(k -> k.isObrisan());
 			}
 		   
 		    citac.close();
@@ -46,7 +46,7 @@ public class KomentarServis {
 		ArrayList<Komentar> zaManifestaciju = new ArrayList<Komentar>();
 		
 		for(Komentar k : this.komentari) {
-			if(k.getIdManifestacije().equals(id)) zaManifestaciju.add(k);
+			if(k.getIdManifestacije().equals(id) && !k.isObrisan()) zaManifestaciju.add(k);
 		}
 		
 		return zaManifestaciju;

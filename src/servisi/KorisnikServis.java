@@ -34,7 +34,7 @@ public class KorisnikServis {
 
 			if(lista != null) {
 				for (int i = 0;i < lista.length;++i) {
-					if(lista[i].isObrisan()) continue;
+					//if(lista[i].isObrisan()) continue;
 			        korisnici.put(lista[i].getKorisnickoIme(), lista[i]);
 			    }
 			}
@@ -91,7 +91,7 @@ public class KorisnikServis {
 			
 			this.upisKorisnikaUDatoteku();
 			
-			return "Azuriranje uspešno";
+			return "Ažuriranje uspešno";
 		}else return "Ovaj korisnik ne postoji";
 	}
 	
@@ -113,6 +113,7 @@ public class KorisnikServis {
         Comparator<Korisnik> comp = critMap.getOrDefault(dto.getSort().toUpperCase().trim(), critMap.values().iterator().next());
 
         return lista.stream()
+        		.filter(k -> !k.isObrisan())
                 .filter(k -> dto.getIme().isEmpty() || k.getIme().toLowerCase().contains(dto.getIme().toLowerCase()))
                 .filter(k -> dto.getPrezime().isEmpty() || k.getPrezime().toLowerCase().contains(dto.getPrezime().toLowerCase()))
                 .filter(k -> dto.getKorisnickoIme().isEmpty() || k.getKorisnickoIme().toLowerCase().contains(dto.getKorisnickoIme().toLowerCase()))
