@@ -1,6 +1,7 @@
 package servisi;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -24,10 +25,18 @@ public class KorisnikServis {
 
 
 	private HashMap<String, Korisnik> korisnici = new HashMap<String, Korisnik>();
+	private HashMap<String, Korisnik> blokirani = new HashMap<String, Korisnik>();
 
 	public KorisnikServis() {
 		Gson gson = new Gson();
+		
 		try {
+			File kDatoteka = new File("./static/podaci/korisnici.json");
+			if(!kDatoteka.exists()) kDatoteka.createNewFile();
+			File bDatoteka = new File("./static/podaci/blokirani.json");
+			if(!bDatoteka.exists()) kDatoteka.createNewFile();
+			
+			
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/korisnici.json"));
 			
 			Korisnik[] lista = gson.fromJson(citac, Korisnik[].class);
@@ -36,6 +45,20 @@ public class KorisnikServis {
 				for (int i = 0;i < lista.length;++i) {
 					//if(lista[i].isObrisan()) continue;
 			        korisnici.put(lista[i].getKorisnickoIme(), lista[i]);
+			    }
+			}
+		   
+		    citac.close();
+		    
+		    
+		    citac = Files.newBufferedReader(Paths.get("./static/podaci/blokirani.json"));
+			
+			Korisnik[] listaB = gson.fromJson(citac, Korisnik[].class);
+
+			if(listaB != null) {
+				for (int i = 0;i < listaB.length;++i) {
+					//if(lista[i].isObrisan()) continue;
+			        korisnici.put(listaB[i].getKorisnickoIme(), listaB[i]);
 			    }
 			}
 		   
@@ -54,6 +77,14 @@ public class KorisnikServis {
 		this.korisnici = korisnici;
 	}
 	
+	public HashMap<String, Korisnik> getBlokirani() {
+		return blokirani;
+	}
+
+	public void setBlokirani(HashMap<String, Korisnik> blokirani) {
+		this.blokirani = blokirani;
+	}
+
 	public void upisKorisnikaUDatoteku() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
@@ -130,5 +161,24 @@ public class KorisnikServis {
             	}
            
         }
+	}
+	
+	public void blokirajKorisnika(Korisnik korisnik) {
+		
+		this.blokirani.put(korisnik.getKorisnickoIme(), korisnik);
+		
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		try {
+			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/blokirani.json"));
+			
+			stampac.append(gson.toJson(korisnik, Korisnik.class));
+			
+			stampac.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

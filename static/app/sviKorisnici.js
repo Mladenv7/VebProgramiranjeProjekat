@@ -28,6 +28,7 @@ Vue.component("svi-korisnici", {
                 <th scope="col">Uloga</th>
                 <th scope="col">Bodovi</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody >
@@ -41,6 +42,10 @@ Vue.component("svi-korisnici", {
                     <td>
                     <button class="btn btn-sm btn-danger" v-on:click="izabranKorisnik = korisnik"
                         data-bs-toggle="modal" data-bs-target="#brisanjeModal">Obriši</button>
+                    </td>
+                    <td>
+                    <button class="btn btn-sm btn-warning" v-on:click="izabranKorisnik = korisnik"
+                        data-bs-toggle="modal" data-bs-target="#blokiranjeModal">Blokiraj</button>
                     </td>
                 </tr>
             </tbody>
@@ -127,6 +132,25 @@ Vue.component("svi-korisnici", {
             </div>
         </div>
         </div>
+
+        <div class="modal fade" id="blokiranjeModal" tabindex="-1" aria-labelledby="blokiranjeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="blokiranjeModalLabel">Blokiranje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da blokirate korisnika {{izabranKorisnik.korisnickoIme}}?</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Izlaz</button>
+                <button type="button" class="btn btn-primary" v-on:click="blokirajKorisnika()" data-bs-dismiss="modal">Potvrdi</button>
+            </div>
+            </div>
+        </div>
+        </div>
         
     </div>
     `,
@@ -138,6 +162,16 @@ Vue.component("svi-korisnici", {
         },
         obrisiKorisnika(){
             axios.post("/rest/korisnici/brisanje", this.izabranKorisnik).then(response => {
+                alert(response.data);
+            });
+        },
+        blokirajKorisnika(){
+            if(this.izabranKorisnik.uloga == "ADMINISTRATOR"){
+                alert("Nije moguće blokirati administratore");
+                return;
+            }
+
+            axios.post("/rest/korisnici/blokiranje", this.izabranKorisnik).then(response => {
                 alert(response.data);
             });
         }

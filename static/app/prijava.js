@@ -42,7 +42,7 @@ Vue.component("prijava", {
         prijava(){
             axios
                 .post("/rest/korisnici/prijava", this.kredencijali).then(response => {
-                    if(response.data != "Ovaj korisnik ne postoji" && response.data != "Pogrešna lozinka"){
+                    if(response.data != "Ovaj korisnik ne postoji" && response.data != "Pogrešna lozinka" && response.data != "Vaš nalog je blokiran"){
                         localStorage.setItem("prijavljeni", JSON.stringify(response.data));
                         //localStorage mora da cuva parove kljuc:string i da bi se koristio korisnik kao objekat mora se pozvati JSON.parse nad dobavljenim stringom iz localStorage
                         this.$router.push('/'); 

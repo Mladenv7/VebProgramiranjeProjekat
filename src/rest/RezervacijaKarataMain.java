@@ -26,7 +26,6 @@ import com.google.gson.JsonParseException;
 import beans.Karta;
 import beans.Komentar;
 import beans.Korisnik;
-import beans.Lokacija;
 import beans.Manifestacija;
 import beans.dto.KarteUpitDTO;
 import beans.dto.KorisnikUpitDTO;
@@ -407,6 +406,7 @@ public class RezervacijaKarataMain {
 			Korisnik prijavljeni = korisnikServis.dobaviKorisnika(dto.getKorisnickoIme());
 			if(prijavljeni == null || prijavljeni.isObrisan()) return "Ovaj korisnik ne postoji";
 			if(!prijavljeni.getLozinka().equals(dto.getLozinka())) return "Pogrešna lozinka";
+			if(korisnikServis.getBlokirani().get(prijavljeni.getKorisnickoIme()) != null) return "Vaš nalog je blokiran";
 			return g.toJson(prijavljeni);
 		});
 		
@@ -467,6 +467,12 @@ public class RezervacijaKarataMain {
 			korisnikServis.upisKorisnikaUDatoteku();
 			
 			return "Korisnik je uspešno obrisan";
+		});
+		
+		post("/rest/korisnici/blokiranje", (req, res) -> {
+			Korisnik korisnik = g.fromJson(req.body(), Korisnik.class);
+			korisnikServis.blokirajKorisnika(korisnik);
+			return "Korisnik je uspešno blokiran";
 		});
 	}
 
