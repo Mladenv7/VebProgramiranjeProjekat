@@ -7,7 +7,9 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import com.google.gson.GsonBuilder;
 import beans.Korisnik;
 import beans.Manifestacija;
 import beans.dto.KorisnikUpitDTO;
+import beans.dto.OtkazDTO;
 
 public class KorisnikServis {
 
@@ -58,7 +61,7 @@ public class KorisnikServis {
 			if(listaB != null) {
 				for (int i = 0;i < listaB.length;++i) {
 					//if(lista[i].isObrisan()) continue;
-			        korisnici.put(listaB[i].getKorisnickoIme(), listaB[i]);
+			        blokirani.put(listaB[i].getKorisnickoIme(), listaB[i]);
 			    }
 			}
 		   
@@ -180,5 +183,41 @@ public class KorisnikServis {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public ArrayList<Korisnik> dobaviSumnjiveKupce() {
+		HashMap<String, ArrayList<OtkazDTO>> korisniciOtkazi = new HashMap<>();
+		
+		Gson g = new Gson();
+		
+		try {
+			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/otkazivanja.json"));
+			
+			OtkazDTO[] otkazivanja = g.fromJson(citac, OtkazDTO[].class); 
+			
+			if(otkazivanja == null) return new ArrayList<>();
+			for(OtkazDTO o : otkazivanja) {
+				if(korisniciOtkazi.get(o.getKorisnickoIme()) == null) {
+					korisniciOtkazi.put(o.getKorisnickoIme(), new ArrayList<>(Arrays.asList(o)));
+				}else {
+					korisniciOtkazi.get(o.getKorisnickoIme()).add(o);
+				}
+			}
+			
+			citac.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Korisnik> sumnjivi = new ArrayList<>();
+		
+		for(Map.Entry<String, ArrayList<OtkazDTO>> e : korisniciOtkazi.entrySet()) {
+			e.getValue().removeIf(o -> o.getVremeOtkaza().isBefore(LocalDateTime.now().plusDays(-30)));
+			if(e.getValue().size() > 5) sumnjivi.add(this.korisnici.get(e.getKey()));
+		}
+		
+		
+		
+		return sumnjivi;
 	}
 }

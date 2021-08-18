@@ -5,6 +5,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import beans.Karta;
 import beans.Korisnik;
 import beans.Manifestacija;
 import beans.dto.KarteUpitDTO;
+import beans.dto.OtkazDTO;
 import beans.dto.RezervacijaDTO;
 import enums.StatusKarte;
 import enums.TipKarte;
@@ -28,6 +30,7 @@ import enums.TipKupca;
 public class KartaServis {
 
 	private HashMap<String, Karta> karte = new HashMap<String, Karta>();
+	private ArrayList<OtkazDTO> otkazi = new ArrayList<>();
 	
 	public HashMap<String, Karta> getKarte() {
 		return karte;
@@ -35,6 +38,14 @@ public class KartaServis {
 
 	public void setKarte(HashMap<String, Karta> karte) {
 		this.karte = karte;
+	}
+
+	public ArrayList<OtkazDTO> getOtkazi() {
+		return otkazi;
+	}
+
+	public void setOtkazi(ArrayList<OtkazDTO> otkazi) {
+		this.otkazi = otkazi;
 	}
 
 	public KartaServis() {
@@ -53,6 +64,19 @@ public class KartaServis {
 			}
 
 		    citac.close();
+		    
+		    
+		    citac = Files.newBufferedReader(Paths.get("./static/podaci/otkazivanja.json"));
+			
+			OtkazDTO[] listaO = gson.fromJson(citac, OtkazDTO[].class);
+
+			if(listaO != null) {
+			    for (int i = 0;i < listaO.length;++i) {
+			    	otkazi.add(listaO[i]);
+			    }
+			}
+
+		    citac.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -65,6 +89,21 @@ public class KartaServis {
 			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/karte.json"));
 			
 			stampac.append(gson.toJson(karte.values().toArray(), Karta[].class));
+			
+			
+			stampac.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void upisOtkazaUDatoteku() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		try {
+			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/otkazivanja.json"));
+			
+			stampac.append(gson.toJson(this.otkazi.toArray(), OtkazDTO[].class));
 			
 			
 			stampac.close();
@@ -199,6 +238,15 @@ public class KartaServis {
 			korisnik.setTip(TipKupca.ZLATNI);
 		}
 		
+		OtkazDTO otkaz = new OtkazDTO();
+		
+		otkaz.setKorisnickoIme(korisnik.getKorisnickoIme());
+		otkaz.setIdKarte(idKarte);
+		otkaz.setVremeOtkaza(LocalDateTime.now());
+		
+		otkazi.add(otkaz);
+		
+		this.upisOtkazaUDatoteku();
 		this.upisKarataUDatoteku();
 		
 		return 0;

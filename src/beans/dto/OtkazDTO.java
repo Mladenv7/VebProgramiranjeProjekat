@@ -1,7 +1,10 @@
 package beans.dto;
 
+import java.time.LocalDateTime;
+
 public class OtkazDTO {
 	private String idKarte, korisnickoIme;
+	private LocalDateTime vremeOtkaza;
 
 	public String getIdKarte() {
 		return idKarte;
@@ -17,6 +20,14 @@ public class OtkazDTO {
 
 	public void setKorisnickoIme(String korisnickoIme) {
 		this.korisnickoIme = korisnickoIme;
+	}
+
+	public LocalDateTime getVremeOtkaza() {
+		return vremeOtkaza;
+	}
+
+	public void setVremeOtkaza(LocalDateTime vremeOtkaza) {
+		this.vremeOtkaza = vremeOtkaza;
 	}
 	
 	

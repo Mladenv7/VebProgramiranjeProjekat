@@ -11,12 +11,24 @@ Vue.component("svi-korisnici", {
             filterUloga: "",
             filterTipKupca: "",
             izabranKorisnik : {},
+            sumnjivi : [],
+            sviKorisnici : [],
+            prikazSumnjivih : false,
         }
     },
     template: 
     `
     <div class="container">
         <h3>Registrovani korisnici</h3>
+
+        <div class="row">
+            <div class="col-auto">
+            <label class="form-check-label" for="flexCheckDefault">
+            Sumnjivi korisnici
+            </label>
+            <input class="form-check-input" type="checkbox" v-model="prikazSumnjivih" id="flexCheckDefault" v-on:click="zameniKorisnike()">
+            </div>
+        </div>
 
         <div style="height: 350px;overflow-y: scroll;">
             <table class="table">
@@ -174,11 +186,19 @@ Vue.component("svi-korisnici", {
             axios.post("/rest/korisnici/blokiranje", this.izabranKorisnik).then(response => {
                 alert(response.data);
             });
+        },
+        zameniKorisnike(){
+            if(!this.prikazSumnjivih) this.korisnici = this.sumnjivi;
+            else this.korisnici = this.sviKorisnici;
         }
     },
     created(){
         axios.get("/rest/korisnici/sviKorisnici").then(response => {
-            this.korisnici = response.data;
+            this.sviKorisnici = response.data;
+            this.korisnici = this.sviKorisnici;
+        });
+        axios.get("/rest/korisnici/sumnjivi").then(response => {
+            this.sumnjivi = response.data;
         });
     }
 });

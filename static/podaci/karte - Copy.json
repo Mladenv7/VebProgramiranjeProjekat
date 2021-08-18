@@ -127,7 +127,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -193,7 +193,7 @@
     },
     "cena": 350.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "REGULAR",
     "obrisana": false
   },
@@ -281,7 +281,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -303,7 +303,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -325,7 +325,7 @@
     },
     "cena": 350.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "REGULAR",
     "obrisana": false
   },
@@ -347,7 +347,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "OTKAZANA",
+    "status": "REZERVISANA",
     "tip": "FAN_PIT",
     "obrisana": false
   }

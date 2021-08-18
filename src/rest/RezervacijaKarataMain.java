@@ -474,6 +474,12 @@ public class RezervacijaKarataMain {
 			korisnikServis.blokirajKorisnika(korisnik);
 			return "Korisnik je uspešno blokiran";
 		});
+		
+		get("/rest/korisnici/sumnjivi", (req,res) -> {
+			ArrayList<Korisnik> sumnjivi = korisnikServis.dobaviSumnjiveKupce();			
+			res.type("application/json");
+			return g.toJson(sumnjivi);
+		});
 	}
 
 }
