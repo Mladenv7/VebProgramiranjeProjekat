@@ -14,6 +14,7 @@ Vue.component("svi-korisnici", {
             sumnjivi : [],
             sviKorisnici : [],
             prikazSumnjivih : false,
+            blokirani : {},
         }
     },
     template: 
@@ -56,7 +57,7 @@ Vue.component("svi-korisnici", {
                         data-bs-toggle="modal" data-bs-target="#brisanjeModal">Obriši</button>
                     </td>
                     <td>
-                    <button class="btn btn-sm btn-warning" v-on:click="izabranKorisnik = korisnik"
+                    <button class="btn btn-sm btn-warning" v-on:click="izabranKorisnik = korisnik"  v-if="!blokirani[korisnik.korisnickoIme]"
                         data-bs-toggle="modal" data-bs-target="#blokiranjeModal">Blokiraj</button>
                     </td>
                 </tr>
@@ -173,8 +174,11 @@ Vue.component("svi-korisnici", {
             });
         },
         obrisiKorisnika(){
+            this.izabranKorisnik.datumRodjenja = this.izabranKorisnik.datumRodjenja.year+"-"+
+            ("0" + this.izabranKorisnik.datumRodjenja.month).slice(-2)+"-"+("0"+this.izabranKorisnik.datumRodjenja.day).slice(-2);
             axios.post("/rest/korisnici/brisanje", this.izabranKorisnik).then(response => {
                 alert(response.data);
+                this.$router.go();
             });
         },
         blokirajKorisnika(){
@@ -183,8 +187,11 @@ Vue.component("svi-korisnici", {
                 return;
             }
 
+            this.izabranKorisnik.datumRodjenja = this.izabranKorisnik.datumRodjenja.year+"-"+
+            ("0" + this.izabranKorisnik.datumRodjenja.month).slice(-2)+"-"+("0"+this.izabranKorisnik.datumRodjenja.day).slice(-2);
             axios.post("/rest/korisnici/blokiranje", this.izabranKorisnik).then(response => {
                 alert(response.data);
+                this.$router.go();
             });
         },
         zameniKorisnike(){
@@ -199,6 +206,9 @@ Vue.component("svi-korisnici", {
         });
         axios.get("/rest/korisnici/sumnjivi").then(response => {
             this.sumnjivi = response.data;
+        });
+        axios.get("/rest/korisnici/blokirani").then(response => {
+            this.blokirani = response.data;
         });
     }
 });

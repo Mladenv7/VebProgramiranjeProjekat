@@ -37,7 +37,7 @@ public class KorisnikServis {
 			File kDatoteka = new File("./static/podaci/korisnici.json");
 			if(!kDatoteka.exists()) kDatoteka.createNewFile();
 			File bDatoteka = new File("./static/podaci/blokirani.json");
-			if(!bDatoteka.exists()) kDatoteka.createNewFile();
+			if(!bDatoteka.exists()) bDatoteka.createNewFile();
 			
 			
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/korisnici.json"));
@@ -176,7 +176,7 @@ public class KorisnikServis {
 		try {
 			Writer stampac = Files.newBufferedWriter(Paths.get("./static/podaci/blokirani.json"));
 			
-			stampac.append(gson.toJson(korisnik, Korisnik.class));
+			stampac.append(gson.toJson(this.blokirani.values().toArray(), Korisnik[].class));
 			
 			stampac.close();
 		} catch (IOException e) {

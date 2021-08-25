@@ -5,6 +5,11 @@
     "ime": "p",
     "prezime": "p",
     "pol": "MUSKI",
+	"datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
     "uloga": "PRODAVAC",
     "sveKarte": [],
     "sveManifest": [
@@ -38,6 +43,11 @@
     "ime": "a",
     "prezime": "a",
     "pol": "MUSKI",
+	"datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
     "uloga": "ADMINISTRATOR",
     "sveKarte": [],
     "sveManifest": [],
@@ -50,6 +60,11 @@
     "ime": "Prodavac",
     "prezime": "Prodavac",
     "pol": "MUSKI",
+	"datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
     "uloga": "PRODAVAC",
     "sveKarte": [],
     "sveManifest": [
@@ -92,6 +107,11 @@
     "ime": "Đura",
     "prezime": "Đura",
     "pol": "ZENSKI",
+	"datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
     "uloga": "KUPAC",
     "sveKarte": [],
     "sveManifest": [],
@@ -104,6 +124,11 @@
     "ime": "k",
     "prezime": "k",
     "pol": "MUSKI",
+	"datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
     "uloga": "KUPAC",
     "sveKarte": [
       "hix8ftlO8t",
@@ -111,7 +136,47 @@
       "0DZy2XbMOG",
       "8ZCtvOvpYg",
       "7QawFIEkcQ",
-      "7xdCeSf8ei"
+      "7xdCeSf8ei",
+      "q0dguPyUUh",
+      "RzEFqJG7EV",
+      "v0ThKHuQmu",
+      "ANn27Zzz5B",
+      "RXSmoKJz2B",
+      "cVPeCjW3tm",
+      "auIqVrCf2d",
+      "XnpKxXXJFA",
+      "TrPxR1sjjf",
+      "JCoOd7Gn7h",
+      "6Sxe7nNPiL",
+      "IcR9VB3qb1",
+      "HJLo5FZFl8",
+      "hR0GrZira2",
+      "TjcVUFAVhn",
+      "Vrsx9BGs7Z",
+      "ot6JfyafcY",
+      "R5oVYR0XU7",
+      "V8t0IcbOpB",
+      "YJbJzc1Tn4",
+      "08AETJgjwn",
+      "kjcDECLM7y",
+      "8CqYduzz0T",
+      "GGXR1M4YTz",
+      "wPQl1jSxb2",
+      "qI1RhGfys0",
+      "TZPBnFPUkN",
+      "W3WENaCLDe",
+      "0a1OjmDENt",
+      "OGCAIPXeiE",
+      "0Xvn7l5kLD",
+      "xfQmXMrYpZ",
+      "HGJkEiYIzG",
+      "knbYXm0PbX",
+      "8LbuKMbpSe",
+      "CjiLfls0Hb",
+      "ofpAMiL8OT",
+      "FekfPMO5kO",
+      "aoXHRywuRE",
+      "Zkxncifp2U"
     ],
     "sveManifest": [],
     "brBodova": -3628,

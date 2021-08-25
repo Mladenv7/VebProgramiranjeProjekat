@@ -1,5 +1,6 @@
 package servisi;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -52,6 +53,13 @@ public class KartaServis {
 		
 		Gson gson = new Gson();
 		try {
+			File datoteka = new File("./static/podaci/karte.json");
+			if(!datoteka.exists()) datoteka.createNewFile();
+			
+			File oDatoteka = new File("./static/podaci/otkazivanja.json");
+			if(!oDatoteka.exists()) oDatoteka.createNewFile();
+			
+			
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/karte.json"));
 			
 			Karta[] list = gson.fromJson(citac, Karta[].class);

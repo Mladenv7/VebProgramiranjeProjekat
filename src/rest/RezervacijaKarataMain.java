@@ -411,8 +411,12 @@ public class RezervacijaKarataMain {
 		});
 		
 		get("/rest/korisnici/sviKorisnici", (req, res) -> {
+			List<Korisnik> svi = new ArrayList<>(korisnikServis.getKorisnici().values());
+			
+			svi.removeIf(k -> k.isObrisan());
+			
 			res.type("application/json");
-			return g.toJson(new ArrayList<>(korisnikServis.getKorisnici().values()));
+			return g.toJson(svi);
 		});
 		
 		get("/rest/korisnici/jedanKorisnik/:korisnickoIme", (req, res) -> {
@@ -463,7 +467,7 @@ public class RezervacijaKarataMain {
 			default:
 				
 			}
-			
+			korisnikServis.getKorisnici().get(zaObrisati.getKorisnickoIme()).setObrisan(true);
 			korisnikServis.upisKorisnikaUDatoteku();
 			
 			return "Korisnik je uspešno obrisan";
@@ -479,6 +483,12 @@ public class RezervacijaKarataMain {
 			ArrayList<Korisnik> sumnjivi = korisnikServis.dobaviSumnjiveKupce();			
 			res.type("application/json");
 			return g.toJson(sumnjivi);
+		});
+		
+		get("/rest/korisnici/blokirani", (req, res) -> {
+			HashMap<String, Korisnik> blokirani = korisnikServis.getBlokirani();
+			res.type("application/json");
+			return g.toJson(blokirani);
 		});
 	}
 

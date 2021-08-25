@@ -1,5 +1,6 @@
 package servisi;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -25,6 +26,9 @@ public class ManifestacijaServis {
 	public ManifestacijaServis() {
 		Gson gson = new Gson();
 		try {
+			File datoteka = new File("./static/podaci/manifestacije.json");
+			if(!datoteka.exists()) datoteka.createNewFile();
+			
 			Reader citac = Files.newBufferedReader(Paths.get("./static/podaci/manifestacije.json"));
 			
 			Manifestacija[] list = gson.fromJson(citac, Manifestacija[].class);
