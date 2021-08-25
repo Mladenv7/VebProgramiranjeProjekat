@@ -142,14 +142,14 @@
       }
     },
     "cenaRegular": 1.0,
-    "status": true,
+    "status": false,
     "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+      "geoSirina": 45.25697513385597,
+      "geoDuzina": 19.83006075024605,
+      "ulicaBroj": "Zaharija Orfelina 3",
+      "grad": "Novi Sad City",
+      "postanskiBroj": "21101",
+      "obrisana": false
     },
     "poster": "./podaci/posteri/poster2.jpg",
     "obrisana": false
