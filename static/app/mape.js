@@ -3,6 +3,7 @@ Vue.component("l-tile-layer", window.Vue2Leaflet.LTileLayer);
 Vue.component("l-marker", window.Vue2Leaflet.LMarker);
 
 Vue.component("mapa", {
+  props: ["lat", "lng"],
   data: function () {
     return {
       lokacija: {
@@ -12,20 +13,25 @@ Vue.component("mapa", {
         grad: "",
         postanskiBroj: "",
       },
+      startlan: 45.267136,
+      startlng: 19.833549,
     };
   },
   template: `
   <div id="map" style="height: 400px; width: 500px">     
     <h1>mape</h1>
-    
   </div>
       `,
   mounted() {
+    if (this.lat != null) {
+      this.startlan = this.lat;
+      this.startlng = this.lng;
+    }
     var marker = null;
     var _this = this;
     var lok = this.lokacija;
     var map = L.map("map")
-      .setView([45.267136, 19.833549], 15)
+      .setView([this.startlan, this.startlng], 15)
       .on("click", function addMarker(e) {
         if (marker !== null) {
           map.removeLayer(marker);
@@ -59,7 +65,7 @@ Vue.component("mapa", {
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
-    marker = L.marker([45.267136, 19.833549], {
+    marker = L.marker([this.startlan, this.startlng], {
       title: "Coordinates",
       alt: "Coordinates",
       draggable: true,

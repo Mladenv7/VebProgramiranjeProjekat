@@ -1,18 +1,30 @@
 Vue.component("pregled-manifestacije", {
-    data: function(){ 
-        return {
-            podaci : {manifestacija : {naziv: ""}, komentari: [] },
-            prijavljenKorisnik : {},
-            tipKupca : "",
-            karta: {imePrezime : "", manifestacijaId : "", cena : 0, vremeOdrzavanja : ""},
-            kolicine: {regular : 0, fanPit : 0, vip : 0},
-            popust: 1,
-            preostaloKarata: 0,
-            komentar: {idManifestacije: "", autor: "", tekst: "", ocena: 1, aktivan: false, obrisan: false},
-            karteKorisnika: [],
-        }
-    },
-    template: `
+  data: function () {
+    return {
+      podaci: { manifestacija: { naziv: "" }, komentari: [] },
+      prijavljenKorisnik: {},
+      tipKupca: "",
+      karta: {
+        imePrezime: "",
+        manifestacijaId: "",
+        cena: 0,
+        vremeOdrzavanja: "",
+      },
+      kolicine: { regular: 0, fanPit: 0, vip: 0 },
+      popust: 1,
+      preostaloKarata: 0,
+      komentar: {
+        idManifestacije: "",
+        autor: "",
+        tekst: "",
+        ocena: 1,
+        aktivan: false,
+        obrisan: false,
+      },
+      karteKorisnika: [],
+    };
+  },
+  template: `
     <div class="container">
         <h2>{{podaci.manifestacija.naziv}}</h2>
     <div class="container d-inline-flex p-2">
@@ -32,19 +44,26 @@ Vue.component("pregled-manifestacije", {
         </div>
 
         <img v-bind:src="podaci.manifestacija.poster" style="width: 100%; height: 100%;max-width:300px;max-height:300px;" v-if="podaci.manifestacija.poster">
-        
+       
 
     </div>
 
 
-
-    <div id="lokacijaDiv" style="width: 60%;">
+ <div class="d-flex justify-content-between">
+    <div id="lokacijaDiv" style="width: 50%;">
         <h4>Lokacija</h4>
         <hr>
-        <p>Ulica/broj<br>Grad<br>Poštanski broj<br> </p>
+        <p class="fs-5 col-md-8">
+            Ulica i broj: {{podaci.manifestacija.lokacija.ulicaBroj}}<br>
+            Grad: {{podaci.manifestacija.lokacija.grad}}<br>
+            Poštanski broj: {{podaci.manifestacija.lokacija.postanskiBroj}}<br>
+        </p>       
     </div>
+
+    <mapa id="map" v-bind:lat=podaci.manifestacija.lokacija.geoSirina v-bind:lng=podaci.manifestacija.lokacija.geoDuzina ></mapa>
+</div>
     
-    <div id="ceneDiv" style="width: 60%;">
+    <div id="ceneDiv" style="width: 50%;">
         <h4>Cene</h4>
         <table class="table table-striped">
         <thead>
@@ -179,175 +198,225 @@ Vue.component("pregled-manifestacije", {
 
     </div>
     `,
-    methods: {
-        postaviKupca(){
-            this.prijavljenKorisnik = JSON.parse(localStorage.getItem("prijavljeni"));
-            this.tipKupca = this.postaviTip();
+  methods: {
+    postaviKupca() {
+      this.prijavljenKorisnik = JSON.parse(localStorage.getItem("prijavljeni"));
+      this.tipKupca = this.postaviTip();
 
-            if(this.prijavljenKorisnik){
-                axios.get("/rest/karte/rezervacije/"+this.prijavljenKorisnik.korisnickoIme).then(response => {
-                    this.karteKorisnika = response.data;
-                });
-            }
-            
-        },
-        manifestacijaSaKomentarima(){
-            axios
-            .get("/rest/komentari/manifestacijaKomentari/"+this.$route.query.id).then(response => {
-                this.podaci = response.data;
-                console.log(this.podaci);
-                this.dobaviPreostaloKarata();
-            });
-        },
-        pretvoriStatus(status){
-            if(status) return "Aktivna";
-            if(!status) return "Neaktivna";
-        },
-        formatirajDatum(vreme){
-            if(!vreme) return;
-            return vreme.date.day+"."+vreme.date.month+"."+vreme.date.year+". - "+vreme.time.hour+":"+("0" + vreme.time.minute).slice(-2);
-        },
-        prosecnaOcena(){
-            let prosecna = 0.0;
-            let brKomentara = 0;
-
-            for(let komentar of this.podaci.komentari){
-                if(komentar.aktivan == false || komentar.obrisan == true) continue;
-                prosecna += komentar.ocena;
-                brKomentara += 1;
-            }
-
-            prosecna = prosecna /= brKomentara;
-
-            return prosecna;
-        },
-        jelProsla(){
-            if(!this.podaci.manifestacija.vremeOdrzavanja) return;
-            var vremeOdrzavanja = new Date(this.podaci.manifestacija.vremeOdrzavanja.date.year,
-                                           this.podaci.manifestacija.vremeOdrzavanja.date.month-1, 
-                                           this.podaci.manifestacija.vremeOdrzavanja.date.day, 
-                                           this.podaci.manifestacija.vremeOdrzavanja.time.hour, 
-                                           this.podaci.manifestacija.vremeOdrzavanja.time.minute, 
-                                           this.podaci.manifestacija.vremeOdrzavanja.time.second, 
-                                           this.podaci.manifestacija.vremeOdrzavanja.time.nano/1000);
-
-            return vremeOdrzavanja < new Date();
-        },
-        pregledKarte(){
-            this.karta.imePrezime = this.prijavljenKorisnik.ime+" "+this.prijavljenKorisnik.prezime;
-            this.karta.cena = this.podaci.manifestacija.cenaRegular;
-            this.karta.manifestacijaId = this.podaci.manifestacija.id;
-            this.karta.vremeOdrzavanja = this.podaci.manifestacija.vremeOdrzavanja.date.year+"-"
-                                        +("0" + this.podaci.manifestacija.vremeOdrzavanja.date.month).slice(-2)+"-"
-                                        +("0" + this.podaci.manifestacija.vremeOdrzavanja.date.day).slice(-2)+"T"
-                                        +("0" + this.podaci.manifestacija.vremeOdrzavanja.time.hour).slice(-2)+":"
-                                        +("0" + this.podaci.manifestacija.vremeOdrzavanja.time.minute).slice(-2);
-
-            console.log(this.karta);
-        },
-        posaljiRezervaciju(){
-            if(this.kolicine.regular+this.kolicine.fanPit+this.kolicine.vip == 0){
-                alert("Morate uneti neku količinu karata");
-                return;
-            }else if(this.kolicine.regular+this.kolicine.fanPit+this.kolicine.vip > this.preostaloKarata){
-                alert("Nije preostalo dovoljno karata");
-                this.kolicine.regular = 0;
-                this.kolicine.fanPit = 0;
-                this.kolicine.vip = 0;
-                return;
-            }else{
-                this.karta.cena *= this.popust;
-
-
-                let rezervacija = {
-                    imePrezime : this.karta.imePrezime,
-                    manifestacijaId : this.karta.manifestacijaId,
-                    vremeOdrzavanja : this.karta.vremeOdrzavanja,
-                    korisnickoIme : this.prijavljenKorisnik.korisnickoIme,
-                    cenaRegular : this.karta.cena,
-                    kolicine : [this.kolicine.regular, this.kolicine.fanPit, this.kolicine.vip],
-                };
-
-                axios.post("/rest/karte/rezervacija", rezervacija).then(response => {
-                    alert(response.data);
-                    this.kolicine.regular = 0;
-                    this.kolicine.fanPit = 0;
-                    this.kolicine.vip = 0;
-                    this.$router.go();
-                });
-            }
-        },
-        jelKupac(){
-            if (this.prijavljenKorisnik && this.prijavljenKorisnik.uloga == 'KUPAC') return true;
-            else return false;
-        },
-        jelAktivna(){
-            if (this.podaci.manifestacija && this.podaci.manifestacija.status) return true;
-            else return false;
-        },
-        jelRasprodata(){
-            return true;
-        },
-        postaviImePrezime(){
-            if(this.prijavljenKorisnik)
-            return this.prijavljenKorisnik.ime+" "+this.prijavljenKorisnik.prezime;
-            else return;
-        },
-        postaviTip(){
-            this.popust = 1;
-
-            if(this.prijavljenKorisnik){
-                if(this.prijavljenKorisnik.tip == "BRONZANI"){
-                    this.popust -= 0.02;
-                }else if(this.prijavljenKorisnik.tip == "SREBRNI"){
-                    this.popust -= 0.03;
-                }else if(this.prijavljenKorisnik.tip == "ZLATNI"){
-                    this.popust -= 0.07;
-                }else{
-                    return "Standardni";
-                }
-
-                return this.prijavljenKorisnik.tip+" (popust od "+Math.round((1-this.popust)*100)+" posto)";
-            } 
-            else return "Standardni";
-        },
-        dobaviPreostaloKarata(){
-            axios.get("rest/karte/karteOdManifestacije/"+this.podaci.manifestacija.id).then(response => {
-                this.preostaloKarata = this.podaci.manifestacija.brojMesta - response.data.length;
-            });
-        },
-        posaljiKomentar(){
-            this.komentar.autor = this.prijavljenKorisnik.korisnickoIme;
-            this.komentar.idManifestacije = this.podaci.manifestacija.id;
-
-            axios.post("/rest/komentari/novi", this.komentar).then(response => {
-                alert(response.data);
-                this.podaci.komentari.push(this.komentar);
-            });
-        },
-        jelDosao(){
-            for(karta of this.karteKorisnika){
-                if(karta.manifestacijaId == this.podaci.manifestacija.id) return true;
-            }
-
-            return false;
-        },
-        obrisiManifestaciju(){
-            let zaObrisati = {naziv: "",tipManifestacije: "",id: this.podaci.manifestacija.id,
-                brojMesta: 0, vremeOdrzavanja: null, cenaRegular: 0,
-                status: this.podaci.manifestacija.status,
-                lokacija: null,
-                poster: null,
-                obrisana: false,}
-
-            axios.post("/rest/manifestacije/brisanjeManifestacije", zaObrisati).then(response => {
-                alert(response.data);
-                this.$router.push("/");
-            });
-        }
+      if (this.prijavljenKorisnik) {
+        axios
+          .get(
+            "/rest/karte/rezervacije/" + this.prijavljenKorisnik.korisnickoIme
+          )
+          .then((response) => {
+            this.karteKorisnika = response.data;
+          });
+      }
     },
-    mounted(){
-        this.postaviKupca();
-        this.manifestacijaSaKomentarima();
-    }
+    manifestacijaSaKomentarima() {
+      axios
+        .get("/rest/komentari/manifestacijaKomentari/" + this.$route.query.id)
+        .then((response) => {
+          this.podaci = response.data;
+          console.log(this.podaci);
+          this.dobaviPreostaloKarata();
+        });
+    },
+    pretvoriStatus(status) {
+      if (status) return "Aktivna";
+      if (!status) return "Neaktivna";
+    },
+    formatirajDatum(vreme) {
+      if (!vreme) return;
+      return (
+        vreme.date.day +
+        "." +
+        vreme.date.month +
+        "." +
+        vreme.date.year +
+        ". - " +
+        vreme.time.hour +
+        ":" +
+        ("0" + vreme.time.minute).slice(-2)
+      );
+    },
+    prosecnaOcena() {
+      let prosecna = 0.0;
+      let brKomentara = 0;
+
+      for (let komentar of this.podaci.komentari) {
+        if (komentar.aktivan == false || komentar.obrisan == true) continue;
+        prosecna += komentar.ocena;
+        brKomentara += 1;
+      }
+
+      prosecna = prosecna /= brKomentara;
+
+      return prosecna;
+    },
+    jelProsla() {
+      if (!this.podaci.manifestacija.vremeOdrzavanja) return;
+      var vremeOdrzavanja = new Date(
+        this.podaci.manifestacija.vremeOdrzavanja.date.year,
+        this.podaci.manifestacija.vremeOdrzavanja.date.month - 1,
+        this.podaci.manifestacija.vremeOdrzavanja.date.day,
+        this.podaci.manifestacija.vremeOdrzavanja.time.hour,
+        this.podaci.manifestacija.vremeOdrzavanja.time.minute,
+        this.podaci.manifestacija.vremeOdrzavanja.time.second,
+        this.podaci.manifestacija.vremeOdrzavanja.time.nano / 1000
+      );
+
+      return vremeOdrzavanja < new Date();
+    },
+    pregledKarte() {
+      this.karta.imePrezime =
+        this.prijavljenKorisnik.ime + " " + this.prijavljenKorisnik.prezime;
+      this.karta.cena = this.podaci.manifestacija.cenaRegular;
+      this.karta.manifestacijaId = this.podaci.manifestacija.id;
+      this.karta.vremeOdrzavanja =
+        this.podaci.manifestacija.vremeOdrzavanja.date.year +
+        "-" +
+        ("0" + this.podaci.manifestacija.vremeOdrzavanja.date.month).slice(-2) +
+        "-" +
+        ("0" + this.podaci.manifestacija.vremeOdrzavanja.date.day).slice(-2) +
+        "T" +
+        ("0" + this.podaci.manifestacija.vremeOdrzavanja.time.hour).slice(-2) +
+        ":" +
+        ("0" + this.podaci.manifestacija.vremeOdrzavanja.time.minute).slice(-2);
+
+      console.log(this.karta);
+    },
+    posaljiRezervaciju() {
+      if (
+        this.kolicine.regular + this.kolicine.fanPit + this.kolicine.vip ==
+        0
+      ) {
+        alert("Morate uneti neku količinu karata");
+        return;
+      } else if (
+        this.kolicine.regular + this.kolicine.fanPit + this.kolicine.vip >
+        this.preostaloKarata
+      ) {
+        alert("Nije preostalo dovoljno karata");
+        this.kolicine.regular = 0;
+        this.kolicine.fanPit = 0;
+        this.kolicine.vip = 0;
+        return;
+      } else {
+        this.karta.cena *= this.popust;
+
+        let rezervacija = {
+          imePrezime: this.karta.imePrezime,
+          manifestacijaId: this.karta.manifestacijaId,
+          vremeOdrzavanja: this.karta.vremeOdrzavanja,
+          korisnickoIme: this.prijavljenKorisnik.korisnickoIme,
+          cenaRegular: this.karta.cena,
+          kolicine: [
+            this.kolicine.regular,
+            this.kolicine.fanPit,
+            this.kolicine.vip,
+          ],
+        };
+
+        axios.post("/rest/karte/rezervacija", rezervacija).then((response) => {
+          alert(response.data);
+          this.kolicine.regular = 0;
+          this.kolicine.fanPit = 0;
+          this.kolicine.vip = 0;
+          this.$router.go();
+        });
+      }
+    },
+    jelKupac() {
+      if (this.prijavljenKorisnik && this.prijavljenKorisnik.uloga == "KUPAC")
+        return true;
+      else return false;
+    },
+    jelAktivna() {
+      if (this.podaci.manifestacija && this.podaci.manifestacija.status)
+        return true;
+      else return false;
+    },
+    jelRasprodata() {
+      return true;
+    },
+    postaviImePrezime() {
+      if (this.prijavljenKorisnik)
+        return (
+          this.prijavljenKorisnik.ime + " " + this.prijavljenKorisnik.prezime
+        );
+      else return;
+    },
+    postaviTip() {
+      this.popust = 1;
+
+      if (this.prijavljenKorisnik) {
+        if (this.prijavljenKorisnik.tip == "BRONZANI") {
+          this.popust -= 0.02;
+        } else if (this.prijavljenKorisnik.tip == "SREBRNI") {
+          this.popust -= 0.03;
+        } else if (this.prijavljenKorisnik.tip == "ZLATNI") {
+          this.popust -= 0.07;
+        } else {
+          return "Standardni";
+        }
+
+        return (
+          this.prijavljenKorisnik.tip +
+          " (popust od " +
+          Math.round((1 - this.popust) * 100) +
+          " posto)"
+        );
+      } else return "Standardni";
+    },
+    dobaviPreostaloKarata() {
+      axios
+        .get("rest/karte/karteOdManifestacije/" + this.podaci.manifestacija.id)
+        .then((response) => {
+          this.preostaloKarata =
+            this.podaci.manifestacija.brojMesta - response.data.length;
+        });
+    },
+    posaljiKomentar() {
+      this.komentar.autor = this.prijavljenKorisnik.korisnickoIme;
+      this.komentar.idManifestacije = this.podaci.manifestacija.id;
+
+      axios.post("/rest/komentari/novi", this.komentar).then((response) => {
+        alert(response.data);
+        this.podaci.komentari.push(this.komentar);
+      });
+    },
+    jelDosao() {
+      for (karta of this.karteKorisnika) {
+        if (karta.manifestacijaId == this.podaci.manifestacija.id) return true;
+      }
+
+      return false;
+    },
+    obrisiManifestaciju() {
+      let zaObrisati = {
+        naziv: "",
+        tipManifestacije: "",
+        id: this.podaci.manifestacija.id,
+        brojMesta: 0,
+        vremeOdrzavanja: null,
+        cenaRegular: 0,
+        status: this.podaci.manifestacija.status,
+        lokacija: null,
+        poster: null,
+        obrisana: false,
+      };
+
+      axios
+        .post("/rest/manifestacije/brisanjeManifestacije", zaObrisati)
+        .then((response) => {
+          alert(response.data);
+          this.$router.push("/");
+        });
+    },
+  },
+  mounted() {
+    this.postaviKupca();
+    this.manifestacijaSaKomentarima();
+  },
 });
