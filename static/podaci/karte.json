@@ -22,6 +22,28 @@
     "obrisana": false
   },
   {
+    "id": "IVnY1PcaJC",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "JCoOd7Gn7h",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -85,6 +107,28 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "e3fOu7ziAF",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
     "obrisana": false
   },
   {
@@ -374,6 +418,50 @@
     "obrisana": false
   },
   {
+    "id": "1zN4uiXggM",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "xVEaho1zRg",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
     "id": "HJLo5FZFl8",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -393,6 +481,50 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "EvFZg1V9sL",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "RkLyd5k8mu",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
     "obrisana": false
   },
   {
@@ -506,6 +638,28 @@
     "obrisana": false
   },
   {
+    "id": "G0BYkHuAIZ",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "kjcDECLM7y",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -523,6 +677,28 @@
     },
     "cena": 4.0,
     "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "rkO66cEdyO",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
     "status": "REZERVISANA",
     "tip": "VIP",
     "obrisana": false
@@ -569,6 +745,72 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "FF5VL5B8km",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "kPeUrAlDbw",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "gHNiQurUiU",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {
@@ -946,6 +1188,28 @@
     "obrisana": false
   },
   {
+    "id": "9EQJaFln1y",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
     "id": "aoXHRywuRE",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -987,6 +1251,28 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "bpvlNNj91k",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {
@@ -1078,6 +1364,94 @@
     "obrisana": false
   },
   {
+    "id": "wXXwyLYrmM",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "hLyXMMD1Lq",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "OP9gvDMu2l",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "Pynwu35ge4",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "3CjdE3ZhIB",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -1097,6 +1471,50 @@
     "imePrezime": "Novi Kupac",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "IWOsRH6sl5",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 1400.0,
+    "imePrezime": "Novi Kupac",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "FYnpC8PBp0",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {
@@ -1185,6 +1603,28 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "1BRylqt5l1",
+    "manifestacijaId": "7",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 10,
+        "day": 14
+      },
+      "time": {
+        "hour": 0,
+        "minute": 19,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 350.0,
+    "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {

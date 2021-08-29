@@ -85,10 +85,18 @@ Vue.component("manifestacije-dodaj", {
         "./podaci/posteri/" + poster.value.split("\\")[2];
       this.novaManifestacija.prodavac = obj.korisnickoIme;
 
-      axios.post(
-        "/rest/manifestacije/registracijaManifestacije",
-        this.novaManifestacija
-      );
+      axios
+        .post(
+          "/rest/manifestacije/registracijaManifestacije",
+          this.novaManifestacija
+        )
+        .then((response) => {
+          if (response.data == 0) {
+            alert("Registracija je uspešna");
+          } else if (response.data == -1) {
+            alert("Registracija je nije uspešna");
+          }
+        });
     },
   },
 });

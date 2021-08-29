@@ -96,7 +96,26 @@ public class ManifestacijaServis {
 	public int dodajManifestaciju(Manifestacija manifestacija) {
 		String lastObject = "1";
 		 for (HashMap.Entry<String,Manifestacija> entry : manifestacije.entrySet()) {
-	            
+	         
+			 try {
+			 	if(manifestacija.getLokacija().getUlicaBroj().equals(entry.getValue().getLokacija().getUlicaBroj()))
+			 	{
+			 		if(manifestacija.getVremeOdrzavanja().getYear() == entry.getValue().getVremeOdrzavanja().getYear())
+			 		{
+			 			if(manifestacija.getVremeOdrzavanja().getMonth() == entry.getValue().getVremeOdrzavanja().getMonth())
+				 		{
+			 				if(manifestacija.getVremeOdrzavanja().getDayOfMonth() == entry.getValue().getVremeOdrzavanja().getDayOfMonth())
+					 		{
+			 					return -1;
+					 		}
+				 		}
+			 		}
+			 		
+			 	}
+			 }
+			 finally {
+				 
+			 }
 	            int tmp=Integer.valueOf(entry.getKey());
 	            int max=Integer.valueOf(lastObject);
 	            if(tmp>max)

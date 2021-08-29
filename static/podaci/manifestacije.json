@@ -31,7 +31,7 @@
     "obrisana": false
   },
   {
-    "naziv": "Doček Vladimira Putina u Beogradu",
+    "naziv": "DoÄ�ek Vladimira Putina u Beogradu",
     "tipManifestacije": "diplomatija",
     "id": "2",
     "brojMesta": 5500,
@@ -242,6 +242,68 @@
       "ulicaBroj": "Puskinova 2-4",
       "grad": "Novi Sad City",
       "postanskiBroj": "21102",
+      "obrisana": false
+    },
+    "poster": "./podaci/posteri/poster2.jpg",
+    "obrisana": false
+  },
+  {
+    "naziv": "proba1",
+    "tipManifestacije": "proba",
+    "id": "9",
+    "brojMesta": 123,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 12
+      },
+      "time": {
+        "hour": 14,
+        "minute": 58,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 123.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 45.257518899078626,
+      "geoDuzina": 19.830335173755888,
+      "ulicaBroj": "Slobodana Bajica 1",
+      "grad": "Novi Sad City",
+      "postanskiBroj": "21101",
+      "obrisana": false
+    },
+    "poster": "./podaci/posteri/poster2.jpg",
+    "obrisana": true
+  },
+  {
+    "naziv": "proba1",
+    "tipManifestacije": "proba",
+    "id": "10",
+    "brojMesta": 123,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 12
+      },
+      "time": {
+        "hour": 20,
+        "minute": 34,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 123.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 45.25710352333646,
+      "geoDuzina": 19.830745048820976,
+      "ulicaBroj": "Branimira Cosica 31",
+      "grad": "Novi Sad City",
+      "postanskiBroj": "21000",
       "obrisana": false
     },
     "poster": "./podaci/posteri/poster2.jpg",

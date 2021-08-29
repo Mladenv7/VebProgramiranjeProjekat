@@ -5,7 +5,7 @@
     "ime": "p",
     "prezime": "p",
     "pol": "MUSKI",
-	"datumRodjenja": {
+    "datumRodjenja": {
       "year": 1981,
       "month": 7,
       "day": 30
@@ -15,7 +15,8 @@
     "sveManifest": [
       "5",
       "6",
-      "8"
+      "8",
+      "9"
     ],
     "brBodova": 0,
     "obrisan": false
@@ -33,7 +34,9 @@
     },
     "uloga": "PRODAVAC",
     "sveKarte": [],
-    "sveManifest": [],
+    "sveManifest": [
+      "10"
+    ],
     "brBodova": 0,
     "obrisan": false
   },
@@ -43,7 +46,7 @@
     "ime": "a",
     "prezime": "a",
     "pol": "MUSKI",
-	"datumRodjenja": {
+    "datumRodjenja": {
       "year": 1981,
       "month": 7,
       "day": 30
@@ -55,12 +58,29 @@
     "obrisan": false
   },
   {
+    "korisnickoIme": "Ä�ura",
+    "lozinka": "password",
+    "ime": "Ä�ura",
+    "prezime": "Ä�ura",
+    "pol": "ZENSKI",
+    "datumRodjenja": {
+      "year": 1981,
+      "month": 7,
+      "day": 30
+    },
+    "uloga": "KUPAC",
+    "sveKarte": [],
+    "sveManifest": [],
+    "brBodova": 0,
+    "obrisan": false
+  },
+  {
     "korisnickoIme": "Prodavac",
     "lozinka": "password",
     "ime": "Prodavac",
     "prezime": "Prodavac",
     "pol": "MUSKI",
-	"datumRodjenja": {
+    "datumRodjenja": {
       "year": 1981,
       "month": 7,
       "day": 30
@@ -95,27 +115,21 @@
       "pY2ccHL1L6",
       "oinA9siUKd",
       "v44ZkrT9Gl",
-      "eK0em9H0lo"
+      "eK0em9H0lo",
+      "1zN4uiXggM",
+      "xVEaho1zRg",
+      "hLyXMMD1Lq",
+      "rkO66cEdyO",
+      "9EQJaFln1y",
+      "e3fOu7ziAF",
+      "EvFZg1V9sL",
+      "IWOsRH6sl5",
+      "RkLyd5k8mu",
+      "wXXwyLYrmM"
     ],
     "sveManifest": [],
-    "brBodova": -1,
-    "obrisan": false
-  },
-  {
-    "korisnickoIme": "Đura",
-    "lozinka": "password",
-    "ime": "Đura",
-    "prezime": "Đura",
-    "pol": "ZENSKI",
-	"datumRodjenja": {
-      "year": 1981,
-      "month": 7,
-      "day": 30
-    },
-    "uloga": "KUPAC",
-    "sveKarte": [],
-    "sveManifest": [],
-    "brBodova": 0,
+    "brBodova": 1859,
+    "tip": "SREBRNI",
     "obrisan": false
   },
   {
@@ -124,7 +138,7 @@
     "ime": "k",
     "prezime": "k",
     "pol": "MUSKI",
-	"datumRodjenja": {
+    "datumRodjenja": {
       "year": 1981,
       "month": 7,
       "day": 30
@@ -176,10 +190,20 @@
       "ofpAMiL8OT",
       "FekfPMO5kO",
       "aoXHRywuRE",
-      "Zkxncifp2U"
+      "Zkxncifp2U",
+      "FYnpC8PBp0",
+      "IVnY1PcaJC",
+      "kPeUrAlDbw",
+      "bpvlNNj91k",
+      "1BRylqt5l1",
+      "G0BYkHuAIZ",
+      "gHNiQurUiU",
+      "Pynwu35ge4",
+      "OP9gvDMu2l",
+      "FF5VL5B8km"
     ],
     "sveManifest": [],
-    "brBodova": -3628,
+    "brBodova": -3168,
     "obrisan": false
   },
   {

@@ -218,6 +218,8 @@ public class RezervacijaKarataMain {
 			novaManifestacija.setObrisana(false);
 			
 			int retVal=manifestacije.dodajManifestaciju(novaManifestacija);
+			if(retVal == -1)
+				return retVal;
 			korisnikServis.dodajManifestacijuKorisniku(novaManifestacija, dto.getProdavac());
 			return retVal;
 
