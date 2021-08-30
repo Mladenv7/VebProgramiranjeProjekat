@@ -72,7 +72,7 @@
     "sveKarte": [],
     "sveManifest": [],
     "brBodova": 0,
-    "obrisan": false
+    "obrisan": true
   },
   {
     "korisnickoIme": "Prodavac",
@@ -130,6 +130,35 @@
     "sveManifest": [],
     "brBodova": 1859,
     "tip": "SREBRNI",
+    "obrisan": false
+  },
+  {
+    "korisnickoIme": "d",
+    "lozinka": "d",
+    "ime": "dusan",
+    "prezime": "antic",
+    "pol": "MUSKI",
+    "datumRodjenja": {
+      "year": 1997,
+      "month": 6,
+      "day": 12
+    },
+    "uloga": "KUPAC",
+    "sveKarte": [
+      "gtV0fxiw1G",
+      "lUgLCV4fro",
+      "OQqQlhK0bH",
+      "2AkLTOOXIt",
+      "YCjFHlJWwx",
+      "Kf7cNOoczb",
+      "87gAKwQ6VM",
+      "9UZUcRL9Vb",
+      "EHLzqRPIuX",
+      "QqaruKfCnj",
+      "6UmDZjBDIM"
+    ],
+    "sveManifest": [],
+    "brBodova": 59,
     "obrisan": false
   },
   {
@@ -203,7 +232,7 @@
       "FF5VL5B8km"
     ],
     "sveManifest": [],
-    "brBodova": -3168,
+    "brBodova": -5214,
     "obrisan": false
   },
   {

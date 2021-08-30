@@ -1,5 +1,49 @@
 [
   {
+    "id": "lUgLCV4fro",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 20.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "QqaruKfCnj",
+    "manifestacijaId": "6",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 5
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 30.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "0a1OjmDENt",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -66,6 +110,28 @@
     "obrisana": false
   },
   {
+    "id": "gtV0fxiw1G",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 20.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "eK0em9H0lo",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -129,6 +195,28 @@
     "imePrezime": "Novi Kupac",
     "status": "REZERVISANA",
     "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "6UmDZjBDIM",
+    "manifestacijaId": "6",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 5
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 30.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {
@@ -308,6 +396,28 @@
     "obrisana": false
   },
   {
+    "id": "EHLzqRPIuX",
+    "manifestacijaId": "6",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 5
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 30.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
     "id": "pY2ccHL1L6",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -347,7 +457,7 @@
     },
     "cena": 350.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "REGULAR",
     "obrisana": false
   },
@@ -369,7 +479,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -506,6 +616,28 @@
     "obrisana": false
   },
   {
+    "id": "Kf7cNOoczb",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 80.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
     "id": "RkLyd5k8mu",
     "manifestacijaId": "7",
     "vremeOdrzavanja": {
@@ -611,7 +743,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -633,6 +765,28 @@
     },
     "cena": 4.0,
     "imePrezime": "k k",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "YCjFHlJWwx",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 80.0,
+    "imePrezime": "dusan antic",
     "status": "REZERVISANA",
     "tip": "VIP",
     "obrisana": false
@@ -743,7 +897,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },
@@ -787,6 +941,50 @@
     },
     "cena": 350.0,
     "imePrezime": "k k",
+    "status": "OTKAZANA",
+    "tip": "REGULAR",
+    "obrisana": false
+  },
+  {
+    "id": "2AkLTOOXIt",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 80.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
+    "id": "9UZUcRL9Vb",
+    "manifestacijaId": "6",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 5
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 30.0,
+    "imePrezime": "dusan antic",
     "status": "REZERVISANA",
     "tip": "REGULAR",
     "obrisana": false
@@ -858,6 +1056,28 @@
     "obrisana": false
   },
   {
+    "id": "OQqQlhK0bH",
+    "manifestacijaId": "5",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 80.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "VIP",
+    "obrisana": false
+  },
+  {
     "id": "hR0GrZira2",
     "manifestacijaId": "5",
     "vremeOdrzavanja": {
@@ -877,6 +1097,28 @@
     "imePrezime": "k k",
     "status": "REZERVISANA",
     "tip": "FAN_PIT",
+    "obrisana": false
+  },
+  {
+    "id": "87gAKwQ6VM",
+    "manifestacijaId": "6",
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 8,
+        "day": 5
+      },
+      "time": {
+        "hour": 20,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cena": 30.0,
+    "imePrezime": "dusan antic",
+    "status": "REZERVISANA",
+    "tip": "REGULAR",
     "obrisana": false
   },
   {
@@ -1007,7 +1249,7 @@
     },
     "cena": 350.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "REGULAR",
     "obrisana": false
   },
@@ -1095,7 +1337,7 @@
     },
     "cena": 700.0,
     "imePrezime": "k k",
-    "status": "REZERVISANA",
+    "status": "OTKAZANA",
     "tip": "FAN_PIT",
     "obrisana": false
   },

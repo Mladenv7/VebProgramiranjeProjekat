@@ -1,17 +1,23 @@
 Vue.component("moj-profil", {
-    data: function(){
-        return {
-            prijavljeniKorisnik : {},
-        }
-    },
-    template: 
-    `
+  data: function () {
+    return {
+      prijavljeniKorisnik: {},
+    };
+  },
+  template: `
     <div class="container">
     <div class="row">
+     <div class="col-auto">
+        <img src="./podaci/elementi/korisnik.png" style="width: 300px;height: 300px;">
+         <h4 style="margin: 20px 20px;">Korisničko ime: {{prijavljeniKorisnik.korisnickoIme}}</h4>
+        </div>
         <div class="col-8">
+        
+        
         <form style="width: 30%;" class="d-grid gap-2">
             <div class="form-floating">
-            <p>Korisničko ime: {{prijavljeniKorisnik.korisnickoIme}}</p>
+            
+          
             </div>
             <div class="form-floating">
             <input type="text" class="form-control" id="ime" placeholder="Ime" v-model="prijavljeniKorisnik.ime">
@@ -40,40 +46,61 @@ Vue.component("moj-profil", {
             <input class="w-100 btn btn-lg btn-primary" type="submit" v-on:click="azurirajKorisnika()" value="Ažuriranje" />
         </form>
         </div>
-        <div class="col-auto">
-        <img src="./podaci/elementi/korisnik.png" style="width: 300px;height: 300px;">
-        </div>
+   
     </div>
     </div>
     `,
-    methods: {
-        dobaviPrijavljenog(){
-            axios.get("/rest/korisnici/jedanKorisnik/"+this.$route.query.korisnickoIme).then(response => {
-                this.prijavljeniKorisnik = response.data;
-                this.prijavljeniKorisnik.datumRodjenja = this.formatirajDatum(this.prijavljeniKorisnik.datumRodjenja);
-                if(this.prijavljeniKorisnik.pol == "MUSKI") this.prijavljeniKorisnik.pol = "m";
-                else if (this.prijavljeniKorisnik.pol == "ZENSKI") this.prijavljeniKorisnik.pol = "ž";
-            });
-        },
-        formatirajDatum(datum){
-            return datum.year.toLocaleString('en-US', {minimumIntegerDigits: 4, useGrouping:false})
-              +"-"+datum.month.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-              +"-"+datum.day.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-        },
-        azurirajKorisnika(){
-            if(this.prijavljeniKorisnik.lozinka == "") return;
-
-            if(this.prijavljeniKorisnik.pol == "m") this.prijavljeniKorisnik.pol = "MUSKI";
-            else if (this.prijavljeniKorisnik.pol == "ž") this.prijavljeniKorisnik.pol = "ZENSKI";
-
-            console.log(this.prijavljeniKorisnik);
-
-            axios.post("/rest/korisnici/azuriranjeKorisnika", this.prijavljeniKorisnik).then(response => {
-                alert(response.data);
-            });
-        },
+  methods: {
+    dobaviPrijavljenog() {
+      axios
+        .get("/rest/korisnici/jedanKorisnik/" + this.$route.query.korisnickoIme)
+        .then((response) => {
+          this.prijavljeniKorisnik = response.data;
+          this.prijavljeniKorisnik.datumRodjenja = this.formatirajDatum(
+            this.prijavljeniKorisnik.datumRodjenja
+          );
+          if (this.prijavljeniKorisnik.pol == "MUSKI")
+            this.prijavljeniKorisnik.pol = "m";
+          else if (this.prijavljeniKorisnik.pol == "ZENSKI")
+            this.prijavljeniKorisnik.pol = "ž";
+        });
     },
-    created(){
-        this.dobaviPrijavljenog();
-    }
+    formatirajDatum(datum) {
+      return (
+        datum.year.toLocaleString("en-US", {
+          minimumIntegerDigits: 4,
+          useGrouping: false,
+        }) +
+        "-" +
+        datum.month.toLocaleString("en-US", {
+          minimumIntegerDigits: 2,
+          useGrouping: false,
+        }) +
+        "-" +
+        datum.day.toLocaleString("en-US", {
+          minimumIntegerDigits: 2,
+          useGrouping: false,
+        })
+      );
+    },
+    azurirajKorisnika() {
+      if (this.prijavljeniKorisnik.lozinka == "") return;
+
+      if (this.prijavljeniKorisnik.pol == "m")
+        this.prijavljeniKorisnik.pol = "MUSKI";
+      else if (this.prijavljeniKorisnik.pol == "ž")
+        this.prijavljeniKorisnik.pol = "ZENSKI";
+
+      console.log(this.prijavljeniKorisnik);
+
+      axios
+        .post("/rest/korisnici/azuriranjeKorisnika", this.prijavljeniKorisnik)
+        .then((response) => {
+          alert(response.data);
+        });
+    },
+  },
+  created() {
+    this.dobaviPrijavljenog();
+  },
 });
