@@ -26,8 +26,8 @@ Vue.component("manifestacije-licne", {
                     <div class="card-body">
                         <h5 class="card-title" style="white-space: nowrap; width: 250px; overflow: hidden; text-overflow: ellipsis; ">{{manifestacija.naziv}}</h5>
                         <p class="card-text">{{manifestacija.tipManifestacije}}</p>
-                        <a class="btn btn-secondary" v-on:click="izaberiManifestaciju(manifestacija.id)">Detalji</a>
-                        <a class="btn btn-secondary" v-on:click="azurirajManifestaciju(manifestacija.id)">Azuriraj</a>
+                        <a class="btn btn-secondary" v-on:click="izaberiManifestaciju(manifestacija.id)" style="margin:10px;">Detalji</a>
+                        <a class="btn btn-secondary" v-on:click="azurirajManifestaciju(manifestacija.id)" style="margin:10px;">Azuriraj</a>
                     </div>
                 </div>
             </div>

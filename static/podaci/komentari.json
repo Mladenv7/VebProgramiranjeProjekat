@@ -22,5 +22,13 @@
     "ocena": 3,
     "obrisan": false,
     "aktivan": true
+  },
+  {
+    "autor": "k",
+    "idManifestacije": "5",
+    "tekst": "bolje od zbora na manjaci",
+    "ocena": 5,
+    "obrisan": false,
+    "aktivan": true
   }
 ]
