@@ -5,12 +5,26 @@ Vue.component("moj-profil", {
     };
   },
   template: `
-    <div class="container">
-    <div class="row">
-     <div class="col-auto">
-        <img src="./podaci/elementi/korisnik.png" style="width: 300px;height: 300px;">
-         <h4 style="margin: 20px 20px;">Korisničko ime: {{prijavljeniKorisnik.korisnickoIme}}</h4>
+    <div class="container" >
+    <div class="row" >
+		<div class="col-lg-3 col-sm-6">
+
+            <div class="card hovercard" >
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="./podaci/elementi/korisnik.png">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <div>{{prijavljeniKorisnik.korisnickoIme}}</div>
+                    </div>                    
+                </div>
+              </div>
+
         </div>
+
         <div class="col-8">
         
         

@@ -219,5 +219,22 @@
         "nano": 287000000
       }
     }
+  },
+  {
+    "idKarte": "xVEaho1zRg",
+    "korisnickoIme": "NoviKupac",
+    "vremeOtkaza": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 5
+      },
+      "time": {
+        "hour": 21,
+        "minute": 59,
+        "second": 35,
+        "nano": 438000000
+      }
+    }
   }
 ]
