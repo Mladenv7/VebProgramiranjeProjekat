@@ -1,5 +1,36 @@
 [
   {
+    "naziv": "OK fest",
+    "tipManifestacije": "festival",
+    "id": "11",
+    "brojMesta": 50000,
+    "vremeOdrzavanja": {
+      "date": {
+        "year": 2021,
+        "month": 9,
+        "day": 15
+      },
+      "time": {
+        "hour": 4,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "cenaRegular": 35.0,
+    "status": false,
+    "lokacija": {
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
+    },
+    "poster": "./podaci/posteri/download.png",
+    "obrisana": false
+  },
+  {
     "naziv": "Utakmica 1",
     "tipManifestacije": "sport",
     "id": "1",
@@ -19,15 +50,15 @@
     },
     "cenaRegular": 550.0,
     "status": false,
-    "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+     "lokacija": {
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
     },
-    "poster": "./podaci/posteri/poster1.jpg",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   },
   {
@@ -50,15 +81,15 @@
     },
     "cenaRegular": 1050.0,
     "status": false,
-    "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+     "lokacija": {
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
     },
-    "poster": "./podaci/posteri/poster2.jpg",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   },
   {
@@ -82,14 +113,14 @@
     "cenaRegular": 660.0,
     "status": false,
     "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
     },
-    "poster": "./podaci/posteri/poster3.jpg",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   },
   {
@@ -113,14 +144,14 @@
     "cenaRegular": 880.0,
     "status": false,
     "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
     },
-    "poster": "",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   },
   {
@@ -168,7 +199,8 @@
       "time": {
         "hour": 20,
         "minute": 0,
-        "day": 27
+        "second": 0,
+        "nano": 0
       }
     },
     "cenaRegular": 30.0,
@@ -205,14 +237,14 @@
     "cenaRegular": 350.0,
     "status": true,
     "lokacija": {
-      "geoSirina": 0.0,
-      "geoDuzina": 0.0,
-      "ulicaBroj": "",
-      "grad": "",
-      "postanskiBroj": "",
-      "obrisana": true
+      "geoSirina": 43.857940918073616,
+      "geoDuzina": 18.416023626923565,
+      "ulicaBroj": "Maršala Tita 26",
+      "grad": "City of Sarajevo",
+      "postanskiBroj": "71000",
+      "obrisana": false
     },
-    "poster": "./podaci/posteri/poster2.jpg",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   },
   {
@@ -243,7 +275,7 @@
       "postanskiBroj": "21000",
       "obrisana": false
     },
-    "poster": "./podaci/posteri/poster2.jpg",
+    "poster": "./podaci/posteri/prva-11.jpg",
     "obrisana": false
   }
 ]
