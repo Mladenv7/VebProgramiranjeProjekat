@@ -141,23 +141,7 @@
         "nano": 0
       }
     },
-<<<<<<< Updated upstream
     "cenaRegular": 20.0,
-=======
-    "cenaRegular": 1.0,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     "status": true,
     "lokacija": {
       "geoSirina": 44.76724235287132,
@@ -179,48 +163,14 @@
       "date": {
         "year": 2021,
         "month": 8,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         "day": 5
       },
       "time": {
         "hour": 20,
         "minute": 0,
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         "day": 27
-      },
-      "time": {
-        "hour": 16,
-        "minute": 59,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-        "second": 0,
-        "nano": 0
       }
     },
-<<<<<<< Updated upstream
     "cenaRegular": 30.0,
     "status": true,
     "lokacija": {
@@ -229,28 +179,6 @@
       "ulicaBroj": "Zdravka Čelara 14",
       "grad": "Banja Luka",
       "postanskiBroj": "78000",
-=======
-    "cenaRegular": 2131.0,
-    "status": true,
-    "lokacija": {
-      "geoSirina": 45.2634093552273,
-      "geoDuzina": 19.833661615848545,
-      "ulicaBroj": "Berislava Berica 12",
-      "grad": "Novi Sad City",
-      "postanskiBroj": "21101",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
       "obrisana": false
     },
     "poster": "./podaci/posteri/1624457577.jpg",
@@ -284,87 +212,8 @@
       "postanskiBroj": "",
       "obrisana": true
     },
-<<<<<<< Updated upstream
     "poster": "./podaci/posteri/poster2.jpg",
     "obrisana": false
-=======
-    "poster": "./podaci/posteri/undefined",
-    "obrisana": true
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-  },
-  {
-    "naziv": "OK fest",
-    "tipManifestacije": "festival",
-    "id": "8",
-    "brojMesta": 30000,
-    "vremeOdrzavanja": {
-      "date": {
-        "year": 2021,
-        "month": 8,
-        "day": 15
-      },
-      "time": {
-        "hour": 16,
-        "minute": 0,
-        "second": 0,
-        "nano": 0
-      }
-    },
-    "cenaRegular": 30.0,
-    "status": true,
-    "lokacija": {
-      "geoSirina": 43.82516165074787,
-      "geoDuzina": 18.36813110858202,
-      "ulicaBroj": "Karađorđeva 13",
-      "grad": "",
-      "postanskiBroj": "71123",
-      "obrisana": false
-    },
-    "poster": "./podaci/posteri/download.png",
-    "obrisana": false
-  },
-  {
-    "naziv": "Exit",
-    "tipManifestacije": "festival",
-    "id": "9",
-    "brojMesta": 100000,
-    "vremeOdrzavanja": {
-      "date": {
-        "year": 2021,
-        "month": 7,
-        "day": 8
-      },
-      "time": {
-        "hour": 20,
-        "minute": 0,
-        "second": 0,
-        "nano": 0
-      }
-    },
-    "cenaRegular": 120.0,
-    "status": false,
-    "lokacija": {
-      "geoSirina": 45.25304023311995,
-      "geoDuzina": 19.855019040405754,
-      "ulicaBroj": "Kej zrtava racije 4",
-      "grad": "Novi Sad City",
-      "postanskiBroj": "21101",
-      "obrisana": false
-    },
-    "poster": "./podaci/posteri/images.jpg",
-    "obrisana": false
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   },
   {
     "naziv": "proba1",
